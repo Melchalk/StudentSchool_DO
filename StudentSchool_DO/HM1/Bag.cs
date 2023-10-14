@@ -1,4 +1,4 @@
-﻿namespace HM1;
+﻿namespace HW1;
 
 internal class Bag
 {
