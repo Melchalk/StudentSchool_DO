@@ -3,12 +3,12 @@ Console.WriteLine(str1[0]);
 Change(str1);
 Console.WriteLine(str1[0]);
 
-
 RemakeArray(new int[,]
 {
     {1, 2, 3},
     {0, 5, 0 }
 });
+
 void Change(int[] str)
 {
     str = new[] { 3, 4 };
@@ -30,7 +30,6 @@ void RemakeArray(int[,] array)
 {
     for (int i = 0; i < array.Rank; i++)
     {
-        Console.WriteLine(array.GetUpperBound(0));
         for (int j = 0; j <= array.GetUpperBound(0) + 1; j++)
         {
             if (array[i,j] != 0)
@@ -40,7 +39,6 @@ void RemakeArray(int[,] array)
         }
     }
 }
-
 
 string FooBar(int num)
 {
