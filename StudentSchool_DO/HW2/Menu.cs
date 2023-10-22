@@ -7,8 +7,9 @@ static internal class Menu
     static public Fibonacci fibonacci = new();
     static public Exit exit = new();
     static public List<Action> actions = new() { read, write, fibonacci, exit };
-    const string mistake = "\nНекорректный ввод";
-    const string tryAgain = "Выполните попытку снова";
+    public const string mistake = "\nНекорректный ввод";
+    public const string tryAgain = "Выполните попытку снова";
+    public const string transitionToStartMenu = "Выполняется переход в главное меню";
 
     public static int? StartMenu()
     {
@@ -54,18 +55,21 @@ static internal class Menu
         Console.ForegroundColor = ConsoleColor.White;
 
         if (!(int.TryParse(Console.ReadLine(), out int meduimAction) && (meduimAction == 1 || meduimAction == 2)))
-            MistakeAndTransition();
+            MistakeAndTransition(transitionToStartMenu);
 
         if (meduimAction == 1)
             Choice(numOfAction);
     }
 
-    public static void MistakeAndTransition()
+    public static void MistakeAndTransition(string messageWarning)
     {
         Console.ForegroundColor = ConsoleColor.Red;
         Console.WriteLine(mistake);
-        Console.WriteLine(tryAgain);
+        Console.Write(messageWarning);
         Console.ForegroundColor = ConsoleColor.White;
+
+        if (messageWarning == transitionToStartMenu)
+            Console.ReadLine();
     }
 
     static void PerformingAction<T>(T action) where T : Action

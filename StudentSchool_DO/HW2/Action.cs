@@ -34,7 +34,7 @@ internal class Read : Action
 
         if (!int.TryParse(Console.ReadLine(), out int countStr))
         {
-            Menu.MistakeAndTransition();
+            Menu.MistakeAndTransition(Menu.tryAgain);
             return string.Empty;
         }
 
@@ -94,7 +94,7 @@ internal class Fibonacci : Action
 
         if (!int.TryParse(Console.ReadLine(), out int countNumber) || countNumber < 1)
         {
-            Menu.MistakeAndTransition();
+            Menu.MistakeAndTransition(Menu.tryAgain);
             return string.Empty;
         }
 
