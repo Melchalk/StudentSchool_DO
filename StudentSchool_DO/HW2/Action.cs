@@ -30,7 +30,7 @@ internal class Read : Action
     public override string PerformAction()
     {
         Console.Write("Введите количество строк: ");
-        Console.ForegroundColor = ConsoleColor.White;
+        ConsoleServiceColors.OrdinaryColor();
 
         if (!int.TryParse(Console.ReadLine(), out int countStr))
         {
@@ -71,7 +71,7 @@ internal class Write : Action
     public override string PerformAction()
     {
         Console.Write("Введите URL: ");
-        Console.ForegroundColor = ConsoleColor.White;
+        ConsoleServiceColors.OrdinaryColor();
 
         File.WriteAllText(filePath, Console.ReadLine());
 
@@ -90,7 +90,7 @@ internal class Fibonacci : Action
     public override string PerformAction()
     {
         Console.Write("Введите номер числа: ");
-        Console.ForegroundColor = ConsoleColor.White;
+        ConsoleServiceColors.OrdinaryColor();
 
         if (!int.TryParse(Console.ReadLine(), out int countNumber) || countNumber < 1)
         {
@@ -124,7 +124,7 @@ internal class Exit : Action
 
     public override string PerformAction()
     {
-        Console.ForegroundColor = ConsoleColor.Blue;
+        ConsoleServiceColors.HintsColor();
         flagOfEnd = true;
         return DoneMessage;
     }
