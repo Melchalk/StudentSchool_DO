@@ -6,10 +6,10 @@ while (!Menu.exit.flagOfEnd)
 
     if (numberAction is null || numberAction > Menu.actions.Count || numberAction < 0)
     {
-        Console.ForegroundColor = ConsoleColor.Red;
+        ConsoleServiceColors.MistakeColor();
         Console.WriteLine("\nВнимание! Некорректный ввод");
         Console.Write("Повторить попытку? (y/n) - ");
-        Console.ForegroundColor = ConsoleColor.White;
+        ConsoleServiceColors.OrdinaryColor();
 
         if (Console.ReadLine() == "y")
             continue;

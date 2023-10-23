@@ -14,13 +14,13 @@ static internal class Menu
     public static int? StartMenu()
     {
         Console.Clear();
-        Console.ForegroundColor = ConsoleColor.Yellow;
+        ConsoleServiceColors.ColorForMenu();
         Console.WriteLine("---- Добро пожаловать в меню ----");
         Console.WriteLine("Выберите желаемую опцию");
         Console.WriteLine($"- Чтение: {actions.IndexOf(read)}\n- Запись: {actions.IndexOf(write)}" +
             $"\n- Вывод числа Фибоначчи: {actions.IndexOf(fibonacci)}\n- Выход: {actions.IndexOf(exit)}");
         Console.Write("\nНомер выбора - ");
-        Console.ForegroundColor = ConsoleColor.White;
+        ConsoleServiceColors.OrdinaryColor();
 
         try
         {
@@ -38,7 +38,7 @@ static internal class Menu
 
         if (actions[numOfAction] == exit)
         {
-            Console.ForegroundColor = ConsoleColor.White;
+            ConsoleServiceColors.OrdinaryColor();
             return;
         }
 
@@ -47,12 +47,12 @@ static internal class Menu
 
     static void MediumMenu(int numOfAction)
     {
-        Console.ForegroundColor = ConsoleColor.Yellow;
+        ConsoleServiceColors.ColorForMenu();
         Console.WriteLine("\nВыберите действие: ");
         Console.WriteLine("Повторить операцию (1)");
         Console.WriteLine("Главное меню (2)");
         Console.Write("\nНомер - ");
-        Console.ForegroundColor = ConsoleColor.White;
+        ConsoleServiceColors.OrdinaryColor();
 
         if (!(int.TryParse(Console.ReadLine(), out int meduimAction) && (meduimAction == 1 || meduimAction == 2)))
             MistakeAndTransition(transitionToStartMenu);
@@ -63,10 +63,10 @@ static internal class Menu
 
     public static void MistakeAndTransition(string messageWarning)
     {
-        Console.ForegroundColor = ConsoleColor.Red;
+        ConsoleServiceColors.MistakeColor();
         Console.WriteLine(mistake);
         Console.Write(messageWarning);
-        Console.ForegroundColor = ConsoleColor.White;
+        ConsoleServiceColors.OrdinaryColor();
 
         if (messageWarning == transitionToStartMenu)
             Console.ReadLine();
@@ -81,7 +81,7 @@ static internal class Menu
     public static void SendMessage(string message)
     {
         Console.Clear();
-        Console.ForegroundColor = ConsoleColor.Blue;
+        ConsoleServiceColors.HintsColor();
         Console.WriteLine(message);
     }
 }
