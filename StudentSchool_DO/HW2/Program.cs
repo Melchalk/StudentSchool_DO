@@ -1,11 +1,12 @@
 ﻿using HW2;
 
-while (!Menu.exit.flagOfEnd)
+while (!Menu.exit.endWorking)
 {
     ConsoleHelper.Output(Menu.StartMenu());
     ConsoleServiceColors.OrdinaryColor();
 
     int numberAction = 0;
+
     if (int.TryParse(ConsoleHelper.Input(), out int checkAction))
     {
         numberAction = checkAction;

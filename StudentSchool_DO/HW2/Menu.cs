@@ -14,7 +14,7 @@ static internal class Menu
 
     public static string StartMenu()
     {
-        Console.Clear();
+        ConsoleHelper.Clear();
         ConsoleServiceColors.ColorForMenu();
 
         string startMenuText = "---- Добро пожаловать в меню ----\n" +

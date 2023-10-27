@@ -9,7 +9,6 @@ internal class Reader : Action
     {
         CommonID++;
         ID = CommonID;
-        ActionEnum = MenuEnum.Start.Read;
         Message = "-- Выполняется чтение из файла --";
         DoneMessage = "\nПрочтеные строки: ";
     }
