@@ -1,5 +1,4 @@
 ﻿using HW2;
-using HW2.Actions;
 
 while (!Menu.exit.flagOfEnd)
 {

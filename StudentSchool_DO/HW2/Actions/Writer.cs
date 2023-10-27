@@ -1,10 +1,10 @@
-﻿namespace HW2.Actions;
+﻿using System.Net;
 
-//Не правильно поняла задание, переделать
+namespace HW2.Actions;
 
 internal class Writer : Action
 {
-    readonly string filePath = Directory.GetCurrentDirectory() + "/URL.txt";
+    readonly string _filePath = Directory.GetCurrentDirectory() + "/URL.txt";
 
     public Writer()
     {
@@ -20,7 +20,15 @@ internal class Writer : Action
         ConsoleHelper.Output("Введите URL: ");
         ConsoleServiceColors.OrdinaryColor();
 
-        File.WriteAllText(filePath, ConsoleHelper.Input());
+        string url = ConsoleHelper.Input();
+        string codeOfPage;
+
+        using (WebClient client = new())
+        {
+            codeOfPage = client.DownloadString(url);
+        }
+
+        File.WriteAllText(_filePath, codeOfPage);
 
         return DoneMessage;
     }
