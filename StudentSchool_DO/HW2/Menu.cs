@@ -1,87 +1,124 @@
 ﻿namespace HW2;
+using HW2.Actions;
+using System;
 
 static internal class Menu
 {
-    static public Read read = new();
-    static public Write write = new();
-    static public Fibonacci fibonacci = new();
-    static public Exit exit = new();
-    static public List<Action> actions = new() { read, write, fibonacci, exit };
-    public const string mistake = "\nНекорректный ввод";
-    public const string tryAgain = "Выполните попытку снова";
-    public const string transitionToStartMenu = "Выполняется переход в главное меню";
+    public const string MISTAKE = "\nНекорректный ввод";
+    public const string TRY_AGAIN = "Выполните попытку снова";
+    public const string TRANSITION_TO_START_MENU = "Выполняется переход в главное меню";
+    public static Reader read = new();
+    public static Writer write = new();
+    public static Fibonacci fibonacci = new();
+    public static Exit exit = new();
 
-    public static int? StartMenu()
+    public static string StartMenu()
     {
         Console.Clear();
         ConsoleServiceColors.ColorForMenu();
-        Console.WriteLine("---- Добро пожаловать в меню ----");
-        Console.WriteLine("Выберите желаемую опцию");
-        Console.WriteLine($"- Чтение: {actions.IndexOf(read)}\n- Запись: {actions.IndexOf(write)}" +
-            $"\n- Вывод числа Фибоначчи: {actions.IndexOf(fibonacci)}\n- Выход: {actions.IndexOf(exit)}");
-        Console.Write("\nНомер выбора - ");
-        ConsoleServiceColors.OrdinaryColor();
 
-        try
-        {
-            return int.Parse(Console.ReadLine());
-        }
-        catch
-        {
-            return null;
-        }
+        string startMenuText = "---- Добро пожаловать в меню ----\n" +
+            "Выберите желаемую опцию\n" +
+            $"- Чтение: {read.ID}\n" +
+            $"- Запись: {write.ID}\n" +
+            $"- Вывод числа Фибоначчи: {fibonacci.ID}\n" +
+            $"- Выход: {exit.ID}\n" +
+            "Номер выбора - ";
+
+        return startMenuText;
     }
 
-    public static void Choice(int numOfAction)
+    static string MediumMenu()
     {
-        PerformingAction(actions[numOfAction]);
+        ConsoleServiceColors.ColorForMenu();
 
-        if (actions[numOfAction] == exit)
+        string mediumMenuText = "\nВыберите действие:\n" +
+            "Повторить операцию (1)\n" +
+            "Главное меню (2)\n" +
+            "Номер - ";
+
+        return mediumMenuText;
+    }
+
+    public static void StartChoice<T>(T action) where T : Actions.Action
+    {
+        PerformingAction(action);
+
+        if (action == exit)
         {
             ConsoleServiceColors.OrdinaryColor();
             return;
         }
 
-        MediumMenu(numOfAction);
-    }
-
-    static void MediumMenu(int numOfAction)
-    {
-        ConsoleServiceColors.ColorForMenu();
-        Console.WriteLine("\nВыберите действие: ");
-        Console.WriteLine("Повторить операцию (1)");
-        Console.WriteLine("Главное меню (2)");
-        Console.Write("\nНомер - ");
+        ConsoleHelper.Output(MediumMenu());
         ConsoleServiceColors.OrdinaryColor();
 
-        if (!(int.TryParse(Console.ReadLine(), out int meduimAction) && (meduimAction == 1 || meduimAction == 2)))
-            MistakeAndTransition(transitionToStartMenu);
+        MediumChoice(action);
+    }
+
+    public static bool StartCheckMistake(int numberAction)
+    {
+        bool isNotCorrectNum = !Enum.IsDefined(typeof(MenuEnum.Start), numberAction);
+        if (isNotCorrectNum)
+        {
+            ConsoleServiceColors.MistakeColor();
+
+            ConsoleHelper.Output("\nВнимание! Некорректный ввод\n" +
+                "Повторить попытку? (y/n) - ");
+
+            ConsoleServiceColors.OrdinaryColor();
+
+            return ConsoleHelper.Input() == "y";
+        }
+
+        return false;
+    }
+
+    public static void MediumChoice<T>(T action) where T : Actions.Action
+    {
+        if (!(int.TryParse(ConsoleHelper.Input(), out int meduimAction) && Enum.IsDefined(typeof(MenuEnum.Medium), meduimAction)))
+        {
+            MistakeAndTransition(TRANSITION_TO_START_MENU);
+        }
 
         if (meduimAction == 1)
-            Choice(numOfAction);
+        {
+            StartChoice(action);
+        }
     }
 
     public static void MistakeAndTransition(string messageWarning)
     {
         ConsoleServiceColors.MistakeColor();
-        Console.WriteLine(mistake);
-        Console.Write(messageWarning);
+
+        ConsoleHelper.Output($"{MISTAKE}\n{messageWarning}\n");
+
         ConsoleServiceColors.OrdinaryColor();
 
-        if (messageWarning == transitionToStartMenu)
-            Console.ReadLine();
+        if (messageWarning == TRANSITION_TO_START_MENU)
+        {
+            ConsoleHelper.Input();
+        }
     }
 
-    static void PerformingAction<T>(T action) where T : Action
+    static void PerformingAction<T>(T action) where T : Actions.Action
     {
         SendMessage(action.Message);
-        Console.WriteLine(action.PerformAction());
+
+        try
+        {
+            ConsoleHelper.Output($"{action.PerformAction()}\n");
+        }
+        catch
+        {
+            MistakeAndTransition(TRY_AGAIN);
+        }
     }
 
     public static void SendMessage(string message)
     {
-        Console.Clear();
+        ConsoleHelper.Clear();
         ConsoleServiceColors.HintsColor();
-        Console.WriteLine(message);
+        ConsoleHelper.Output($"{message}\n");
     }
 }
