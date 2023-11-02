@@ -21,5 +21,4 @@ static internal class ConsoleServiceColors
     {
         Console.ForegroundColor = ConsoleColor.Blue;
     }
-
 }
