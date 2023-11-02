@@ -1,4 +1,5 @@
 ﻿namespace HW2;
+
 using HW2.Actions;
 using System;
 

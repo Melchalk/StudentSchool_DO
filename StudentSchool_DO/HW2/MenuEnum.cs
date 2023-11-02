@@ -1,4 +1,4 @@
-﻿namespace HW2.Actions;
+﻿namespace HW2;
 
 internal static class MenuEnum
 {
