@@ -1,27 +1,48 @@
 ﻿using HW2;
 
-while (!Menu.exit.flagOfEnd)
+while (!Menu.exit.endWorking)
 {
-    int? numberAction = Menu.StartMenu();
+    ConsoleHelper.Output(Menu.StartMenu());
+    ConsoleServiceColors.OrdinaryColor();
 
-    if (numberAction is null || numberAction > Menu.actions.Count || numberAction < 0)
+    int numberAction = 0;
+
+    if (int.TryParse(ConsoleHelper.Input(), out int checkAction))
     {
-        Console.ForegroundColor = ConsoleColor.Red;
-        Console.WriteLine("\nВнимание! Некорректный ввод");
-        Console.Write("Повторить попытку? (y/n) - ");
-        Console.ForegroundColor = ConsoleColor.White;
-
-        if (Console.ReadLine() == "y")
+        numberAction = checkAction;
+    }
+    else
+    {
+        if (Menu.StartCheckMistake(numberAction))
+        {
             continue;
-        else
-            break;
+        }
+
+        break;
     }
 
-    Menu.Choice((int)numberAction);
+    Menu.StartChoice(FromIntToAction(numberAction));
 }
 
-
-
+HW2.Actions.Action FromIntToAction(int numberOfID)
+{
+    if (numberOfID == Menu.read.ID)
+    {
+        return Menu.read;
+    }
+    else if (numberOfID == Menu.write.ID)
+    {
+        return Menu.write;
+    }
+    else if (numberOfID == Menu.fibonacci.ID)
+    {
+        return Menu.fibonacci;
+    }
+    else //(numberOfID == Menu.exit.ID)
+    {
+        return Menu.exit;
+    }
+}
 
 /*Реализовать команды:
 
@@ -42,4 +63,3 @@ while (!Menu.exit.flagOfEnd)
     - Остаться (выполнить задачу снова)
     - Вернуться в главное меню.
 */
-
