@@ -6,7 +6,6 @@ internal class Fibonacci : Action
     {
         CommonID++;
         ID = CommonID;
-        ActionEnum = MenuEnum.Start.Fibonacci;
         Message = "-- Выполняется вычисления числа Фибоначчи --";
         DoneMessage = "\nИскомое число Фибоначчи:";
     }
