@@ -10,6 +10,7 @@ internal class Writer : Action
     {
         CommonID++;
         ID = CommonID;
+        ActionEnum = MenuEnum.Start.Write;
         Message = "-- Выполняется запись URL --";
         DoneMessage = "\nЗапись выполнена";
     }

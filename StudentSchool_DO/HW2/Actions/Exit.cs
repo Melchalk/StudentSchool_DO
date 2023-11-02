@@ -2,19 +2,20 @@
 
 internal class Exit : Action
 {
-    public bool endWorking = false;
+    public bool flagOfEnd = false;
 
     public Exit()
     {
         CommonID++;
         ID = CommonID;
+        ActionEnum = MenuEnum.Start.Exit;
         Message = "-- Выполняется выход из программы --";
     }
 
     public override string PerformAction()
     {
         ConsoleServiceColors.HintsColor();
-        endWorking = true;
+        flagOfEnd = true;
 
         return DoneMessage;
     }
