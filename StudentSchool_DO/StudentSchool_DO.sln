@@ -28,13 +28,12 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "БД", "БД", "{9CD8E25E-BBF6-4A03-B81C-F7A4D9178F70}"
 	ProjectSection(SolutionItems) = preProject
 		HW3\БД таблицы\Books.sql = HW3\БД таблицы\Books.sql
-		HW3\БД таблицы\Halls.sql = HW3\БД таблицы\Halls.sql
 		HW3\БД таблицы\IssueBooks.sql = HW3\БД таблицы\IssueBooks.sql
 		HW3\БД таблицы\Issues.sql = HW3\БД таблицы\Issues.sql
-		HW3\БД таблицы\Librarians.sql = HW3\БД таблицы\Librarians.sql
-		HW3\БД таблицы\Libraries.sql = HW3\БД таблицы\Libraries.sql
 		HW3\БД таблицы\Readers.sql = HW3\БД таблицы\Readers.sql
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbHelper", "HW3\DbHelper\DbHelper.csproj", "{9E0A9849-2C6E-40E7-9F83-FA0A8F599E5C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -78,6 +77,10 @@ Global
 		{B808C37F-2B2D-4DA1-B4B6-684E2CEC8D22}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B808C37F-2B2D-4DA1-B4B6-684E2CEC8D22}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B808C37F-2B2D-4DA1-B4B6-684E2CEC8D22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E0A9849-2C6E-40E7-9F83-FA0A8F599E5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E0A9849-2C6E-40E7-9F83-FA0A8F599E5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E0A9849-2C6E-40E7-9F83-FA0A8F599E5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E0A9849-2C6E-40E7-9F83-FA0A8F599E5C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -90,6 +93,7 @@ Global
 		{9C9DF9B7-2F90-4343-884D-E4C8616E87FB} = {1EB4EB48-B26E-434F-A469-AD3FA7EEF887}
 		{B808C37F-2B2D-4DA1-B4B6-684E2CEC8D22} = {1EB4EB48-B26E-434F-A469-AD3FA7EEF887}
 		{9CD8E25E-BBF6-4A03-B81C-F7A4D9178F70} = {1EB4EB48-B26E-434F-A469-AD3FA7EEF887}
+		{9E0A9849-2C6E-40E7-9F83-FA0A8F599E5C} = {1EB4EB48-B26E-434F-A469-AD3FA7EEF887}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F9DCD49A-AD21-49D9-8BDF-EC10AD268DC7}
