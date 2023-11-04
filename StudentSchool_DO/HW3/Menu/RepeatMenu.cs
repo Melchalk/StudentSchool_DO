@@ -9,8 +9,8 @@ internal class RepeatMenu
         ConsoleServiceColors.ColorForMenu();
 
         string mediumMenuText = "\nВыберите действие:\n" +
-            "Повторить операцию (1)\n" +
-            "Главное меню (2)\n" +
+            $"Повторить операцию ({MenuEnum.Medium.Repeat})\n" +
+            $"Главное меню ({MenuEnum.Medium.StartMenu})\n" +
             "Номер - ";
 
         return mediumMenuText;

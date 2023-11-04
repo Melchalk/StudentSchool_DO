@@ -14,4 +14,12 @@ internal static class MenuEnum
         Repeat = 1,
         StartMenu
     }
+
+    public enum CRUD
+    {
+        Create = 1,
+        Read,
+        Update,
+        Delete
+    }
 }
