@@ -5,13 +5,7 @@ namespace Menu.MenuActions;
 public class Exit : Action
 {
     public static bool EndWorking { get; private set; } = false;
-    public static int ID { get; private set; }
-
-    static Exit()
-    {
-        CommonID++;
-        ID = CommonID;
-    }
+    public static int ID { get; private set; } = (int)MenuEnum.Start.Exit;
 
     public Exit()
     {

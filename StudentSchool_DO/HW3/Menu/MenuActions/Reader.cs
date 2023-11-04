@@ -7,13 +7,7 @@ namespace Menu.MenuActions;
 public class Reader : Action
 {
     const string FILE_PATH = @"C:\Users\Mel\Downloads\StudentSchool_DO\StudentSchool_DO\HW3\ForRead.txt";
-    public static int ID { get; private set; }
-
-    static Reader()
-    {
-        CommonID++;
-        ID = CommonID;
-    }
+    public static int ID { get; private set; } = (int)MenuEnum.Start.Read;
 
     public Reader()
     {

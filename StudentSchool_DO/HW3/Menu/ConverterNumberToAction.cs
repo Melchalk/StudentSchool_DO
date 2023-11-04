@@ -17,7 +17,7 @@ public static class ConverterNumberToAction
         {
             return new Fibonacci();
         }
-        else //(numberOfID == Menu.exit.ID)
+        else //if (numberOfID == Exit.ID)
         {
             return new Exit();
         }

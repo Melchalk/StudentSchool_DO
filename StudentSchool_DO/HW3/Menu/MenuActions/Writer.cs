@@ -6,13 +6,7 @@ namespace Menu.MenuActions;
 public class Writer : Action
 {
     readonly string _filePath = Directory.GetCurrentDirectory() + "/URL.txt";
-    public static int ID { get; private set; }
-
-    static Writer()
-    {
-        CommonID++;
-        ID = CommonID;
-    }
+    public static int ID { get; private set; } = (int)MenuEnum.Start.Write;
 
     public Writer()
     {
