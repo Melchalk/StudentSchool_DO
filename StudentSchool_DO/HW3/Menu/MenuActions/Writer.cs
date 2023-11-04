@@ -10,7 +10,7 @@ public class Writer : Action
 
     public Writer()
     {
-        Message = "-- Выполняется запись URL --";
+        Message = "-- Выполняется запись URL --\n";
         DoneMessage = "\nЗапись выполнена";
     }
 

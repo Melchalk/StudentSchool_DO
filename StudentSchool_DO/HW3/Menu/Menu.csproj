@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ConsoleOptions\ConsoleOptions.csproj" />
+    <ProjectReference Include="..\DbHelper\DbHelper.csproj" />
   </ItemGroup>
 
 </Project>

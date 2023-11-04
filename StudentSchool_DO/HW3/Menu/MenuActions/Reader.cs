@@ -11,7 +11,7 @@ public class Reader : Action
 
     public Reader()
     {
-        Message = "-- Выполняется чтение из файла --";
+        Message = "-- Выполняется чтение из файла --\n";
         DoneMessage = "\nПрочтеные строки: ";
     }
 

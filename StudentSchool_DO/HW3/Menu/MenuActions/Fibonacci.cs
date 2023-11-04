@@ -8,7 +8,7 @@ public class Fibonacci : Action
 
     public Fibonacci()
     {
-        Message = "-- Выполняется вычисления числа Фибоначчи --";
+        Message = "-- Выполняется вычисления числа Фибоначчи --\n";
         DoneMessage = "\nИскомое число Фибоначчи:";
     }
 

@@ -1,6 +1,4 @@
 ﻿using ConsoleOptions;
-using Menu.MenuActions;
-using System;
 
 namespace Menu;
 
@@ -9,6 +7,7 @@ public static class GeneralMenu
     public const string MISTAKE = "\nНекорректный ввод";
     public const string TRY_AGAIN = "Выполните попытку снова";
     public const string TRANSITION_TO_START_MENU = "Выполняется переход в главное меню";
+    public const string MAIN_MENU = "Главное меню";
 
     public static string Start()
     =>  StartMenu.Start();
@@ -30,6 +29,7 @@ public static class GeneralMenu
         if (messageWarning == TRANSITION_TO_START_MENU)
         {
             ConsoleHelper.Input();
+            throw new Exception(MAIN_MENU);
         }
     }
 
@@ -41,16 +41,23 @@ public static class GeneralMenu
         {
             ConsoleHelper.Output($"{action.PerformAction()}\n");
         }
-        catch
+        catch (Exception ex)
         {
+            if (ex.Message == MAIN_MENU)
+            {
+                throw new Exception(MAIN_MENU);
+            }
+
             MistakeAndTransition(TRY_AGAIN);
         }
     }
 
-    static void SendMessage(string message)
+    internal static void SendMessage(string message)
     {
         ConsoleHelper.Clear();
+
         ConsoleServiceColors.HintsColor();
-        ConsoleHelper.Output($"{message}\n");
+
+        ConsoleHelper.Output(message);
     }
 }

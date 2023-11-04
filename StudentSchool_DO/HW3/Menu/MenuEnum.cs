@@ -1,4 +1,5 @@
 ﻿namespace Menu;
+
 internal static class MenuEnum
 {
     public enum Start
@@ -6,6 +7,7 @@ internal static class MenuEnum
         Read = 1,
         Write,
         Fibonacci,
+        DbActions,
         Exit
     }
 
@@ -13,13 +15,5 @@ internal static class MenuEnum
     {
         Repeat = 1,
         StartMenu
-    }
-
-    public enum CRUD
-    {
-        Create = 1,
-        Read,
-        Update,
-        Delete
     }
 }

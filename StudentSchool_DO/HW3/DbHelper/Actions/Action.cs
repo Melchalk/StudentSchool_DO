@@ -1,9 +1,9 @@
-﻿namespace Menu.MenuActions;
+﻿namespace DbHelper.Actions;
 
 public abstract class Action
 {
     public string Message { get; set; }
-    public string DoneMessage { get; set; } = "Действие выполняется";
+    public string DoneMessage { get; set; }
 
     public virtual string PerformAction()
     {

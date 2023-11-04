@@ -1,7 +1,7 @@
 ﻿using Menu.MenuActions;
 namespace Menu;
 
-public static class ConverterNumberToAction
+public class ConverterNumberToAction
 {
     public static MenuActions.Action Convert(int numberOfID)
     {
@@ -16,6 +16,10 @@ public static class ConverterNumberToAction
         else if (numberOfID == Fibonacci.ID)
         {
             return new Fibonacci();
+        }
+        else if (numberOfID == DbActions.ID)
+        {
+            return new DbActions();
         }
         else //if (numberOfID == Exit.ID)
         {

@@ -1,5 +1,6 @@
 ﻿using ConsoleOptions;
 using Menu.MenuActions;
+using DbHelper.Actions;
 using System;
 
 namespace Menu;
@@ -16,6 +17,7 @@ internal class StartMenu
             $"- Чтение: {Reader.ID}\n" +
             $"- Запись: {Writer.ID}\n" +
             $"- Вывод числа Фибоначчи: {Fibonacci.ID}\n" +
+            $"- Работа с БД: {DbActions.ID}\n" +
             $"- Выход: {Exit.ID}\n" +
             "Номер выбора - ";
 
@@ -32,7 +34,7 @@ internal class StartMenu
             return;
         }
 
-        ConsoleHelper.Output(RepeatMenu.MediumMenu());
+        ConsoleHelper.Output(RepeatMenu.MediumMenu(GeneralMenu.MAIN_MENU));
         ConsoleServiceColors.OrdinaryColor();
 
         RepeatMenu.MediumChoice(action);
@@ -40,7 +42,7 @@ internal class StartMenu
 
     public static bool StartCheckMistake(int numberAction)
     {
-        bool isNotCorrectNum = !Enum.IsDefined(typeof(MenuEnum.Start), numberAction);
+        bool isNotCorrectNum = !(numberAction > 0 && numberAction <= (int)MenuEnum.Start.Exit);
         if (isNotCorrectNum)
         {
             ConsoleServiceColors.MistakeColor();

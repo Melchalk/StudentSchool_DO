@@ -9,7 +9,7 @@ public class Exit : Action
 
     public Exit()
     {
-        Message = "-- Выполняется выход из программы --";
+        Message = "-- Выполняется выход из программы --\n";
     }
 
     public override string PerformAction()

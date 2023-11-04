@@ -23,5 +23,12 @@ while (!Exit.EndWorking)
         break;
     }
 
-    GeneralMenu.StartChoice(ConverterNumberToAction.Convert(numberAction));
+    try
+    {
+        GeneralMenu.StartChoice(ConverterNumberToAction.Convert(numberAction)); //не уччитываются огр на цифры сверху
+    }
+    catch
+    {
+        continue;
+    }
 }
