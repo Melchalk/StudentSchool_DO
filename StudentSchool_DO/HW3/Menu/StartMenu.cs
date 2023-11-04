@@ -26,7 +26,7 @@ internal class StartMenu
     {
         GeneralMenu.PerformingAction(action);
 
-        if (action == GeneralMenu.exit)
+        if (action is Exit)
         {
             ConsoleServiceColors.OrdinaryColor();
             return;

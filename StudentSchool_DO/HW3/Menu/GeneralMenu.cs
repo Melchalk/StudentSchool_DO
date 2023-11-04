@@ -9,10 +9,6 @@ public static class GeneralMenu
     public const string MISTAKE = "\nНекорректный ввод";
     public const string TRY_AGAIN = "Выполните попытку снова";
     public const string TRANSITION_TO_START_MENU = "Выполняется переход в главное меню";
-    public static readonly Reader read = new();
-    public static readonly Writer write = new();
-    public static readonly Fibonacci fibonacci = new();
-    public static readonly Exit exit = new();
 
     public static string Start()
     =>  StartMenu.Start();

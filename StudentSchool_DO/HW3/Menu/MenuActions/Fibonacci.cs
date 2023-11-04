@@ -6,10 +6,14 @@ public class Fibonacci : Action
 {
     public static int ID { get; private set; }
 
-    public Fibonacci()
+    static Fibonacci()
     {
         CommonID++;
         ID = CommonID;
+    }
+
+    public Fibonacci()
+    {
         Message = "-- Выполняется вычисления числа Фибоначчи --";
         DoneMessage = "\nИскомое число Фибоначчи:";
     }

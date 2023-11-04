@@ -4,26 +4,25 @@ namespace Menu.MenuActions;
 
 public class Exit : Action
 {
-    bool endWorking = false;
+    public static bool EndWorking { get; private set; } = false;
     public static int ID { get; private set; }
 
-    public Exit()
+    static Exit()
     {
         CommonID++;
         ID = CommonID;
+    }
+
+    public Exit()
+    {
         Message = "-- Выполняется выход из программы --";
     }
 
     public override string PerformAction()
     {
         ConsoleServiceColors.HintsColor();
-        endWorking = true;
+        EndWorking = true;
 
         return DoneMessage;
-    }
-
-    public bool EndWorking()
-    {
-        return endWorking;
     }
 }

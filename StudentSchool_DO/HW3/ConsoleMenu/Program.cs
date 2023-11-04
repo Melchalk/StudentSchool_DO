@@ -1,7 +1,8 @@
 ﻿using ConsoleOptions;
+using Menu.MenuActions;
 using Menu;
 
-while (!GeneralMenu.exit.EndWorking())
+while (!Exit.EndWorking)
 {
     ConsoleHelper.Output(GeneralMenu.Start());
     ConsoleServiceColors.OrdinaryColor();

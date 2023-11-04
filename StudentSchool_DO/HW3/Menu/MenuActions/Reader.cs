@@ -9,10 +9,14 @@ public class Reader : Action
     const string FILE_PATH = @"C:\Users\Mel\Downloads\StudentSchool_DO\StudentSchool_DO\HW3\ForRead.txt";
     public static int ID { get; private set; }
 
-    public Reader()
+    static Reader()
     {
         CommonID++;
         ID = CommonID;
+    }
+
+    public Reader()
+    {
         Message = "-- Выполняется чтение из файла --";
         DoneMessage = "\nПрочтеные строки: ";
     }

@@ -8,10 +8,14 @@ public class Writer : Action
     readonly string _filePath = Directory.GetCurrentDirectory() + "/URL.txt";
     public static int ID { get; private set; }
 
-    public Writer()
+    static Writer()
     {
         CommonID++;
         ID = CommonID;
+    }
+
+    public Writer()
+    {
         Message = "-- Выполняется запись URL --";
         DoneMessage = "\nЗапись выполнена";
     }

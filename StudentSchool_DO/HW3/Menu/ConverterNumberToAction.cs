@@ -7,19 +7,19 @@ public static class ConverterNumberToAction
     {
         if (numberOfID == Reader.ID)
         {
-            return GeneralMenu.read;
+            return new Reader();
         }
         else if (numberOfID == Writer.ID)
         {
-            return GeneralMenu.write;
+            return new Writer();
         }
         else if (numberOfID == Fibonacci.ID)
         {
-            return GeneralMenu.fibonacci;
+            return new Fibonacci();
         }
         else //(numberOfID == Menu.exit.ID)
         {
-            return GeneralMenu.exit;
+            return new Exit();
         }
     }
 }
