@@ -12,8 +12,8 @@ public static class GeneralMenu
     public static string Start()
     =>  StartMenu.Start();
 
-    public static bool StartCheckMistake(int numberAction)
-    => StartMenu.StartCheckMistake(numberAction);
+    public static bool StartCheckMistake()
+    => StartMenu.StartCheckMistake();
 
     public static void StartChoice<T>(T action) where T : MenuActions.Action
     => StartMenu.StartChoice(action);

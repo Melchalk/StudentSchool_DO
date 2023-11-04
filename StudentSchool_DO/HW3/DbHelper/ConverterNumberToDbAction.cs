@@ -18,9 +18,11 @@ public class ConverterNumberToDbAction
         {
             return new Remover();
         }
-        else //if (numberOfID == Exit.ID)
+        else if (numberOfID == Updater.ID)
         {
             return new Updater();
         }
+
+        throw new Exception();
     }
 }

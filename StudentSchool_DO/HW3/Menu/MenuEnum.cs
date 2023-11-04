@@ -1,6 +1,6 @@
 ﻿namespace Menu;
 
-internal static class MenuEnum
+public static class MenuEnum
 {
     public enum Start
     {

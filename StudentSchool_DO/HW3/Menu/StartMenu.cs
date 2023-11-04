@@ -40,21 +40,15 @@ internal class StartMenu
         RepeatMenu.MediumChoice(action);
     }
 
-    public static bool StartCheckMistake(int numberAction)
+    public static bool StartCheckMistake()
     {
-        bool isNotCorrectNum = !(numberAction > 0 && numberAction <= (int)MenuEnum.Start.Exit);
-        if (isNotCorrectNum)
-        {
-            ConsoleServiceColors.MistakeColor();
+        ConsoleServiceColors.MistakeColor();
 
-            ConsoleHelper.Output("\nВнимание! Некорректный ввод\n" +
-                "Повторить попытку? (y/n) - ");
+        ConsoleHelper.Output("\nВнимание! Некорректный ввод\n" +
+            "Повторить попытку? (y/n) - ");
 
-            ConsoleServiceColors.OrdinaryColor();
+        ConsoleServiceColors.OrdinaryColor();
 
-            return ConsoleHelper.Input() == "y";
-        }
-
-        return false;
+        return ConsoleHelper.Input() == "y";
     }
 }

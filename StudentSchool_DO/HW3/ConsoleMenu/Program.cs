@@ -7,15 +7,14 @@ while (!Exit.EndWorking)
     ConsoleHelper.Output(GeneralMenu.Start());
     ConsoleServiceColors.OrdinaryColor();
 
-    int numberAction = 0;
-
-    if (int.TryParse(ConsoleHelper.Input(), out int checkAction))
+    int numberAction;
+    if (int.TryParse(ConsoleHelper.Input(), out int checkAction) && checkAction > 0 && checkAction <= (int)MenuEnum.Start.Exit)
     {
         numberAction = checkAction;
     }
     else
     {
-        if (GeneralMenu.StartCheckMistake(numberAction))
+        if (GeneralMenu.StartCheckMistake())
         {
             continue;
         }

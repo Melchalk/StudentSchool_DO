@@ -25,5 +25,7 @@ public class ConverterNumberToAction
         {
             return new Exit();
         }
+
+       // throw new Exception();
     }
 }
