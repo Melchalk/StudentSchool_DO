@@ -21,9 +21,20 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HW3", "HW3", "{1EB4EB48-B26
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleMenu", "HW3\ConsoleMenu\ConsoleMenu.csproj", "{400CFE6E-108F-49D9-81FF-3136CF894EA9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Menu", "HW3\Menu\Menu.csproj", "{9C9DF9B7-2F90-4343-884D-E4C8616E87FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Menu", "HW3\Menu\Menu.csproj", "{9C9DF9B7-2F90-4343-884D-E4C8616E87FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleOptions", "HW3\ConsoleOptions\ConsoleOptions.csproj", "{B808C37F-2B2D-4DA1-B4B6-684E2CEC8D22}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleOptions", "HW3\ConsoleOptions\ConsoleOptions.csproj", "{B808C37F-2B2D-4DA1-B4B6-684E2CEC8D22}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "БД", "БД", "{9CD8E25E-BBF6-4A03-B81C-F7A4D9178F70}"
+	ProjectSection(SolutionItems) = preProject
+		HW3\БД таблицы\Books.sql = HW3\БД таблицы\Books.sql
+		HW3\БД таблицы\Halls.sql = HW3\БД таблицы\Halls.sql
+		HW3\БД таблицы\IssueBooks.sql = HW3\БД таблицы\IssueBooks.sql
+		HW3\БД таблицы\Issues.sql = HW3\БД таблицы\Issues.sql
+		HW3\БД таблицы\Librarians.sql = HW3\БД таблицы\Librarians.sql
+		HW3\БД таблицы\Libraries.sql = HW3\БД таблицы\Libraries.sql
+		HW3\БД таблицы\Readers.sql = HW3\БД таблицы\Readers.sql
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -78,6 +89,7 @@ Global
 		{400CFE6E-108F-49D9-81FF-3136CF894EA9} = {1EB4EB48-B26E-434F-A469-AD3FA7EEF887}
 		{9C9DF9B7-2F90-4343-884D-E4C8616E87FB} = {1EB4EB48-B26E-434F-A469-AD3FA7EEF887}
 		{B808C37F-2B2D-4DA1-B4B6-684E2CEC8D22} = {1EB4EB48-B26E-434F-A469-AD3FA7EEF887}
+		{9CD8E25E-BBF6-4A03-B81C-F7A4D9178F70} = {1EB4EB48-B26E-434F-A469-AD3FA7EEF887}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F9DCD49A-AD21-49D9-8BDF-EC10AD268DC7}
