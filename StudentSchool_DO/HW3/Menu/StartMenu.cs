@@ -4,7 +4,7 @@ using System;
 
 namespace Menu;
 
-internal static class StartMenu
+internal class StartMenu
 {
     public static string Start()
     {
@@ -13,10 +13,10 @@ internal static class StartMenu
 
         string startMenuText = "---- Добро пожаловать в меню ----\n" +
             "Выберите желаемую опцию\n" +
-            $"- Чтение: {GeneralMenu.read.ID}\n" +
-            $"- Запись: {GeneralMenu.write.ID}\n" +
-            $"- Вывод числа Фибоначчи: {GeneralMenu.fibonacci.ID}\n" +
-            $"- Выход: {GeneralMenu.exit.ID}\n" +
+            $"- Чтение: {Reader.ID}\n" +
+            $"- Запись: {Writer.ID}\n" +
+            $"- Вывод числа Фибоначчи: {Fibonacci.ID}\n" +
+            $"- Выход: {Exit.ID}\n" +
             "Номер выбора - ";
 
         return startMenuText;

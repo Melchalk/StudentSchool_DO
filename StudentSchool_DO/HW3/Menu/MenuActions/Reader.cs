@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.ComponentModel.Design;
+using System.Text;
 using ConsoleOptions;
 
 namespace Menu.MenuActions;
@@ -6,6 +7,7 @@ namespace Menu.MenuActions;
 public class Reader : Action
 {
     const string FILE_PATH = @"C:\Users\Mel\Downloads\StudentSchool_DO\StudentSchool_DO\HW3\ForRead.txt";
+    public static int ID { get; private set; }
 
     public Reader()
     {

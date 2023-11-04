@@ -6,6 +6,7 @@ namespace Menu.MenuActions;
 public class Writer : Action
 {
     readonly string _filePath = Directory.GetCurrentDirectory() + "/URL.txt";
+    public static int ID { get; private set; }
 
     public Writer()
     {

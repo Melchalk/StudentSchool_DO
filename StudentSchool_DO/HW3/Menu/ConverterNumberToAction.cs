@@ -1,18 +1,19 @@
-﻿namespace Menu;
+﻿using Menu.MenuActions;
+namespace Menu;
 
 public static class ConverterNumberToAction
 {
     public static MenuActions.Action Convert(int numberOfID)
     {
-        if (numberOfID == GeneralMenu.read.ID)
+        if (numberOfID == Reader.ID)
         {
             return GeneralMenu.read;
         }
-        else if (numberOfID == GeneralMenu.write.ID)
+        else if (numberOfID == Writer.ID)
         {
             return GeneralMenu.write;
         }
-        else if (numberOfID == GeneralMenu.fibonacci.ID)
+        else if (numberOfID == Fibonacci.ID)
         {
             return GeneralMenu.fibonacci;
         }

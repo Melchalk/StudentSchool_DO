@@ -2,7 +2,7 @@
 
 namespace Menu;
 
-internal static class RepeatMenu
+internal class RepeatMenu
 {
     internal static string MediumMenu()
     {

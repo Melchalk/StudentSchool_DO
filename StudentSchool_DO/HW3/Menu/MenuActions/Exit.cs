@@ -5,6 +5,7 @@ namespace Menu.MenuActions;
 public class Exit : Action
 {
     bool endWorking = false;
+    public static int ID { get; private set; }
 
     public Exit()
     {

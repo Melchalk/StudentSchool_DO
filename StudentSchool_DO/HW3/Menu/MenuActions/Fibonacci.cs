@@ -4,6 +4,8 @@ namespace Menu.MenuActions;
 
 public class Fibonacci : Action
 {
+    public static int ID { get; private set; }
+
     public Fibonacci()
     {
         CommonID++;
