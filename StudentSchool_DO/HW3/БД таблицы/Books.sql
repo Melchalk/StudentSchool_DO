@@ -13,7 +13,7 @@ CREATE TABLE [dbo].[Books](
 	[Title] [nvarchar](50) NOT NULL,
 	[Author] [nvarchar](50) NULL,
 	[Number_pages] [int] NOT NULL,
-	[Date_publishing] [date] NOT NULL,
+	[Year_publishing] [date] NOT NULL,
 	[City_publishing] [nvarchar](50) NULL,
 	[Hall_no] [int] NULL,
  CONSTRAINT [PK_Books] PRIMARY KEY CLUSTERED 

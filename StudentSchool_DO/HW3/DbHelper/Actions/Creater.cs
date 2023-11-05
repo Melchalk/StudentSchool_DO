@@ -1,4 +1,5 @@
 ﻿using ConsoleOptions;
+using DbModels;
 using Microsoft.Data.SqlClient;
 
 namespace DbHelper.Actions;
@@ -41,7 +42,55 @@ internal class Creater : Action
 
     private void CreateBook()
     {
-        //HW4
+        DbBook book = new()
+        {
+            Id = Guid.NewGuid()
+        };
+
+        ConsoleHelper.Output("Введите название: ");
+        book.Title = ConsoleHelper.Input().Trim();
+
+        ConsoleHelper.Output("Введите автора: ");
+        var author = ConsoleHelper.Input().Trim();
+        if (author.Length > 0)
+        {
+            book.Author = author;
+        }
+        else
+        {
+            book.Author = null;
+        }
+
+        ConsoleHelper.Output("Введите количество стр: ");
+        book.Number_pages = int.Parse(ConsoleHelper.Input());
+
+        ConsoleHelper.Output("Введите дату публикации: ");
+        var date = ConsoleHelper.Input();
+        book.Year_publishing = int.Parse(date);
+
+        ConsoleHelper.Output("Введите город: ");
+        var city = ConsoleHelper.Input().Trim();
+        if (city.Length > 0)
+        {
+            book.City_publishing = city;
+        }
+        else
+        {
+            book.City_publishing = null;
+        }
+
+        ConsoleHelper.Output("Введите номер холла: ");
+        var hall = ConsoleHelper.Input().Trim();
+        if (hall.Length > 0)
+        {
+            book.Hall_no = int.Parse(hall);
+        }
+        else
+        {
+            book.Hall_no = null;
+        }
+
+        _bookRepository.CreateBook(book);
     }
 
     private string ReaderData()

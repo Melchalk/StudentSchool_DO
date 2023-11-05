@@ -1,4 +1,8 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using DbModels;
+using Microsoft.Data.SqlClient;
+using Provider;
+using System.Reflection;
+using System.Text;
 
 namespace DbHelper.Actions;
 
@@ -50,7 +54,15 @@ internal class Reader : Action
 
     private string ReadBook(Guid Id)
     {
-        //HW4
-        return string.Empty;
+        DbBook? book = _bookRepository.GetBook(Id);
+
+        StringBuilder infoOfBook = new();
+
+        foreach (PropertyInfo prop in typeof(DbBook).GetProperties())
+        {
+            infoOfBook.Append($"{prop.GetValue(book)} ");
+        }
+
+        return infoOfBook.ToString();
     }
 }

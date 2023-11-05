@@ -27,7 +27,7 @@ public enum BookAttributes
     Title,
     Author,
     Number_pages,
-    Date_publishing,
+    Year_publishing,
     City_publishing,
     Hall_no
 }

@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.13" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.13">
       <PrivateAssets>all</PrivateAssets>
@@ -16,8 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Provider\Provider.csproj" />
-    <ProjectReference Include="..\ConsoleOptions\ConsoleOptions.csproj" />
+    <ProjectReference Include="..\HW3\DbModel\DbModels.csproj" />
   </ItemGroup>
 
 </Project>

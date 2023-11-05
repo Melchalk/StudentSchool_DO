@@ -1,5 +1,6 @@
 ﻿using ConsoleOptions;
 using Microsoft.Data.SqlClient;
+using Provider;
 
 namespace DbHelper.Actions;
 
@@ -32,7 +33,7 @@ internal class Updater : Action
     {
         var attribute = ChoiceReaderAttribute();
 
-        ConsoleHelper.Output("Введите новое значение: ");
+        ConsoleHelper.Output("\nВведите новое значение: ");
 
         var newValue = ConsoleHelper.Input();
         if (!newValue.All(char.IsDigit))
@@ -50,7 +51,13 @@ internal class Updater : Action
 
     private void UpdateBook(Guid Id)
     {
-        //HW4
+        var attribute = ChoiceBookAttribute();
+
+        ConsoleHelper.Output("\nВведите новое значение: ");
+
+        var newValue = ConsoleHelper.Input();
+
+        _bookRepository.UpdateBook(Id, attribute, newValue);
     }
 
     private string ChoiceReaderAttribute()
@@ -58,8 +65,8 @@ internal class Updater : Action
         var choice = "Выберите изменение:\n" +
             $"ФИО ({(int)ReaderAttributes.Fullname})\n" +
             $"Телефон ({(int)ReaderAttributes.Telephone})\n" +
-            $"Адрес регистрации {(int)ReaderAttributes.Registration_address}\n" +
-            $"Возраст {(int)ReaderAttributes.Age}\n" +
+            $"Адрес регистрации ({(int)ReaderAttributes.Registration_address})\n" +
+            $"Возраст ({(int)ReaderAttributes.Age})\n" +
             $"Номер - ";
 
         ConsoleHelper.Output(choice);
@@ -67,5 +74,23 @@ internal class Updater : Action
         int numberAttribute = int.Parse(ConsoleHelper.Input());
 
         return ((ReaderAttributes)numberAttribute).ToString();
+    }
+
+    private string ChoiceBookAttribute()
+    {
+        var choice = "Выберите изменение:\n" +
+            $"Название ({(int)BookAttributes.Title})\n" +
+            $"Автор ({(int)BookAttributes.Author})\n" +
+            $"Количество стр ({(int)BookAttributes.Number_pages})\n" +
+            $"Дату публикации ({(int)BookAttributes.Year_publishing})\n" +
+            $"Город ({(int)BookAttributes.City_publishing})\n" +
+            $"Номер холла ({(int)BookAttributes.Hall_no})\n" +
+            $"Номер - ";
+
+        ConsoleHelper.Output(choice);
+
+        int numberAttribute = int.Parse(ConsoleHelper.Input());
+
+        return ((BookAttributes)numberAttribute).ToString();
     }
 }

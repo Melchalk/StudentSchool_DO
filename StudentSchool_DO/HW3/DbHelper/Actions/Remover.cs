@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using Provider;
 
 namespace DbHelper.Actions;
 
@@ -39,6 +40,6 @@ internal class Remover : Action
 
     private void DeleteBook(Guid id)
     {
-        //HW4
+        _bookRepository.DeleteBook(id);
     }
 }
