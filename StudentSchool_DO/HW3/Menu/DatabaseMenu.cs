@@ -41,7 +41,11 @@ public class DatabaseMenu
         if (!(int.TryParse(ConsoleHelper.Input(), out int meduimAction) &&
             meduimAction > 0 && meduimAction <= (int)DbEnum.Delete))
         {
+            ConsoleServiceColors.MistakeColor();
+
             ConsoleHelper.Output($"{GeneralMenu.MISTAKE}\n{TRANSITION_TO_DB_MENU}\n");
+
+            ConsoleServiceColors.OrdinaryColor();
 
             ConsoleHelper.Input();
         }

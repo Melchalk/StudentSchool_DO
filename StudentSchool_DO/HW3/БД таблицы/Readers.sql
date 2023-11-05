@@ -1,7 +1,7 @@
 USE [Library]
 GO
 
-/****** Object:  Table [dbo].[Readers]    Script Date: 04.11.2023 19:58:31 ******/
+/****** Object:  Table [dbo].[Readers]    Script Date: 05.11.2023 13:28:21 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -14,7 +14,6 @@ CREATE TABLE [dbo].[Readers](
 	[Telephone] [nvarchar](50) NOT NULL,
 	[Registration_address] [nvarchar](50) NULL,
 	[Age] [int] NULL,
-	[Issue_id] [nchar](10) NULL,
  CONSTRAINT [PK_Reader] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC

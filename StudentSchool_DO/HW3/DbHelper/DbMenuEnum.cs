@@ -7,3 +7,9 @@ public enum DbEnum
     Update,
     Delete
 }
+
+public enum Tables
+{
+    Readers = 1,
+    Books
+}

@@ -24,7 +24,7 @@ while (!Exit.EndWorking)
 
     try
     {
-        GeneralMenu.StartChoice(ConverterNumberToAction.Convert(numberAction)); //не уччитываются огр на цифры сверху
+        GeneralMenu.StartChoice(ConverterNumberToAction.Convert(numberAction));
     }
     catch
     {
