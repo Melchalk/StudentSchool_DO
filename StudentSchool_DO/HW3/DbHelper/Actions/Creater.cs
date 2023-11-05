@@ -17,13 +17,7 @@ internal class Creater : Action
 
     public override string PerformAction()
     {
-        var choice = "Выберите категорию:\n" +
-            $"Читатель ({(int)Tables.Readers})\n" +
-            $"Книга ({(int)Tables.Books})\n";
-
-        ConsoleHelper.Output(choice);
-
-        if (ConsoleHelper.Input() == ((int)Tables.Readers).ToString())
+        if (ChoiceTable()== (int)Tables.Readers)
         {
             CreateReader();
         }
@@ -56,10 +50,10 @@ internal class Creater : Action
         result[0] = $"'{Guid.NewGuid()}'";
 
         ConsoleHelper.Output("Введите ФИО: ");
-        result[1] = $"'{ConsoleHelper.Input()}'";
+        result[1] = $"'{ConsoleHelper.Input().Trim()}'";
 
         ConsoleHelper.Output("Введите номер телефона: ");
-        result[2] = $"'{ConsoleHelper.Input()}'";
+        result[2] = $"'{ConsoleHelper.Input().Trim()}'";
 
         ConsoleHelper.Output("Введите адрес регистрации: ");
         var address = ConsoleHelper.Input().Trim();

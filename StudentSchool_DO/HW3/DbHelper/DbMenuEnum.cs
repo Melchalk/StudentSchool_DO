@@ -13,3 +13,21 @@ public enum Tables
     Readers = 1,
     Books
 }
+
+public enum ReaderAttributes
+{
+    Fullname,
+    Telephone,
+    Registration_address,
+    Age
+}
+
+public enum BookAttributes
+{
+    Title,
+    Author,
+    Number_pages,
+    Date_publishing,
+    City_publishing,
+    Hall_no
+}
