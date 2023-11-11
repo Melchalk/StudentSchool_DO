@@ -27,9 +27,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleOptions", "HW3\Conso
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbMenuHelper", "HW3\DbHelper\DbMenuHelper.csproj", "{9E0A9849-2C6E-40E7-9F83-FA0A8F599E5C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbModels", "HW3\DbModel\DbModels.csproj", "{23C955E9-6D77-43E6-9E79-319057DB7633}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbModels", "HW3\DbModel\DbModels.csproj", "{23C955E9-6D77-43E6-9E79-319057DB7633}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Provider", "Provider\Provider.csproj", "{A8803E67-8267-4F22-8803-50369C830C94}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Provider", "Provider\Provider.csproj", "{A8803E67-8267-4F22-8803-50369C830C94}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "БД скрипты", "БД скрипты", "{D5F79A5E-8850-4E19-87DE-A13E8C561867}"
 	ProjectSection(SolutionItems) = preProject
@@ -38,6 +38,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "БД скрипты", "БД
 		HW3\БД таблицы\Issues.sql = HW3\БД таблицы\Issues.sql
 		HW3\БД таблицы\Readers.sql = HW3\БД таблицы\Readers.sql
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Practice_1111", "Practice_1111", "{7F800570-8F96-4D68-AB41-0052502BF57B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
