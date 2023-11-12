@@ -11,7 +11,7 @@ namespace Provider.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            /*
+            /* Единственный способ не создавать нью бд, который нашла
             migrationBuilder.CreateTable(
                 name: "Readers",
                 columns: table => new

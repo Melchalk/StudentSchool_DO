@@ -11,7 +11,7 @@ internal class Reader : Action
 
     public Reader()
     {
-        Message = "-- Выполняется чтение записи --";
+        Message = "-- Выполняется чтение записи --\n";
         DoneMessage = "\nИскомая запись:";
         _request = @"SELECT * FROM Readers WHERE Id = '{0}'";
     }

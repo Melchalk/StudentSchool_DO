@@ -11,7 +11,7 @@ internal class Updater : Action
 
     public Updater()
     {
-        Message = "-- Выполняется обновление записи --";
+        Message = "-- Выполняется обновление записи --\n";
         DoneMessage = "\nОбновление записи выполнено";
         _request = "UPDATE Readers SET {1} = {2} WHERE Id='{0}'";
     }
