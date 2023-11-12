@@ -33,7 +33,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "БД", "БД", "{9CD8E25E-B
 		HW3\БД таблицы\Readers.sql = HW3\БД таблицы\Readers.sql
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbMenuHelper", "HW3\DbHelper\DbMenuHelper.csproj", "{9E0A9849-2C6E-40E7-9F83-FA0A8F599E5C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbMenuHelper", "HW3\DbHelper\DbMenuHelper.csproj", "{9E0A9849-2C6E-40E7-9F83-FA0A8F599E5C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Practice_1111", "Practice_1111", "{1BEC296F-2DA7-406E-B7F1-FE84D46514E0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
