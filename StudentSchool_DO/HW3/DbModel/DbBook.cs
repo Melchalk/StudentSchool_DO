@@ -1,12 +1,29 @@
-﻿namespace DbModels;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.EntityFrameworkCore;
+
+namespace DbModels;
 
 public class DbBook
 {
+    public const string TableName = "Books";
+
     public Guid Id { get; set; }
     public string Title { get; set; }
     public string? Author { get; set; }
-    public int Number_pages { get; set; }
-    public int Year_publishing { get; set; }
-    public string? City_publishing { get; set; }
-    public int? Hall_no { get; set; }
+    public int NumberPages { get; set; }
+    public int YearPublishing { get; set; }
+    public string? CityPublishing { get; set; }
+    public int? HallNo { get; set; }
+
+    public DbIssueBooks? Issue { get; set; }
+}
+
+public class DbBookConfiguration : IEntityTypeConfiguration<DbBook>
+{
+    public void Configure(EntityTypeBuilder<DbBook> builder)
+    {
+        builder.ToTable(DbBook.TableName);
+
+        builder.HasKey(o => o.Id);
+    }
 }

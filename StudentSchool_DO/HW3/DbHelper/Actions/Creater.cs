@@ -12,7 +12,7 @@ internal class Creater : Action
     {
         Message = "-- Выполняется создание записи --\n";
         DoneMessage = "\nСоздание записи выполнено";
-        _request = "INSERT INTO Readers (Id, Fullname, Telephone, Registration_address, Age) " +
+        _request = "INSERT INTO Readers (Id, Fullname, Telephone, RegistrationAddress, Age) " +
             "VALUES ({0})";
     }
 
@@ -62,35 +62,37 @@ internal class Creater : Action
         }
 
         ConsoleHelper.Output("Введите количество стр: ");
-        book.Number_pages = int.Parse(ConsoleHelper.Input());
+        book.NumberPages = int.Parse(ConsoleHelper.Input());
 
         ConsoleHelper.Output("Введите дату публикации: ");
         var date = ConsoleHelper.Input();
-        book.Year_publishing = int.Parse(date);
+        book.YearPublishing = int.Parse(date);
 
         ConsoleHelper.Output("Введите город: ");
         var city = ConsoleHelper.Input().Trim();
         if (city.Length > 0)
         {
-            book.City_publishing = city;
+            book.CityPublishing = city;
         }
         else
         {
-            book.City_publishing = null;
+            book.CityPublishing = null;
         }
 
         ConsoleHelper.Output("Введите номер холла: ");
         var hall = ConsoleHelper.Input().Trim();
         if (hall.Length > 0)
         {
-            book.Hall_no = int.Parse(hall);
+            book.HallNo = int.Parse(hall);
         }
         else
         {
-            book.Hall_no = null;
+            book.HallNo = null;
         }
 
-        _bookRepository.CreateBook(book);
+        _bookRepository.GetBooks().Add(book);
+
+        _bookRepository.SaveChanges();
     }
 
     private string ReaderData()

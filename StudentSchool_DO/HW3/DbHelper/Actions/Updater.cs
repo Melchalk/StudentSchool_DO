@@ -1,5 +1,6 @@
 ﻿using ConsoleOptions;
 using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using Provider;
 
 namespace DbHelper.Actions;
@@ -57,7 +58,39 @@ internal class Updater : Action
 
         var newValue = ConsoleHelper.Input();
 
-        _bookRepository.UpdateBook(Id, attribute, newValue);
+        UpdateAttributeBook(Id, attribute, newValue);
+
+        _bookRepository.SaveChanges();
+    }
+
+    private void UpdateAttributeBook(Guid bookId, string attribute, string newValue)
+    {
+        var book = _bookRepository.GetBooks().FirstOrDefault(u => u.Id == bookId);
+
+        if (attribute == "Title")
+        {
+            book.Title = newValue;
+        }
+        else if (attribute == "Author")
+        {
+            book.Author = newValue;
+        }
+        else if (attribute == "NumberPages")
+        {
+            book.NumberPages = int.Parse(newValue);
+        }
+        else if (attribute == "YearPublishing")
+        {
+            book.YearPublishing = int.Parse(newValue);
+        }
+        else if (attribute == "CityPublishing")
+        {
+            book.CityPublishing = newValue;
+        }
+        else if (attribute == "HallNo")
+        {
+            book.HallNo = int.Parse(newValue);
+        }
     }
 
     private string ChoiceReaderAttribute()
@@ -65,7 +98,7 @@ internal class Updater : Action
         var choice = "Выберите изменение:\n" +
             $"ФИО ({(int)ReaderAttributes.Fullname})\n" +
             $"Телефон ({(int)ReaderAttributes.Telephone})\n" +
-            $"Адрес регистрации ({(int)ReaderAttributes.Registration_address})\n" +
+            $"Адрес регистрации ({(int)ReaderAttributes.RegistrationAddress})\n" +
             $"Возраст ({(int)ReaderAttributes.Age})\n" +
             $"Номер - ";
 
@@ -81,10 +114,10 @@ internal class Updater : Action
         var choice = "Выберите изменение:\n" +
             $"Название ({(int)BookAttributes.Title})\n" +
             $"Автор ({(int)BookAttributes.Author})\n" +
-            $"Количество стр ({(int)BookAttributes.Number_pages})\n" +
-            $"Дату публикации ({(int)BookAttributes.Year_publishing})\n" +
-            $"Город ({(int)BookAttributes.City_publishing})\n" +
-            $"Номер холла ({(int)BookAttributes.Hall_no})\n" +
+            $"Количество стр ({(int)BookAttributes.NumberPages})\n" +
+            $"Дату публикации ({(int)BookAttributes.YearPublishing})\n" +
+            $"Город ({(int)BookAttributes.CityPublishing})\n" +
+            $"Номер холла ({(int)BookAttributes.HallNo})\n" +
             $"Номер - ";
 
         ConsoleHelper.Output(choice);

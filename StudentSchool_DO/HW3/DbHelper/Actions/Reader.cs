@@ -1,6 +1,5 @@
 ﻿using DbModels;
 using Microsoft.Data.SqlClient;
-using Provider;
 using System.Reflection;
 using System.Text;
 
@@ -46,7 +45,7 @@ internal class Reader : Action
         while (sqlDataReader.Read())
         {
             result = $"{sqlDataReader["Id"]} {sqlDataReader["Fullname"]} {sqlDataReader["Telephone"]} " +
-            $"{sqlDataReader["Registration_address"]} {sqlDataReader["Age"]}";
+            $"{sqlDataReader["RegistrationAddress"]} {sqlDataReader["Age"]}";
         }
 
         return result;
@@ -54,7 +53,9 @@ internal class Reader : Action
 
     private string ReadBook(Guid Id)
     {
-        DbBook? book = _bookRepository.GetBook(Id);
+        DbBook? book = _bookRepository.GetBooks()
+            .Where(u => u.Id == Id)
+            .FirstOrDefault();
 
         StringBuilder infoOfBook = new();
 

@@ -18,7 +18,7 @@ public enum ReaderAttributes
 {
     Fullname,
     Telephone,
-    Registration_address,
+    RegistrationAddress,
     Age
 }
 
@@ -26,8 +26,8 @@ public enum BookAttributes
 {
     Title,
     Author,
-    Number_pages,
-    Year_publishing,
-    City_publishing,
-    Hall_no
+    NumberPages,
+    YearPublishing,
+    CityPublishing,
+    HallNo
 }
