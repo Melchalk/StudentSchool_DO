@@ -12,7 +12,7 @@ public class DbIssue
     public DateTime DateIssue { get; set; }
     public int Period { get; set; }
 
-    public IList<DbIssueBooks> Books { get; set; } = new List<DbIssueBooks>();
+    public IList<DbIssueBooks> IssueBooks { get; set; } = new List<DbIssueBooks>();
     public DbReader Reader { get; set; }
 }
 
@@ -27,10 +27,5 @@ public class DbIssueConfiguration : IEntityTypeConfiguration<DbIssue>
         builder
           .HasOne(o => o.Reader)
           .WithOne(u => u.Issue);
-
-        builder
-            .HasMany(u => u.Books)
-            .WithOne(o => o.Issue)
-            .HasForeignKey(u => u.IssueId);
     }
 }

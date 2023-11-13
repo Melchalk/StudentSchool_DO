@@ -12,8 +12,8 @@ using Provider;
 namespace Provider.Migrations
 {
     [DbContext(typeof(OfficeDbContext))]
-    [Migration("20231112194122_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20231113173134_FirstMigration")]
+    partial class FirstMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,12 +28,15 @@ namespace Provider.Migrations
             modelBuilder.Entity("DbModels.DbBook", b =>
                 {
                     b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Author")
+                        .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("CityPublishing")
+                        .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<int?>("HallNo")
@@ -44,6 +47,7 @@ namespace Provider.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
+                        .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<int>("YearPublishing")
@@ -79,16 +83,15 @@ namespace Provider.Migrations
 
             modelBuilder.Entity("DbModels.DbIssueBooks", b =>
                 {
-                    b.Property<Guid>("BookId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<Guid>("IssueId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("BookId");
+                    b.Property<Guid>("BookId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.HasIndex("IssueId");
+                    b.HasKey("IssueId", "BookId");
+
+                    b.HasIndex("BookId");
 
                     b.ToTable("IssueBooks", (string)null);
                 });
@@ -104,29 +107,21 @@ namespace Provider.Migrations
 
                     b.Property<string>("Fullname")
                         .IsRequired()
+                        .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("RegistrationAddress")
+                        .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Telephone")
                         .IsRequired()
+                        .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Readers", (string)null);
-                });
-
-            modelBuilder.Entity("DbModels.DbBook", b =>
-                {
-                    b.HasOne("DbModels.DbIssueBooks", "Issue")
-                        .WithMany("Books")
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Issue");
                 });
 
             modelBuilder.Entity("DbModels.DbIssue", b =>
@@ -142,23 +137,31 @@ namespace Provider.Migrations
 
             modelBuilder.Entity("DbModels.DbIssueBooks", b =>
                 {
+                    b.HasOne("DbModels.DbBook", "Book")
+                        .WithMany("IssueBooks")
+                        .HasForeignKey("BookId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("DbModels.DbIssue", "Issue")
-                        .WithMany("Books")
+                        .WithMany("IssueBooks")
                         .HasForeignKey("IssueId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Book");
+
                     b.Navigation("Issue");
+                });
+
+            modelBuilder.Entity("DbModels.DbBook", b =>
+                {
+                    b.Navigation("IssueBooks");
                 });
 
             modelBuilder.Entity("DbModels.DbIssue", b =>
                 {
-                    b.Navigation("Books");
-                });
-
-            modelBuilder.Entity("DbModels.DbIssueBooks", b =>
-                {
-                    b.Navigation("Books");
+                    b.Navigation("IssueBooks");
                 });
 
             modelBuilder.Entity("DbModels.DbReader", b =>

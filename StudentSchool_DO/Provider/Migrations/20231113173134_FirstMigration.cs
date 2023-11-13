@@ -6,20 +6,36 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Provider.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class FirstMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            /* Единственный способ не создавать нью бд, который нашла
+            migrationBuilder.CreateTable(
+                name: "Books",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Author = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    NumberPages = table.Column<int>(type: "int", nullable: false),
+                    YearPublishing = table.Column<int>(type: "int", nullable: false),
+                    CityPublishing = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    HallNo = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Books", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Readers",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Fullname = table.Column<string>(type: "nvarchar(50)", nullable: false),
-                    Telephone = table.Column<string>(type: "nvarchar(50)", nullable: false),
-                    RegistrationAddress = table.Column<string>(type: "nvarchar(50)", nullable: true),
+                    Fullname = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Telephone = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    RegistrationAddress = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     Age = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -51,12 +67,18 @@ namespace Provider.Migrations
                 name: "IssueBooks",
                 columns: table => new
                 {
-                    BookId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IssueId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    IssueId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    BookId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_IssueBooks", x => x.BookId);
+                    table.PrimaryKey("PK_IssueBooks", x => new { x.IssueId, x.BookId });
+                    table.ForeignKey(
+                        name: "FK_IssueBooks_Books_BookId",
+                        column: x => x.BookId,
+                        principalTable: "Books",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_IssueBooks_Issues_IssueId",
                         column: x => x.IssueId,
@@ -65,50 +87,26 @@ namespace Provider.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Books",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Title = table.Column<string>(type: "nvarchar(50)", nullable: false),
-                    Author = table.Column<string>(type: "nvarchar(50)", nullable: true),
-                    NumberPages = table.Column<int>(type: "int", nullable: false),
-                    YearPublishing = table.Column<int>(type: "int", nullable: false),
-                    CityPublishing = table.Column<string>(type: "nvarchar(50)", nullable: true),
-                    HallNo = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Books", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Books_IssueBooks_Id",
-                        column: x => x.Id,
-                        principalTable: "IssueBooks",
-                        principalColumn: "BookId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.CreateIndex(
-                name: "IX_IssueBooks_IssueId",
+                name: "IX_IssueBooks_BookId",
                 table: "IssueBooks",
-                column: "IssueId");
+                column: "BookId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Issues_ReaderId",
                 table: "Issues",
                 column: "ReaderId",
                 unique: true);
-            */
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Books");
+                name: "IssueBooks");
 
             migrationBuilder.DropTable(
-                name: "IssueBooks");
+                name: "Books");
 
             migrationBuilder.DropTable(
                 name: "Issues");

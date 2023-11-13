@@ -1,7 +1,5 @@
 ﻿using ConsoleOptions;
 using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore;
-using Provider;
 
 namespace DbHelper.Actions;
 
@@ -58,39 +56,11 @@ internal class Updater : Action
 
         var newValue = ConsoleHelper.Input();
 
-        UpdateAttributeBook(Id, attribute, newValue);
+        var book = _bookRepository.GetBook(Id);
 
-        _bookRepository.SaveChanges();
-    }
+        var property = book?.GetType().GetProperty(attribute);
 
-    private void UpdateAttributeBook(Guid bookId, string attribute, string newValue)
-    {
-        var book = _bookRepository.GetBooks().FirstOrDefault(u => u.Id == bookId);
-
-        if (attribute == "Title")
-        {
-            book.Title = newValue;
-        }
-        else if (attribute == "Author")
-        {
-            book.Author = newValue;
-        }
-        else if (attribute == "NumberPages")
-        {
-            book.NumberPages = int.Parse(newValue);
-        }
-        else if (attribute == "YearPublishing")
-        {
-            book.YearPublishing = int.Parse(newValue);
-        }
-        else if (attribute == "CityPublishing")
-        {
-            book.CityPublishing = newValue;
-        }
-        else if (attribute == "HallNo")
-        {
-            book.HallNo = int.Parse(newValue);
-        }
+        _bookRepository.UpdateBook(book, property, newValue);
     }
 
     private string ChoiceReaderAttribute()

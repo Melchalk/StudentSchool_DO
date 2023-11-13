@@ -9,11 +9,11 @@ public class DbReader
     public const string TableName = "Readers";
 
     public Guid Id { get; set; }
-    [StringLength(50)]
+    [MaxLength (50)]
     public string Fullname {  get; set; }
-    [StringLength(50)]
+    [MaxLength (50)]
     public string Telephone {  get; set; }
-    [StringLength(50)]
+    [MaxLength (50)]
     public string? RegistrationAddress { get; set; }
     public int? Age { get; set; }
 

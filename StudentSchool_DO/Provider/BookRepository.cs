@@ -1,5 +1,6 @@
 ﻿using DbModels;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 namespace Provider;
 
@@ -17,8 +18,31 @@ public class BookRepository
         return _context.Books;
     }
 
-    public void SaveChanges()
+    public void AddBook(DbBook book)
     {
+        _context.Books.Add(book);
+
+        _context.SaveChanges();
+    }
+
+    public void DeleteBook(DbBook book)
+    {
+        _context.Books.Remove(book);
+
+        _context.SaveChanges();
+    }
+
+    public void UpdateBook(DbBook book, PropertyInfo property, string newValue)
+    {
+        if (int.TryParse(newValue, out var value))
+        {
+            property?.SetValue(book, value);
+        }
+        else
+        {
+            property?.SetValue(book, newValue);
+        }
+
         _context.SaveChanges();
     }
 }

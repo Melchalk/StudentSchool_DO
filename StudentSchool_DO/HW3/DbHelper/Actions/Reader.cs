@@ -12,7 +12,7 @@ internal class Reader : Action
     public Reader()
     {
         Message = "-- Выполняется чтение записи --\n";
-        DoneMessage = "\nИскомая запись:";
+        DoneMessage = "Искомая запись:";
         _request = @"SELECT * FROM Readers WHERE Id = '{0}'";
     }
 
@@ -53,16 +53,16 @@ internal class Reader : Action
 
     private string ReadBook(Guid Id)
     {
-        DbBook? book = _bookRepository.GetBooks()
-            .Where(u => u.Id == Id)
-            .FirstOrDefault();
+        DbBook? book = _bookRepository.GetBook(Id);
 
         StringBuilder infoOfBook = new();
 
         foreach (PropertyInfo prop in typeof(DbBook).GetProperties())
         {
-            infoOfBook.Append($"{prop.GetValue(book)} ");
+            if (prop.Name != "IssueBooks")
+                infoOfBook.Append($"{prop.GetValue(book)}\n");
         }
+
 
         return infoOfBook.ToString();
     }

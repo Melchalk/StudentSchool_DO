@@ -9,17 +9,17 @@ public class DbBook
     public const string TableName = "Books";
 
     public Guid Id { get; set; }
-    [StringLength(50)]
+    [MaxLength (50)]
     public string Title { get; set; }
-    [StringLength(50)]
+    [MaxLength (50)]
     public string? Author { get; set; }
     public int NumberPages { get; set; }
     public int YearPublishing { get; set; }
-    [StringLength(50)]
+    [MaxLength (50)]
     public string? CityPublishing { get; set; }
     public int? HallNo { get; set; }
 
-    public DbIssueBooks? Issue { get; set; }
+    public IList<DbIssueBooks> IssueBooks { get; set; } = new List<DbIssueBooks>();
 }
 
 public class DbBookConfiguration : IEntityTypeConfiguration<DbBook>

@@ -1,8 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using System;
-using System.Collections.Generic;
 
 namespace DbModels;
 
@@ -13,7 +10,7 @@ public class DbIssueBooks
     public Guid IssueId { get; set; }
     public Guid BookId { get; set; }
 
-    public IList<DbBook> Books { get; set; } = new List<DbBook>();
+    public DbBook Book { get; set; }
     public DbIssue Issue { get; set; }
 }
 
@@ -23,13 +20,18 @@ public class DbIssueBooksConfiguration : IEntityTypeConfiguration<DbIssueBooks>
     {
         builder.ToTable(DbIssueBooks.TableName);
 
-        builder.HasKey(u => u.IssueId);
-        builder.HasKey(u => u.BookId);
+        builder.HasKey(u => new { u.IssueId, u.BookId });
 
         builder
-          .HasMany(o => o.Books)
-          .WithOne(u => u.Issue)
-          .HasForeignKey(u => u.Id)
-          .HasPrincipalKey(t => t.BookId);
+            .HasOne(u => u.Issue)
+            .WithMany(o => o.IssueBooks)
+            .HasForeignKey(u => u.IssueId)
+            .HasPrincipalKey(o => o.Id);
+
+        builder
+            .HasOne(u => u.Book)
+            .WithMany(o => o.IssueBooks)
+            .HasForeignKey(u => u.BookId)
+            .HasPrincipalKey(o => o.Id);
     }
 }

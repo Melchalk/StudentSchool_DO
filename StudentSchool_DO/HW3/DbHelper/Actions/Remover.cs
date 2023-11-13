@@ -45,8 +45,6 @@ internal class Remover : Action
             .FirstOrDefault(u => u.Id == Id)
             ?? throw new Exception("Book is null");
 
-        _bookRepository.GetBooks().Remove(book);
-
-        _bookRepository.SaveChanges();
+        _bookRepository.DeleteBook(book);
     }
 }
