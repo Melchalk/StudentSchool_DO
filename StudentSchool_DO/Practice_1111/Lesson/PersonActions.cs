@@ -4,7 +4,7 @@ namespace Lesson;
 
 public class PersonActions : IPersonActions
 {
-  static Dictionary<Guid, PersonInfo> persons = new();
+  static Dictionary<Guid, PersonRequest> persons = new();
   CreatePersonResponse response = new();
 
   private readonly ICreatePersonRequestValidator _validator;
@@ -14,7 +14,7 @@ public class PersonActions : IPersonActions
     _validator = validator;
   }
 
-  public CreatePersonResponse Create(PersonInfo request)
+  public CreatePersonResponse Create(PersonRequest request)
   {
     ValidationResult result = _validator.Validate(request);
 
@@ -33,7 +33,7 @@ public class PersonActions : IPersonActions
     return response;
   }
 
-  public PersonInfo Get(Guid id)
+  public PersonRequest Get(Guid id)
   {
     return persons[id];
   }

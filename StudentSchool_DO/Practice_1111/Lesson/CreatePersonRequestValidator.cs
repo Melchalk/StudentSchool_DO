@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.DataProtection.Repositories;
 
 namespace Lesson;
 
-public class CreatePersonRequestValidator : AbstractValidator<PersonInfo>, ICreatePersonRequestValidator
+public class CreatePersonRequestValidator : AbstractValidator<PersonRequest>, ICreatePersonRequestValidator
 {
   public CreatePersonRequestValidator()
   {

@@ -9,7 +9,7 @@ public class PersonController : ControllerBase
   [HttpPost]
   public CreatePersonResponse Create(
     [FromServices] IPersonActions action,
-    [FromBody] PersonInfo request)
+    [FromBody] PersonRequest request)
   {
     return action.Create(request);
   }

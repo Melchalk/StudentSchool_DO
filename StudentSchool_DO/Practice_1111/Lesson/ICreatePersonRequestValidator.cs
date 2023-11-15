@@ -2,6 +2,6 @@
 
 namespace Lesson;
 
-public interface ICreatePersonRequestValidator : IValidator<PersonInfo>
+public interface ICreatePersonRequestValidator : IValidator<PersonRequest>
 {
 }

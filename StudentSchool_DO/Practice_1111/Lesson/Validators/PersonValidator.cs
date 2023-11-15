@@ -1,9 +1,9 @@
 ﻿namespace Lesson.Validators
 {
-  public class PersonValidator : IValidator<PersonInfo>
+  public class PersonValidator : IValidator<PersonRequest>
   {
     private readonly Guid ValidOfficeId = Guid.Parse("E1FDB548-FBE0-4019-B889-6536CBB9F314");
-    public ValidationResult Validate(PersonInfo request)
+    public ValidationResult Validate(PersonRequest request)
     {
       var validatioResult = new ValidationResult();
 

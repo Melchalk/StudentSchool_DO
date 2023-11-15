@@ -2,8 +2,8 @@
 {
   public interface IPersonActions
   {
-    CreatePersonResponse Create(PersonInfo request);
+    CreatePersonResponse Create(PersonRequest request);
 
-    PersonInfo Get(Guid id);
+    PersonRequest Get(Guid id);
   }
 }
