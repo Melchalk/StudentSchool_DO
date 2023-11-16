@@ -1,4 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using Provider;
 
 namespace DbHelper.Actions;
 
@@ -8,7 +10,7 @@ internal class Remover : Action
 
     public Remover()
     {
-        Message = "-- Выполняется удаление записи --";
+        Message = "-- Выполняется удаление записи --\n";
         DoneMessage = "\nУдаление записи выполнено";
         _request = @"DELETE FROM Readers WHERE Id='{0}'";
     }
@@ -37,8 +39,12 @@ internal class Remover : Action
         int sqlDataReader = sqlCommand.ExecuteNonQuery();
     }
 
-    private void DeleteBook(Guid id)
+    private void DeleteBook(Guid Id)
     {
-        //HW4
+        var book = _bookRepository.GetBooks()
+            .FirstOrDefault(u => u.Id == Id)
+            ?? throw new Exception("Book is null");
+
+        _bookRepository.DeleteBook(book);
     }
 }

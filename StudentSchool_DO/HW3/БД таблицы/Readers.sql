@@ -12,7 +12,7 @@ CREATE TABLE [dbo].[Readers](
 	[Id] [uniqueidentifier] NOT NULL,
 	[Fullname] [nvarchar](50) NOT NULL,
 	[Telephone] [nvarchar](50) NOT NULL,
-	[Registration_address] [nvarchar](50) NULL,
+	[RegistrationAddress] [nvarchar](50) NULL,
 	[Age] [int] NULL,
  CONSTRAINT [PK_Reader] PRIMARY KEY CLUSTERED 
 (

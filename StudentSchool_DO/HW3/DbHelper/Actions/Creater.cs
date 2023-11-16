@@ -1,4 +1,5 @@
 ﻿using ConsoleOptions;
+using DbModels;
 using Microsoft.Data.SqlClient;
 
 namespace DbHelper.Actions;
@@ -11,7 +12,7 @@ internal class Creater : Action
     {
         Message = "-- Выполняется создание записи --\n";
         DoneMessage = "\nСоздание записи выполнено";
-        _request = "INSERT INTO Readers (Id, Fullname, Telephone, Registration_address, Age) " +
+        _request = "INSERT INTO Readers (Id, Fullname, Telephone, RegistrationAddress, Age) " +
             "VALUES ({0})";
     }
 
@@ -41,7 +42,55 @@ internal class Creater : Action
 
     private void CreateBook()
     {
-        //HW4
+        DbBook book = new()
+        {
+            Id = Guid.NewGuid()
+        };
+
+        ConsoleHelper.Output("Введите название: ");
+        book.Title = ConsoleHelper.Input().Trim();
+
+        ConsoleHelper.Output("Введите автора: ");
+        var author = ConsoleHelper.Input().Trim();
+        if (author.Length > 0)
+        {
+            book.Author = author;
+        }
+        else
+        {
+            book.Author = null;
+        }
+
+        ConsoleHelper.Output("Введите количество стр: ");
+        book.NumberPages = int.Parse(ConsoleHelper.Input());
+
+        ConsoleHelper.Output("Введите дату публикации: ");
+        var date = ConsoleHelper.Input();
+        book.YearPublishing = int.Parse(date);
+
+        ConsoleHelper.Output("Введите город: ");
+        var city = ConsoleHelper.Input().Trim();
+        if (city.Length > 0)
+        {
+            book.CityPublishing = city;
+        }
+        else
+        {
+            book.CityPublishing = null;
+        }
+
+        ConsoleHelper.Output("Введите номер холла: ");
+        var hall = ConsoleHelper.Input().Trim();
+        if (hall.Length > 0)
+        {
+            book.HallNo = int.Parse(hall);
+        }
+        else
+        {
+            book.HallNo = null;
+        }
+
+        _bookRepository.AddBook(book);
     }
 
     private string ReaderData()

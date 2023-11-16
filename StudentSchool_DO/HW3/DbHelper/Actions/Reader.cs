@@ -1,4 +1,7 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using DbModels;
+using Microsoft.Data.SqlClient;
+using System.Reflection;
+using System.Text;
 
 namespace DbHelper.Actions;
 
@@ -8,8 +11,8 @@ internal class Reader : Action
 
     public Reader()
     {
-        Message = "-- Выполняется чтение записи --";
-        DoneMessage = "\nИскомая запись:";
+        Message = "-- Выполняется чтение записи --\n";
+        DoneMessage = "Искомая запись:";
         _request = @"SELECT * FROM Readers WHERE Id = '{0}'";
     }
 
@@ -42,7 +45,7 @@ internal class Reader : Action
         while (sqlDataReader.Read())
         {
             result = $"{sqlDataReader["Id"]} {sqlDataReader["Fullname"]} {sqlDataReader["Telephone"]} " +
-            $"{sqlDataReader["Registration_address"]} {sqlDataReader["Age"]}";
+            $"{sqlDataReader["RegistrationAddress"]} {sqlDataReader["Age"]}";
         }
 
         return result;
@@ -50,7 +53,17 @@ internal class Reader : Action
 
     private string ReadBook(Guid Id)
     {
-        //HW4
-        return string.Empty;
+        DbBook? book = _bookRepository.GetBook(Id);
+
+        StringBuilder infoOfBook = new();
+
+        foreach (PropertyInfo prop in typeof(DbBook).GetProperties())
+        {
+            if (prop.Name != "IssueBooks")
+                infoOfBook.Append($"{prop.GetValue(book)}\n");
+        }
+
+
+        return infoOfBook.ToString();
     }
 }

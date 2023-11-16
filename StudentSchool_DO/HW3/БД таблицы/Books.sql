@@ -12,10 +12,10 @@ CREATE TABLE [dbo].[Books](
 	[Id] [uniqueidentifier] NOT NULL,
 	[Title] [nvarchar](50) NOT NULL,
 	[Author] [nvarchar](50) NULL,
-	[Number_pages] [int] NOT NULL,
-	[Date_publishing] [date] NOT NULL,
-	[City_publishing] [nvarchar](50) NULL,
-	[Hall_no] [int] NULL,
+	[NumberPages] [int] NOT NULL,
+	[YearPublishing] [date] NOT NULL,
+	[CityPublishing] [nvarchar](50) NULL,
+	[HallNo] [int] NULL,
  CONSTRAINT [PK_Books] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC

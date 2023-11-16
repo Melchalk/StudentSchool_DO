@@ -9,7 +9,7 @@ internal class Updater : Action
 
     public Updater()
     {
-        Message = "-- Выполняется обновление записи --";
+        Message = "-- Выполняется обновление записи --\n";
         DoneMessage = "\nОбновление записи выполнено";
         _request = "UPDATE Readers SET {1} = {2} WHERE Id='{0}'";
     }
@@ -32,7 +32,7 @@ internal class Updater : Action
     {
         var attribute = ChoiceReaderAttribute();
 
-        ConsoleHelper.Output("Введите новое значение: ");
+        ConsoleHelper.Output("\nВведите новое значение: ");
 
         var newValue = ConsoleHelper.Input();
         if (!newValue.All(char.IsDigit))
@@ -50,7 +50,17 @@ internal class Updater : Action
 
     private void UpdateBook(Guid Id)
     {
-        //HW4
+        var attribute = ChoiceBookAttribute();
+
+        ConsoleHelper.Output("\nВведите новое значение: ");
+
+        var newValue = ConsoleHelper.Input();
+
+        var book = _bookRepository.GetBook(Id);
+
+        var property = book?.GetType().GetProperty(attribute);
+
+        _bookRepository.UpdateBook(book, property, newValue);
     }
 
     private string ChoiceReaderAttribute()
@@ -58,8 +68,8 @@ internal class Updater : Action
         var choice = "Выберите изменение:\n" +
             $"ФИО ({(int)ReaderAttributes.Fullname})\n" +
             $"Телефон ({(int)ReaderAttributes.Telephone})\n" +
-            $"Адрес регистрации {(int)ReaderAttributes.Registration_address}\n" +
-            $"Возраст {(int)ReaderAttributes.Age}\n" +
+            $"Адрес регистрации ({(int)ReaderAttributes.RegistrationAddress})\n" +
+            $"Возраст ({(int)ReaderAttributes.Age})\n" +
             $"Номер - ";
 
         ConsoleHelper.Output(choice);
@@ -67,5 +77,23 @@ internal class Updater : Action
         int numberAttribute = int.Parse(ConsoleHelper.Input());
 
         return ((ReaderAttributes)numberAttribute).ToString();
+    }
+
+    private string ChoiceBookAttribute()
+    {
+        var choice = "Выберите изменение:\n" +
+            $"Название ({(int)BookAttributes.Title})\n" +
+            $"Автор ({(int)BookAttributes.Author})\n" +
+            $"Количество стр ({(int)BookAttributes.NumberPages})\n" +
+            $"Дату публикации ({(int)BookAttributes.YearPublishing})\n" +
+            $"Город ({(int)BookAttributes.CityPublishing})\n" +
+            $"Номер холла ({(int)BookAttributes.HallNo})\n" +
+            $"Номер - ";
+
+        ConsoleHelper.Output(choice);
+
+        int numberAttribute = int.Parse(ConsoleHelper.Input());
+
+        return ((BookAttributes)numberAttribute).ToString();
     }
 }

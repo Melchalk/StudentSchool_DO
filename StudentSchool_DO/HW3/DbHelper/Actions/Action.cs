@@ -1,4 +1,5 @@
 ﻿using ConsoleOptions;
+using Provider;
 
 namespace DbHelper.Actions;
 
@@ -10,8 +11,8 @@ public abstract class Action
     public string DoneMessage { get; set; }
 
     protected static readonly string ConnectionString = @"Server=MEL\SQLEXPRESS;Database=Library;Trusted_Connection=True;Encrypt=False;";
-
     protected string _request;
+    protected BookRepository _bookRepository = new();
 
     protected int ChoiceTable()
     {
@@ -33,7 +34,11 @@ public abstract class Action
     {
         ConsoleHelper.Output("Введите ID: ");
 
-        return new Guid(ConsoleHelper.Input());
+        var id = new Guid(ConsoleHelper.Input());
+
+        ConsoleHelper.Output("\n");
+
+        return id;
     }
 
     public virtual string PerformAction()

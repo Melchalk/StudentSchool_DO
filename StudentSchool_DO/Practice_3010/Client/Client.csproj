@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DBModels\DBModels.csproj" />
-    <ProjectReference Include="..\Provider\Provider.csproj" />
+    <ProjectReference Include="..\Provider\ProviderDb.csproj" />
   </ItemGroup>
 
 </Project>
