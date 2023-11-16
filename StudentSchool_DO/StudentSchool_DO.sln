@@ -25,19 +25,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Menu", "HW3\Menu\Menu.cspro
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleOptions", "HW3\ConsoleOptions\ConsoleOptions.csproj", "{B808C37F-2B2D-4DA1-B4B6-684E2CEC8D22}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "БД", "БД", "{9CD8E25E-BBF6-4A03-B81C-F7A4D9178F70}"
-	ProjectSection(SolutionItems) = preProject
-		HW3\БД таблицы\Books.sql = HW3\БД таблицы\Books.sql
-		HW3\БД таблицы\IssueBooks.sql = HW3\БД таблицы\IssueBooks.sql
-		HW3\БД таблицы\Issues.sql = HW3\БД таблицы\Issues.sql
-		HW3\БД таблицы\Readers.sql = HW3\БД таблицы\Readers.sql
-	EndProjectSection
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbMenuHelper", "HW3\DbHelper\DbMenuHelper.csproj", "{9E0A9849-2C6E-40E7-9F83-FA0A8F599E5C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Practice_1111 and 1311", "Practice_1111 and 1311", "{C3E36B41-6573-4BD2-81E9-B386D5A2D697}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lesson", "Practice_1111 and 1311\Lesson.csproj", "{73EAE6BA-6C52-4961-9886-B53912077F80}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "БД", "БД", "{9CD8E25E-BBF6-4A03-B81C-F7A4D9178F70}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -100,9 +94,9 @@ Global
 		{400CFE6E-108F-49D9-81FF-3136CF894EA9} = {1EB4EB48-B26E-434F-A469-AD3FA7EEF887}
 		{9C9DF9B7-2F90-4343-884D-E4C8616E87FB} = {1EB4EB48-B26E-434F-A469-AD3FA7EEF887}
 		{B808C37F-2B2D-4DA1-B4B6-684E2CEC8D22} = {1EB4EB48-B26E-434F-A469-AD3FA7EEF887}
-		{9CD8E25E-BBF6-4A03-B81C-F7A4D9178F70} = {1EB4EB48-B26E-434F-A469-AD3FA7EEF887}
 		{9E0A9849-2C6E-40E7-9F83-FA0A8F599E5C} = {1EB4EB48-B26E-434F-A469-AD3FA7EEF887}
 		{73EAE6BA-6C52-4961-9886-B53912077F80} = {C3E36B41-6573-4BD2-81E9-B386D5A2D697}
+		{9CD8E25E-BBF6-4A03-B81C-F7A4D9178F70} = {1EB4EB48-B26E-434F-A469-AD3FA7EEF887}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F9DCD49A-AD21-49D9-8BDF-EC10AD268DC7}
