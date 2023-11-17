@@ -45,4 +45,18 @@ public class BookRepository
 
         _context.SaveChanges();
     }
+
+    public DbBook UpdateBook(DbBook? book)
+    {
+        DbBook oldBook = GetBook(book.Id);
+
+        foreach (PropertyInfo property in typeof(DbBook).GetProperties())
+        {
+            property?.SetValue(oldBook, property.GetValue(book));
+        }
+
+        _context.SaveChanges();
+
+        return GetBook(book.Id);
+    }
 }

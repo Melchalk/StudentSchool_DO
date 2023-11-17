@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using WebLibrary.BooksOptions;
 using WebLibrary.ModelRequest;
 using WebLibrary.ModelResponse;
 using WebLibrary.ReaderOptions;
@@ -15,5 +16,13 @@ public class ReaderController : ControllerBase
     [FromBody] ReaderRequest request)
     {
         return action.Create(request);
+    }
+
+    [HttpGet]
+    public ReaderRequest Get(
+    [FromServices] IReaderActions action,
+    [FromQuery] Guid id)
+    {
+        return action.Get(id);
     }
 }

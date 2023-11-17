@@ -15,7 +15,8 @@ public class DbReader
     public string Telephone {  get; set; }
     [MaxLength (50)]
     public string? RegistrationAddress { get; set; }
-    public int? Age { get; set; }
+    public int Age { get; set; }
+    public bool CanTakeBooks { get; set; }
 
     public DbIssue Issue { get; set; }
 }

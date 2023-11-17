@@ -6,7 +6,7 @@ namespace WebLibrary.ReaderOptions;
 
 public class ReaderActions : IReaderActions
 {
-    public CreateReaderResponse Create(DbReader request)
+    public CreateReaderResponse Create(ReaderRequest request)
     {
         throw new NotImplementedException();
     }

@@ -13,11 +13,6 @@ public class OfficeDbContext : DbContext
 
     private const string ConnectionString = @"Server=MEL\SQLEXPRESS;Database=Library;Trusted_Connection=True;Encrypt=False;";
 
-    public OfficeDbContext()
-    {
-        Database.EnsureCreated();
-    }
-
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseSqlServer(ConnectionString);

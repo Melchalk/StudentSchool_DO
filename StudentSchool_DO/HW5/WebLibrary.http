@@ -1,6 +1,6 @@
 @WebLibrary_HostAddress = http://localhost:5118
 
-GET {{WebLibrary_HostAddress}}/DbModels.DbBook/
+GET {{WebLibrary_HostAddress}}//
 Accept: application/json
 
 ###
