@@ -7,5 +7,5 @@ public interface IBookMapper
 {
     DbBook Map(BookRequest bookRequest);
 
-    BookRequest Map(DbBook bookRequest);
+    BookRequest Map(DbBook dbBook);
 }
