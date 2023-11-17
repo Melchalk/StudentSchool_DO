@@ -8,9 +8,9 @@ public interface IBookActions
 {
     CreateBookResponse Create(BookRequest request);
 
-    BookRequest Update(Guid id, BookRequest request);
-
     BookRequest Get(Guid id);
+
+    BookRequest Update(Guid id, BookRequest request);
 
     void Delete(Guid id);
 }

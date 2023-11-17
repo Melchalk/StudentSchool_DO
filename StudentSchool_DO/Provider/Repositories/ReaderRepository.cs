@@ -4,7 +4,7 @@ using System.Reflection;
 
 namespace Provider.Repositories;
 
-internal class ReaderRepository : IRepository<DbReader>
+public class ReaderRepository : IRepository<DbReader>
 {
     private readonly OfficeDbContext _context = new();
 
