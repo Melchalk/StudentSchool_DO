@@ -20,7 +20,8 @@ public class CreateReaderRequestValidator : AbstractValidator<ReaderRequest>, IC
         When(request => request.Age < 18 || request.RegistrationAddress is null, () =>
         {
             RuleFor(request => request.CanTakeBooks)
-              .Must(a => a == false);
+              .Must(a => a == false)
+              .WithMessage("If age < 14 or registration address is unknown\nThe reader cannot take books");
         });
     }
 }

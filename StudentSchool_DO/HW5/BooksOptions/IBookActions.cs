@@ -1,6 +1,5 @@
-﻿using DbModels;
-using WebLibrary.ModelRequest;
-using WebLibrary.ModelResponse;
+﻿using WebLibrary.ModelRequest;
+using WebLibrary.ModelsResponses.BookResponses;
 
 namespace WebLibrary.BooksOptions;
 
@@ -8,9 +7,9 @@ public interface IBookActions
 {
     CreateBookResponse Create(BookRequest request);
 
-    BookRequest Get(Guid id);
+    GetBookResponse Get(Guid id);
 
-    BookRequest Update(Guid id, BookRequest request);
+    UpdateBookResponse Update(Guid id, BookRequest request);
 
-    void Delete(Guid id);
+    DeleteBookResponse Delete(Guid id);
 }

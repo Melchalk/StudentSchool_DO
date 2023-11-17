@@ -14,7 +14,7 @@ public class ReaderRepository : IRepository<DbReader>
 
         _context.SaveChanges();
     }
-    public DbReader Get(Guid readerId)
+    public DbReader? Get(Guid readerId)
     {
         return _context.Readers.Where(u => u.Id == readerId).FirstOrDefault();
     }

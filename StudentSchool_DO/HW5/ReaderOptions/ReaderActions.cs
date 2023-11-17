@@ -3,14 +3,21 @@ using FluentValidation.Results;
 using Provider.Repositories;
 using WebLibrary.Mappers;
 using WebLibrary.ModelRequest;
-using WebLibrary.ModelResponse;
+using WebLibrary.ModelsResponses.ReaderResponses;
 using WebLibrary.Validators;
 
 namespace WebLibrary.ReaderOptions;
 
 public class ReaderActions : IReaderActions
 {
-    private readonly CreateReaderResponse response = new();
+    private const string NOT_FOUND = "ID is not found";
+    private const string DELETE = "The deletion was successful";
+
+    private readonly CreateReaderResponse createResponse = new();
+    private readonly GetReaderResponse getResponse = new();
+    private readonly UpdateReaderResponse updateResponse = new();
+    private readonly DeleteReaderResponse deleteResponse = new();
+
     private readonly ReaderRepository _readerRepository = new();
 
     private readonly ICreateReaderRequestValidator _validator;
@@ -28,7 +35,7 @@ public class ReaderActions : IReaderActions
 
         if (!result.IsValid)
         {
-            response.Errors = result.Errors.Select(e => e.ErrorMessage).ToList();
+            createResponse.Errors = result.Errors.Select(e => e.ErrorMessage).ToList();
         }
         else
         {
@@ -39,38 +46,70 @@ public class ReaderActions : IReaderActions
 
             _readerRepository.Add(reader);
 
-            response.Id = id;
+            createResponse.Id = id;
         }
 
-        return response;
+        return createResponse;
     }
 
-    public ReaderRequest Get(Guid id)
+    public GetReaderResponse Get(Guid id)
     {
-        return _mapper.Map(_readerRepository.Get(id));
+        DbReader? reader = _readerRepository.Get(id);
+
+        if (reader is null)
+        {
+            getResponse.Error = NOT_FOUND;
+        }
+        else
+        {
+            getResponse.ReaderRequest = _mapper.Map(reader);
+        }
+
+        return getResponse;
     }
 
-    public ReaderRequest Update(Guid id, ReaderRequest request)
+    public UpdateReaderResponse Update(Guid id, ReaderRequest request)
     {
-        var reader = _mapper.Map(request);
-        reader.Id = id;
+        if (_readerRepository.Get(id) is null)
+        {
+            updateResponse.Errors = new() { NOT_FOUND };
+        }
+        else
+        {
+            ValidationResult result = _validator.Validate(request);
 
-        _readerRepository.Update(reader);
+            if (!result.IsValid)
+            {
+                updateResponse.Errors = result.Errors.Select(e => e.ErrorMessage).ToList();
+            }
+            else
+            {
+                var reader = _mapper.Map(request);
+                reader.Id = id;
 
-        return _mapper.Map(_readerRepository.Get(id));
+                _readerRepository.Update(reader);
+
+                updateResponse.ReaderRequest = _mapper.Map(_readerRepository.Get(id));
+            }
+        }
+
+        return updateResponse;
     }
 
-    public void Delete(Guid id)
+    public DeleteReaderResponse Delete(Guid id)
     {
-        DbReader reader = _readerRepository.Get(id);
+        DbReader? reader = _readerRepository.Get(id);
 
         if (reader is not null)
         {
             _readerRepository.Delete(reader);
+            deleteResponse.Result = DELETE;
         }
         else
         {
-            throw new InvalidOperationException();
+            deleteResponse.Result = NOT_FOUND;
         }
+
+        return deleteResponse;
     }
 }

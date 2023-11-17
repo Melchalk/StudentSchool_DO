@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WebLibrary.BooksOptions;
 using WebLibrary.ModelRequest;
-using WebLibrary.ModelResponse;
+using WebLibrary.ModelsResponses.ReaderResponses;
 using WebLibrary.ReaderOptions;
 
 namespace WebLibrary.Controllers;
@@ -19,7 +19,7 @@ public class ReaderController : ControllerBase
     }
 
     [HttpGet]
-    public ReaderRequest Get(
+    public GetReaderResponse Get(
     [FromServices] IReaderActions action,
     [FromQuery] Guid id)
     {
@@ -27,7 +27,7 @@ public class ReaderController : ControllerBase
     }
 
     [HttpPut]
-    public ReaderRequest Update(
+    public UpdateReaderResponse Update(
     [FromServices] IReaderActions action,
     [FromQuery] Guid id,
     [FromBody] ReaderRequest request)
@@ -36,10 +36,10 @@ public class ReaderController : ControllerBase
     }
 
     [HttpDelete]
-    public void Delete(
+    public DeleteReaderResponse Delete(
     [FromServices] IReaderActions action,
     [FromQuery] Guid id)
     {
-        action.Delete(id);
+        return action.Delete(id);
     }
 }

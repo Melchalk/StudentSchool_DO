@@ -6,7 +6,7 @@ internal interface IRepository<T> where T : class
 {
     void Add(T entity);
 
-    T Get(Guid id);
+    T? Get(Guid id);
 
     DbSet<T> Get();
 
