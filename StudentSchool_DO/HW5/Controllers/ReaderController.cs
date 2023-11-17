@@ -25,4 +25,21 @@ public class ReaderController : ControllerBase
     {
         return action.Get(id);
     }
+
+    [HttpPut]
+    public ReaderRequest Update(
+    [FromServices] IReaderActions action,
+    [FromQuery] Guid id,
+    [FromBody] ReaderRequest request)
+    {
+        return action.Update(id, request);
+    }
+
+    [HttpDelete]
+    public void Delete(
+    [FromServices] IReaderActions action,
+    [FromQuery] Guid id)
+    {
+        action.Delete(id);
+    }
 }
