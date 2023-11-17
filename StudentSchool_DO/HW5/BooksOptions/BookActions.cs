@@ -1,6 +1,6 @@
 ﻿using DbModels;
 using FluentValidation.Results;
-using Provider;
+using Provider.Repositories;
 using WebLibrary.Mappers;
 using WebLibrary.ModelRequest;
 using WebLibrary.ModelResponse;
@@ -37,7 +37,7 @@ public class BookActions : IBookActions
             var book = _mapper.Map(request);
             book.Id = id;
 
-            _bookRepository.AddBook(book);
+            _bookRepository.Add(book);
 
             response.Id = id;
         }
@@ -47,7 +47,7 @@ public class BookActions : IBookActions
 
     public BookRequest Get(Guid id)
     {
-        return _mapper.Map(_bookRepository.GetBook(id));
+        return _mapper.Map(_bookRepository.Get(id));
     }
 
 
@@ -56,18 +56,18 @@ public class BookActions : IBookActions
         var book = _mapper.Map(request);
         book.Id = id;
 
-        _bookRepository.UpdateBook(book);
+        _bookRepository.Update(book);
 
-        return _mapper.Map(_bookRepository.GetBook(id));
+        return _mapper.Map(_bookRepository.Get(id));
     }
 
     public void Delete(Guid id)
     {
-        DbBook book = _bookRepository.GetBook(id);
+        DbBook book = _bookRepository.Get(id);
 
         if (book is not null)
         {
-            _bookRepository.DeleteBook(book);
+            _bookRepository.Delete(book);
         }
         else
         {

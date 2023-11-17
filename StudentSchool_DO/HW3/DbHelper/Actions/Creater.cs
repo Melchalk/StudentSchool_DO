@@ -90,7 +90,7 @@ internal class Creater : Action
             book.HallNo = null;
         }
 
-        _bookRepository.AddBook(book);
+        _bookRepository.Add(book);
     }
 
     private string ReaderData()
