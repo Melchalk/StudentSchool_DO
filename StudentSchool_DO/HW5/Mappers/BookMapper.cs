@@ -9,6 +9,7 @@ public class BookMapper : IBookMapper
     {
         DbBook book = new()
         {
+            Id = Guid.NewGuid(),
             Title = bookRequest.Title,
             Author = bookRequest.Author,
             NumberPages = bookRequest.NumberPages,
@@ -29,7 +30,8 @@ public class BookMapper : IBookMapper
             NumberPages = book.NumberPages,
             YearPublishing = book.YearPublishing,
             CityPublishing = book.CityPublishing,
-            HallNo = book.HallNo
+            HallNo = book.HallNo,
+            IssueBooks = book.IssueBooks
         };
 
         return bookRequest;

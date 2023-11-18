@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using DbModels;
+using System.ComponentModel.DataAnnotations;
 
 namespace WebLibrary.ModelRequest;
 
@@ -13,4 +14,6 @@ public class BookRequest
     [MaxLength(50)]
     public string? CityPublishing { get; set; }
     public int? HallNo { get; set; }
+
+    public IList<DbIssueBooks>? IssueBooks { get; set; }
 }

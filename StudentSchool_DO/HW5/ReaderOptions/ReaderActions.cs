@@ -13,13 +13,14 @@ public class ReaderActions : IReaderActions
     private const string NOT_FOUND = "ID is not found";
     private const string DELETE = "The deletion was successful";
 
-    private readonly ReaderRepository _readerRepository = new();
+    private readonly IReaderRepository _readerRepository;
 
     private readonly ICreateReaderRequestValidator _validator;
     private readonly IReaderMapper _mapper;
 
-    public ReaderActions(ICreateReaderRequestValidator validator, IReaderMapper mapper)
+    public ReaderActions(IReaderRepository readerRepository, ICreateReaderRequestValidator validator, IReaderMapper mapper)
     {
+        _readerRepository = readerRepository;
         _validator = validator;
         _mapper = mapper;
     }
@@ -36,14 +37,11 @@ public class ReaderActions : IReaderActions
         }
         else
         {
-            var id = Guid.NewGuid();
-
-            var reader = _mapper.Map(request);
-            reader.Id = id;
+            DbReader reader = _mapper.Map(request);
 
             _readerRepository.Add(reader);
 
-            createResponse.Id = id;
+            createResponse.Id = reader.Id;
         }
 
         return createResponse;
@@ -85,7 +83,7 @@ public class ReaderActions : IReaderActions
             }
             else
             {
-                var reader = _mapper.Map(request);
+                DbReader reader = _mapper.Map(request);
                 reader.Id = id;
 
                 _readerRepository.Update(reader);

@@ -13,13 +13,14 @@ public class BookActions : IBookActions
     private const string NOT_FOUND = "ID is not found";
     private const string DELETE = "The deletion was successful";
 
-    private readonly BookRepository _bookRepository = new();
+    private readonly IBookRepository _bookRepository;
 
     private readonly ICreateBookRequestValidator _validator;
     private readonly IBookMapper _mapper;
 
-    public BookActions(ICreateBookRequestValidator validator, IBookMapper mapper)
+    public BookActions(IBookRepository bookRepository, ICreateBookRequestValidator validator, IBookMapper mapper)
     {
+        _bookRepository = bookRepository;
         _validator = validator;
         _mapper = mapper;
     }
@@ -36,14 +37,11 @@ public class BookActions : IBookActions
         }
         else
         {
-            var id = Guid.NewGuid();
-
-            var book = _mapper.Map(request);
-            book.Id = id;
+            DbBook book = _mapper.Map(request);
 
             _bookRepository.Add(book);
 
-            createResponse.Id = id;
+            createResponse.Id = book.Id;
         }
 
         return createResponse;
@@ -85,7 +83,7 @@ public class BookActions : IBookActions
             }
             else
             {
-                var book = _mapper.Map(request);
+                DbBook book = _mapper.Map(request);
                 book.Id = id;
 
                 _bookRepository.Update(book);

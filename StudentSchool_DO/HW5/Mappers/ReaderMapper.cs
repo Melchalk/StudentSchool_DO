@@ -9,6 +9,7 @@ public class ReaderMapper : IReaderMapper
     {
         DbReader reader = new()
         {
+            Id = Guid.NewGuid(),
             Fullname = readerRequest.Fullname,
             Telephone = readerRequest.Telephone,
             RegistrationAddress = readerRequest.RegistrationAddress,
@@ -27,7 +28,7 @@ public class ReaderMapper : IReaderMapper
             Telephone = reader.Telephone,
             RegistrationAddress = reader.RegistrationAddress,
             Age = reader.Age,
-            CanTakeBooks = reader.CanTakeBooks
+            Issue = reader.Issue,
         };
 
         return readerRequest;
