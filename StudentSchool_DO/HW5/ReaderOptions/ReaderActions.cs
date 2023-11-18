@@ -90,7 +90,7 @@ public class ReaderActions : IReaderActions
 
                 _readerRepository.Update(reader);
 
-                updateResponse.ReaderRequest = _mapper.Map(_readerRepository.Get(id));
+                updateResponse.Result = true;
             }
         }
 

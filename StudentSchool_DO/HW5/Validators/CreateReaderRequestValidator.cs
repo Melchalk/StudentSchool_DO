@@ -9,15 +9,13 @@ public class CreateReaderRequestValidator : AbstractValidator<ReaderRequest>, IC
     {
         RuleFor(request => request.Fullname)
           .NotEmpty()
-          .WithMessage("Fullname should not be empty")
-          .MaximumLength(50)
-          .WithMessage("Fullname is too long");
+          .WithMessage("Fullname should not be empty");
 
         RuleFor(request => request.Age)
           .Must(a => a >= 14)
           .WithMessage("The age must be over 14");
 
-        When(request => request.Age < 18 || request.RegistrationAddress is null, () =>
+        When(request => request.Age < 14 || request.RegistrationAddress is null, () =>
         {
             RuleFor(request => request.CanTakeBooks)
               .Must(a => a == false)

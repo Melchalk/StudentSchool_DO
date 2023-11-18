@@ -90,7 +90,7 @@ public class BookActions : IBookActions
 
                 _bookRepository.Update(book);
 
-                updateResponse.BookRequest = _mapper.Map(_bookRepository.Get(id));
+                updateResponse.Result = true;
             }
         }
 
