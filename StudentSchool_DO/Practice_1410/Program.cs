@@ -40,6 +40,7 @@ void RemakeArray(int[,] array)
     }
 }
 
+#pragma warning disable CS8321 // Локальная функция объявлена, но не используется
 string FooBar(int num)
 {
     if (num % 5 == 0 && num % 3 == 0)
@@ -57,3 +58,4 @@ string FooBar(int num)
 
     return "";
 }
+#pragma warning restore CS8321 // Локальная функция объявлена, но не используется

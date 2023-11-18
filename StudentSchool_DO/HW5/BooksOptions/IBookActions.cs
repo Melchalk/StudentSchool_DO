@@ -1,15 +1,18 @@
-﻿using WebLibrary.ModelRequest;
+﻿using Microsoft.AspNetCore.Mvc;
+using WebLibrary.ModelRequest;
 using WebLibrary.ModelsResponses.BookResponses;
 
 namespace WebLibrary.BooksOptions;
 
 public interface IBookActions
 {
-    CreateBookResponse Create(BookRequest request);
+    IActionResult Create(BookRequest request);
 
-    GetBookResponse Get(Guid id);
+    IActionResult Get(Guid id);
 
-    UpdateBookResponse Update(Guid id, BookRequest request);
+    IActionResult Get();
 
-    DeleteBookResponse Delete(Guid id);
+    IActionResult Update(Guid id, BookRequest request);
+
+    IActionResult Delete(Guid id);
 }
