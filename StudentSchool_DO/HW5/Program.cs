@@ -1,3 +1,4 @@
+using Provider.Repositories;
 using WebLibrary.BooksOptions;
 using WebLibrary.Mappers;
 using WebLibrary.ReaderOptions;
@@ -6,6 +7,9 @@ using WebLibrary.Validators;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
+
+builder.Services.AddTransient<IBookRepository, BookRepository>();
+builder.Services.AddTransient<IReaderRepository, ReaderRepository>();
 
 builder.Services.AddTransient<IBookActions, BookActions>();
 builder.Services.AddTransient<ICreateBookRequestValidator, CreateBookRequestValidator>();

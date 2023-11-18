@@ -4,7 +4,7 @@ using System.Reflection;
 
 namespace Provider.Repositories;
 
-public class BookRepository : IRepository<DbBook>
+public class BookRepository : IBookRepository
 {
     private readonly OfficeDbContext _context = new();
 
