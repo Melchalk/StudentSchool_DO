@@ -13,11 +13,6 @@ public class ReaderActions : IReaderActions
     private const string NOT_FOUND = "ID is not found";
     private const string DELETE = "The deletion was successful";
 
-    private readonly CreateReaderResponse createResponse = new();
-    private readonly GetReaderResponse getResponse = new();
-    private readonly UpdateReaderResponse updateResponse = new();
-    private readonly DeleteReaderResponse deleteResponse = new();
-
     private readonly ReaderRepository _readerRepository = new();
 
     private readonly ICreateReaderRequestValidator _validator;
@@ -31,6 +26,8 @@ public class ReaderActions : IReaderActions
 
     public CreateReaderResponse Create(ReaderRequest request)
     {
+        CreateReaderResponse createResponse = new();
+
         ValidationResult result = _validator.Validate(request);
 
         if (!result.IsValid)
@@ -54,6 +51,8 @@ public class ReaderActions : IReaderActions
 
     public GetReaderResponse Get(Guid id)
     {
+        GetReaderResponse getResponse = new();
+
         DbReader? reader = _readerRepository.Get(id);
 
         if (reader is null)
@@ -70,6 +69,8 @@ public class ReaderActions : IReaderActions
 
     public UpdateReaderResponse Update(Guid id, ReaderRequest request)
     {
+        UpdateReaderResponse updateResponse = new();
+
         if (_readerRepository.Get(id) is null)
         {
             updateResponse.Errors = new() { NOT_FOUND };
@@ -98,6 +99,8 @@ public class ReaderActions : IReaderActions
 
     public DeleteReaderResponse Delete(Guid id)
     {
+        DeleteReaderResponse deleteResponse = new();
+
         DbReader? reader = _readerRepository.Get(id);
 
         if (reader is not null)

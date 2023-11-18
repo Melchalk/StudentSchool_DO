@@ -13,11 +13,6 @@ public class BookActions : IBookActions
     private const string NOT_FOUND = "ID is not found";
     private const string DELETE = "The deletion was successful";
 
-    private readonly CreateBookResponse createResponse = new();
-    private readonly GetBookResponse getResponse = new();
-    private readonly UpdateBookResponse updateResponse = new();
-    private readonly DeleteBookResponse deleteResponse = new();
-
     private readonly BookRepository _bookRepository = new();
 
     private readonly ICreateBookRequestValidator _validator;
@@ -31,6 +26,8 @@ public class BookActions : IBookActions
 
     public CreateBookResponse Create(BookRequest request)
     {
+        CreateBookResponse createResponse = new();
+
         ValidationResult result = _validator.Validate(request);
 
         if (!result.IsValid)
@@ -54,6 +51,8 @@ public class BookActions : IBookActions
 
     public GetBookResponse Get(Guid id)
     {
+        GetBookResponse getResponse = new();
+
         DbBook? book = _bookRepository.Get(id);
 
         if (book is null)
@@ -70,6 +69,8 @@ public class BookActions : IBookActions
 
     public UpdateBookResponse Update(Guid id, BookRequest request)
     {
+        UpdateBookResponse updateResponse = new();
+
         if (_bookRepository.Get(id) is null)
         {
             updateResponse.Errors = new() { NOT_FOUND };
@@ -98,6 +99,8 @@ public class BookActions : IBookActions
 
     public DeleteBookResponse Delete(Guid id)
     {
+        DeleteBookResponse deleteResponse = new();
+
         DbBook? book = _bookRepository.Get(id);
 
         if (book is not null)
