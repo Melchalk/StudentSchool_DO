@@ -1,11 +1,9 @@
 ﻿using DbModels;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Provider.Repositories;
 using WebLibrary.Mappers;
 using WebLibrary.ModelRequest;
-using WebLibrary.ModelsResponses.BookResponses;
 using WebLibrary.Validators;
 
 namespace WebLibrary.BooksOptions;
@@ -80,8 +78,6 @@ public class BookActions : IBookActions
 
     public IActionResult Update(Guid id, BookRequest request)
     {
-        UpdateBookResponse updateResponse = new();
-
         if (_bookRepository.Get(id) is null)
         {
             return new NotFoundObjectResult(NOT_FOUND);
