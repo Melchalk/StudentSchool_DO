@@ -1,11 +1,14 @@
 ﻿using DbModels;
+using Microsoft.AspNetCore.Mvc;
 using WebLibrary.ModelRequest;
 
 namespace WebLibrary.Mappers;
 
 public class ReaderMapper : IReaderMapper
 {
-    public DbReader Map(ReaderRequest readerRequest)
+    public DbReader Map(
+        [FromServices] IIssueMapper issueMapper,
+        ReaderRequest readerRequest)
     {
         DbReader reader = new()
         {
@@ -14,13 +17,16 @@ public class ReaderMapper : IReaderMapper
             Telephone = readerRequest.Telephone,
             RegistrationAddress = readerRequest.RegistrationAddress,
             Age = readerRequest.Age,
-            CanTakeBooks = readerRequest.CanTakeBooks
+            CanTakeBooks = readerRequest.CanTakeBooks,
+            Issue = issueMapper.Map(readerRequest.Issue)
         };
 
         return reader;
     }
 
-    public ReaderRequest Map(DbReader reader)
+    public ReaderRequest Map(
+        [FromServices] IIssueMapper issueMapper,
+        DbReader reader)
     {
         ReaderRequest readerRequest = new()
         {
@@ -28,7 +34,7 @@ public class ReaderMapper : IReaderMapper
             Telephone = reader.Telephone,
             RegistrationAddress = reader.RegistrationAddress,
             Age = reader.Age,
-            Issue = reader.Issue,
+            Issue = issueMapper.Map(reader.Issue)
         };
 
         return readerRequest;

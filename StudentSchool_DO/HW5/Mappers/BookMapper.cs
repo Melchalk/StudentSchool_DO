@@ -1,4 +1,5 @@
 ﻿using DbModels;
+using Microsoft.AspNetCore.Mvc;
 using WebLibrary.ModelRequest;
 
 namespace WebLibrary.Mappers;
@@ -21,8 +22,14 @@ public class BookMapper : IBookMapper
         return book;
     }
 
-    public BookRequest Map(DbBook book)
+    public BookRequest Map([FromServices] IIssueBooksMapper issueBooksMapper, DbBook book)
     {
+        List<IssueBooksRequest> issueBooksRequests = new();
+        foreach(var issueBook in book.IssueBooks)
+        {
+            issueBooksRequests.Add(issueBooksMapper.Map(issueBook));
+        }
+
         BookRequest bookRequest = new()
         {
             Title = book.Title,
@@ -31,7 +38,7 @@ public class BookMapper : IBookMapper
             YearPublishing = book.YearPublishing,
             CityPublishing = book.CityPublishing,
             HallNo = book.HallNo,
-            IssueBooks = book.IssueBooks
+            IssueBooks = issueBooksRequests
         };
 
         return bookRequest;

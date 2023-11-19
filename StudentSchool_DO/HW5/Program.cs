@@ -8,8 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-builder.Services.AddTransient<IBookRepository, BookRepository>();
-builder.Services.AddTransient<IReaderRepository, ReaderRepository>();
+builder.Services.AddScoped<IBookRepository, BookRepository>();
+builder.Services.AddScoped<IReaderRepository, ReaderRepository>();
 
 builder.Services.AddTransient<IBookActions, BookActions>();
 builder.Services.AddTransient<ICreateBookRequestValidator, CreateBookRequestValidator>();
@@ -18,6 +18,9 @@ builder.Services.AddTransient<IBookMapper, BookMapper>();
 builder.Services.AddTransient<IReaderActions, ReaderActions>();
 builder.Services.AddTransient<ICreateReaderRequestValidator, CreateReaderRequestValidator>();
 builder.Services.AddTransient<IReaderMapper, ReaderMapper>();
+
+builder.Services.AddTransient<IIssueMapper, IssueMapper>();
+builder.Services.AddTransient<IIssueBooksMapper, IssueBooksMapper>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

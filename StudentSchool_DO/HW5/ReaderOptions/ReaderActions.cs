@@ -40,7 +40,7 @@ public class ReaderActions : IReaderActions
         }
         else
         {
-            DbReader reader = _mapper.Map(request);
+            DbReader reader = _mapper.Map(new IssueMapper(), request);
 
             _readerRepository.Add(reader);
 
@@ -56,7 +56,7 @@ public class ReaderActions : IReaderActions
 
         foreach (DbReader reader in dbReaders)
         {
-            readerRequests.Add(_mapper.Map(reader));
+            readerRequests.Add(_mapper.Map(new IssueMapper(), reader));
         }
 
         return new OkObjectResult(readerRequests);
@@ -72,7 +72,7 @@ public class ReaderActions : IReaderActions
         }
         else
         {
-            return new OkObjectResult(_mapper.Map(reader));
+            return new OkObjectResult(_mapper.Map(new IssueMapper(), reader));
         }
     }
 
@@ -94,7 +94,7 @@ public class ReaderActions : IReaderActions
             }
             else
             {
-                DbReader reader = _mapper.Map(request);
+                DbReader reader = _mapper.Map(new IssueMapper(),request);
                 reader.Id = id;
 
                 _readerRepository.Update(reader);

@@ -10,8 +10,8 @@ public class DbIssueBooks
     public Guid IssueId { get; set; }
     public Guid BookId { get; set; }
 
-    public DbBook Book { get; set; }
-    public DbIssue Issue { get; set; }
+    public DbBook? Book { get; set; }
+    public DbIssue? Issue { get; set; }
 }
 
 public class DbIssueBooksConfiguration : IEntityTypeConfiguration<DbIssueBooks>

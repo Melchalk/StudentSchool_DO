@@ -56,7 +56,7 @@ public class BookActions : IBookActions
 
         foreach (DbBook book in dbBooks)
         {
-            bookRequests.Add(_mapper.Map(book));
+            bookRequests.Add(_mapper.Map(new IssueBooksMapper(), book));
         }
 
         return new OkObjectResult(bookRequests);
@@ -72,7 +72,7 @@ public class BookActions : IBookActions
         }
         else
         {
-            return new OkObjectResult(_mapper.Map(book));
+            return new OkObjectResult(_mapper.Map(new IssueBooksMapper(), book));
         }
     }
 

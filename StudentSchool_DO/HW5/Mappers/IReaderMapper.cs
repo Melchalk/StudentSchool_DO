@@ -1,11 +1,12 @@
 ﻿using DbModels;
+using Microsoft.AspNetCore.Mvc;
 using WebLibrary.ModelRequest;
 
 namespace WebLibrary.Mappers;
 
 public interface IReaderMapper
 {
-    DbReader Map(ReaderRequest readerRequest);
+    DbReader Map([FromServices] IIssueMapper issueMapper, ReaderRequest readerRequest);
 
-    ReaderRequest Map(DbReader dbReader);
+    ReaderRequest Map([FromServices] IIssueMapper issueMapper, DbReader dbReader);
 }
