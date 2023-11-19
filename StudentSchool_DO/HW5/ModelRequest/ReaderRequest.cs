@@ -1,5 +1,4 @@
-﻿using DbModels;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace WebLibrary.ModelRequest;
 
@@ -14,5 +13,5 @@ public class ReaderRequest
     public int Age { get; set; }
     public bool CanTakeBooks { get => Age >= 14 && RegistrationAddress is not null; }
 
-    public DbIssue? Issue { get; set; }
+    public IssueRequest? Issue { get; set; }
 }
