@@ -11,7 +11,4 @@ public class ReaderRequest
     [MaxLength(50)]
     public string? RegistrationAddress { get; set; }
     public int Age { get; set; }
-    public bool CanTakeBooks { get => Age >= 14 && RegistrationAddress is not null; }
-
-    public IssueRequest? Issue { get; set; }
 }

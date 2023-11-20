@@ -1,11 +1,19 @@
 ﻿using DbModels;
-using Microsoft.AspNetCore.Mvc;
+using WebLibrary.Mappers.Issue;
 using WebLibrary.ModelRequest;
+using WebLibrary.ModelResponse;
 
 namespace WebLibrary.Mappers.Book;
 
 public class BookMapper : IBookMapper
 {
+    private readonly IIssueMapper _issueMapper;
+
+    public BookMapper(IIssueMapper issueMapper)
+    {
+        _issueMapper = issueMapper;
+    }
+
     public DbBook Map(BookRequest bookRequest)
     {
         DbBook book = new()
@@ -22,15 +30,9 @@ public class BookMapper : IBookMapper
         return book;
     }
 
-    public BookRequest Map([FromServices] IIssueBooksMapper issueBooksMapper, DbBook book)
+    public BookResponse Map(DbBook book)
     {
-        List<IssueBooksRequest> issueBooksRequests = new();
-        foreach (var issueBook in book.IssueBooks)
-        {
-            issueBooksRequests.Add(issueBooksMapper.Map(issueBook));
-        }
-
-        BookRequest bookRequest = new()
+        BookResponse bookResponse = new()
         {
             Title = book.Title,
             Author = book.Author,
@@ -38,9 +40,10 @@ public class BookMapper : IBookMapper
             YearPublishing = book.YearPublishing,
             CityPublishing = book.CityPublishing,
             HallNo = book.HallNo,
-            IssueBooks = issueBooksRequests
+            IssueId = book.IssueId,
+            Issue = _issueMapper.Map(book.Issue)
         };
 
-        return bookRequest;
+        return bookResponse;
     }
 }

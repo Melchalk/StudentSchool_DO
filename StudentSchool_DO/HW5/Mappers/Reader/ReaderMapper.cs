@@ -1,15 +1,20 @@
 ﻿using DbModels;
-using Microsoft.AspNetCore.Mvc;
 using WebLibrary.Mappers.Issue;
 using WebLibrary.ModelRequest;
+using WebLibrary.ModelResponse;
 
 namespace WebLibrary.Mappers.Reader;
 
 public class ReaderMapper : IReaderMapper
 {
-    public DbReader Map(
-        [FromServices] IIssueMapper issueMapper,
-        ReaderRequest readerRequest)
+    private readonly IIssueMapper _issueMapper;
+
+    public ReaderMapper(IIssueMapper issueMapper)
+    {
+        _issueMapper = issueMapper;
+    }
+
+    public DbReader Map(ReaderRequest readerRequest)
     {
         DbReader reader = new()
         {
@@ -18,26 +23,22 @@ public class ReaderMapper : IReaderMapper
             Telephone = readerRequest.Telephone,
             RegistrationAddress = readerRequest.RegistrationAddress,
             Age = readerRequest.Age,
-            CanTakeBooks = readerRequest.CanTakeBooks,
-            Issue = issueMapper.Map(readerRequest.Issue)
         };
 
         return reader;
     }
 
-    public ReaderRequest Map(
-        [FromServices] IIssueMapper issueMapper,
-        DbReader reader)
+    public ReaderResponse Map(DbReader reader)
     {
-        ReaderRequest readerRequest = new()
+        ReaderResponse readerResponse = new()
         {
             Fullname = reader.Fullname,
             Telephone = reader.Telephone,
             RegistrationAddress = reader.RegistrationAddress,
             Age = reader.Age,
-            Issue = issueMapper.Map(reader.Issue)
+            Issue = _issueMapper.Map(reader.Issue)
         };
 
-        return readerRequest;
+        return readerResponse;
     }
 }

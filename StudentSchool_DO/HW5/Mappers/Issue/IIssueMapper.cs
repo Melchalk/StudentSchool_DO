@@ -1,5 +1,6 @@
 ﻿using DbModels;
 using WebLibrary.ModelRequest;
+using WebLibrary.ModelResponse;
 
 namespace WebLibrary.Mappers.Issue;
 
@@ -7,5 +8,5 @@ public interface IIssueMapper
 {
     DbIssue Map(IssueRequest issueRequest);
 
-    IssueRequest Map(DbIssue dbIssue);
+    IssueResponse Map(DbIssue dbIssue);
 }
