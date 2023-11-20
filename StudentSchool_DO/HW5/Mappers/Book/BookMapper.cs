@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using WebLibrary.ModelRequest;
 
-namespace WebLibrary.Mappers;
+namespace WebLibrary.Mappers.Book;
 
 public class BookMapper : IBookMapper
 {
@@ -25,7 +25,7 @@ public class BookMapper : IBookMapper
     public BookRequest Map([FromServices] IIssueBooksMapper issueBooksMapper, DbBook book)
     {
         List<IssueBooksRequest> issueBooksRequests = new();
-        foreach(var issueBook in book.IssueBooks)
+        foreach (var issueBook in book.IssueBooks)
         {
             issueBooksRequests.Add(issueBooksMapper.Map(issueBook));
         }

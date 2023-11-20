@@ -1,6 +1,9 @@
 using Provider.Repositories;
 using WebLibrary.BooksOptions;
 using WebLibrary.Mappers;
+using WebLibrary.Mappers.Book;
+using WebLibrary.Mappers.Issue;
+using WebLibrary.Mappers.Reader;
 using WebLibrary.ReaderOptions;
 using WebLibrary.Validators;
 
@@ -20,7 +23,6 @@ builder.Services.AddTransient<ICreateReaderRequestValidator, CreateReaderRequest
 builder.Services.AddTransient<IReaderMapper, ReaderMapper>();
 
 builder.Services.AddTransient<IIssueMapper, IssueMapper>();
-builder.Services.AddTransient<IIssueBooksMapper, IssueBooksMapper>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

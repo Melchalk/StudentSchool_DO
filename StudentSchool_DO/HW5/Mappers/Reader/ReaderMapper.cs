@@ -1,8 +1,9 @@
 ﻿using DbModels;
 using Microsoft.AspNetCore.Mvc;
+using WebLibrary.Mappers.Issue;
 using WebLibrary.ModelRequest;
 
-namespace WebLibrary.Mappers;
+namespace WebLibrary.Mappers.Reader;
 
 public class ReaderMapper : IReaderMapper
 {

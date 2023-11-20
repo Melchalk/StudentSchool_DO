@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using WebLibrary.ModelRequest;
 
-namespace WebLibrary.Mappers;
+namespace WebLibrary.Mappers.Book;
 
 public interface IBookMapper
 {

@@ -1,7 +1,7 @@
 ﻿using DbModels;
 using WebLibrary.ModelRequest;
 
-namespace WebLibrary.Mappers;
+namespace WebLibrary.Mappers.Issue;
 
 public class IssueMapper : IIssueMapper
 {
