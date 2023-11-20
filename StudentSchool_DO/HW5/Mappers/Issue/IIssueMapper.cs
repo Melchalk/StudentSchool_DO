@@ -8,5 +8,5 @@ public interface IIssueMapper
 {
     DbIssue Map(IssueRequest issueRequest);
 
-    IssueResponse Map(DbIssue dbIssue);
+    IssueResponse? Map(DbIssue? dbIssue);
 }

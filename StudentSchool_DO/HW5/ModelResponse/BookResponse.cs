@@ -10,5 +10,5 @@ public class BookResponse
     public int? HallNo { get; set; }
     public Guid? IssueId { get; set; }
 
-    public IssueResponse? Issue { get; set; }
+    //public IssueResponse? Issue { get; set; }
 }

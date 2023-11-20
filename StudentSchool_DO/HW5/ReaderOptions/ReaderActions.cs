@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Provider.Repositories;
 using WebLibrary.Mappers.Reader;
 using WebLibrary.ModelRequest;
+using WebLibrary.ModelResponse;
 using WebLibrary.Validators;
 
 namespace WebLibrary.ReaderOptions;
@@ -40,7 +41,7 @@ public class ReaderActions : IReaderActions
         }
         else
         {
-            DbReader reader = _mapper.Map(new IssueMapper(), request);
+            DbReader reader = _mapper.Map(request);
 
             _readerRepository.Add(reader);
 
@@ -52,14 +53,9 @@ public class ReaderActions : IReaderActions
     {
         List<DbReader> dbReaders = _readerRepository.Get().ToList();
 
-        List<ReaderRequest> readerRequests = new();
+        List<ReaderResponse> readerResponse = dbReaders.Select(u => _mapper.Map(u)).ToList();
 
-        foreach (DbReader reader in dbReaders)
-        {
-            readerRequests.Add(_mapper.Map(new IssueMapper(), reader));
-        }
-
-        return new OkObjectResult(readerRequests);
+        return new OkObjectResult(readerResponse);
     }
 
     public IActionResult Get(Guid id)
@@ -72,7 +68,7 @@ public class ReaderActions : IReaderActions
         }
         else
         {
-            return new OkObjectResult(_mapper.Map(new IssueMapper(), reader));
+            return new OkObjectResult(_mapper.Map(reader));
         }
     }
 
@@ -94,7 +90,7 @@ public class ReaderActions : IReaderActions
             }
             else
             {
-                DbReader reader = _mapper.Map(new IssueMapper(),request);
+                DbReader reader = _mapper.Map(request);
                 reader.Id = id;
 
                 _readerRepository.Update(reader);

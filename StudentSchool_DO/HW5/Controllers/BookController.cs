@@ -17,7 +17,7 @@ public class BookController : ControllerBase
     }
 
     [HttpGet("id")]
-    public IActionResult GetOne(
+    public IActionResult GetBook(
     [FromServices] IBookActions action,
     [FromQuery] Guid id)
     {

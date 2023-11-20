@@ -23,6 +23,7 @@ public class ReaderMapper : IReaderMapper
             Telephone = readerRequest.Telephone,
             RegistrationAddress = readerRequest.RegistrationAddress,
             Age = readerRequest.Age,
+            CanTakeBooks = readerRequest.CanTakeBooks,
         };
 
         return reader;
@@ -36,7 +37,8 @@ public class ReaderMapper : IReaderMapper
             Telephone = reader.Telephone,
             RegistrationAddress = reader.RegistrationAddress,
             Age = reader.Age,
-            Issue = _issueMapper.Map(reader.Issue)
+            Issue = _issueMapper.Map(reader.Issue),
+            CanTakeBooks = reader.CanTakeBooks
         };
 
         return readerResponse;

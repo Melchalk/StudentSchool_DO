@@ -8,5 +8,5 @@ public class IssueResponse
     public int Period { get; set; }
 
     public List<BookResponse> Books { get; set; }
-    public ReaderResponse Reader { get; set; }
+    //public ReaderResponse Reader { get; set; }
 }

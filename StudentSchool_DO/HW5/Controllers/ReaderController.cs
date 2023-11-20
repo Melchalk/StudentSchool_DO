@@ -17,7 +17,7 @@ public class ReaderController : ControllerBase
     }
 
     [HttpGet("id")]
-    public IActionResult GetOne(
+    public IActionResult GetReader(
     [FromServices] IReaderActions action,
     [FromQuery] Guid id)
     {

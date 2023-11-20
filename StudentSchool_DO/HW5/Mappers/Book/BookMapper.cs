@@ -7,12 +7,13 @@ namespace WebLibrary.Mappers.Book;
 
 public class BookMapper : IBookMapper
 {
+    /*
     private readonly IIssueMapper _issueMapper;
 
     public BookMapper(IIssueMapper issueMapper)
     {
         _issueMapper = issueMapper;
-    }
+    }*/
 
     public DbBook Map(BookRequest bookRequest)
     {
@@ -41,7 +42,7 @@ public class BookMapper : IBookMapper
             CityPublishing = book.CityPublishing,
             HallNo = book.HallNo,
             IssueId = book.IssueId,
-            Issue = _issueMapper.Map(book.Issue)
+            //Issue = _issueMapper.Map(book.Issue)
         };
 
         return bookResponse;

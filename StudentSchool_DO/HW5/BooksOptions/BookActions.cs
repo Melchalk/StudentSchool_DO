@@ -5,6 +5,7 @@ using Provider.Repositories;
 using WebLibrary.Mappers;
 using WebLibrary.Mappers.Book;
 using WebLibrary.ModelRequest;
+using WebLibrary.ModelResponse;
 using WebLibrary.Validators;
 
 namespace WebLibrary.BooksOptions;
@@ -53,14 +54,9 @@ public class BookActions : IBookActions
     {
         List<DbBook> dbBooks = _bookRepository.Get().ToList();
 
-        List<BookRequest> bookRequests = new();
+        List<BookResponse> bookResponse = dbBooks.Select(u => _mapper.Map(u)).ToList();
 
-        foreach (DbBook book in dbBooks)
-        {
-            bookRequests.Add(_mapper.Map(new IssueBooksMapper(), book));
-        }
-
-        return new OkObjectResult(bookRequests);
+        return new OkObjectResult(bookResponse);
     }
 
     public IActionResult Get(Guid id)
@@ -73,7 +69,7 @@ public class BookActions : IBookActions
         }
         else
         {
-            return new OkObjectResult(_mapper.Map(new IssueBooksMapper(), book));
+            return new OkObjectResult(_mapper.Map(book));
         }
     }
 
