@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Provider;
 
@@ -11,9 +12,11 @@ using Provider;
 namespace Provider.Migrations
 {
     [DbContext(typeof(OfficeDbContext))]
-    partial class OfficeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231118093252_UpdateReader")]
+    partial class UpdateReader
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -39,9 +42,6 @@ namespace Provider.Migrations
                     b.Property<int?>("HallNo")
                         .HasColumnType("int");
 
-                    b.Property<Guid?>("IssueId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<int>("NumberPages")
                         .HasColumnType("int");
 
@@ -54,8 +54,6 @@ namespace Provider.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("IssueId");
 
                     b.ToTable("Books", (string)null);
                 });
@@ -81,6 +79,21 @@ namespace Provider.Migrations
                         .IsUnique();
 
                     b.ToTable("Issues", (string)null);
+                });
+
+            modelBuilder.Entity("DbModels.DbIssueBooks", b =>
+                {
+                    b.Property<Guid>("IssueId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("BookId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("IssueId", "BookId");
+
+                    b.HasIndex("BookId");
+
+                    b.ToTable("IssueBooks", (string)null);
                 });
 
             modelBuilder.Entity("DbModels.DbReader", b =>
@@ -114,15 +127,6 @@ namespace Provider.Migrations
                     b.ToTable("Readers", (string)null);
                 });
 
-            modelBuilder.Entity("DbModels.DbBook", b =>
-                {
-                    b.HasOne("DbModels.DbIssue", "Issue")
-                        .WithMany("Books")
-                        .HasForeignKey("IssueId");
-
-                    b.Navigation("Issue");
-                });
-
             modelBuilder.Entity("DbModels.DbIssue", b =>
                 {
                     b.HasOne("DbModels.DbReader", "Reader")
@@ -134,9 +138,33 @@ namespace Provider.Migrations
                     b.Navigation("Reader");
                 });
 
+            modelBuilder.Entity("DbModels.DbIssueBooks", b =>
+                {
+                    b.HasOne("DbModels.DbBook", "Book")
+                        .WithMany("IssueBooks")
+                        .HasForeignKey("BookId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DbModels.DbIssue", "Issue")
+                        .WithMany("IssueBooks")
+                        .HasForeignKey("IssueId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Book");
+
+                    b.Navigation("Issue");
+                });
+
+            modelBuilder.Entity("DbModels.DbBook", b =>
+                {
+                    b.Navigation("IssueBooks");
+                });
+
             modelBuilder.Entity("DbModels.DbIssue", b =>
                 {
-                    b.Navigation("Books");
+                    b.Navigation("IssueBooks");
                 });
 
             modelBuilder.Entity("DbModels.DbReader", b =>

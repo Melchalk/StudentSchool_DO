@@ -22,7 +22,7 @@ internal class Updater : Action
         }
         else
         {
-            UpdateBook(GetID());
+            Update(GetID());
         }
 
         return DoneMessage;
@@ -48,7 +48,7 @@ internal class Updater : Action
         int sqlDataReader = sqlCommand.ExecuteNonQuery();
     }
 
-    private void UpdateBook(Guid Id)
+    private void Update(Guid Id)
     {
         var attribute = ChoiceBookAttribute();
 
@@ -56,11 +56,11 @@ internal class Updater : Action
 
         var newValue = ConsoleHelper.Input();
 
-        var book = _bookRepository.GetBook(Id);
+        var book = _bookRepository.Get(Id);
 
         var property = book?.GetType().GetProperty(attribute);
 
-        _bookRepository.UpdateBook(book, property, newValue);
+        _bookRepository.Update(book, property, newValue);
     }
 
     private string ChoiceReaderAttribute()

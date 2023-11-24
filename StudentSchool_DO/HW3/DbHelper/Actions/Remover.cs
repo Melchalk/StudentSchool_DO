@@ -23,7 +23,7 @@ internal class Remover : Action
         }
         else
         {
-            DeleteBook(GetID());
+            Delete(GetID());
         }
 
         return DoneMessage;
@@ -39,12 +39,12 @@ internal class Remover : Action
         int sqlDataReader = sqlCommand.ExecuteNonQuery();
     }
 
-    private void DeleteBook(Guid Id)
+    private void Delete(Guid Id)
     {
-        var book = _bookRepository.GetBooks()
+        var book = _bookRepository.Get()
             .FirstOrDefault(u => u.Id == Id)
             ?? throw new Exception("Book is null");
 
-        _bookRepository.DeleteBook(book);
+        _bookRepository.Delete(book);
     }
 }

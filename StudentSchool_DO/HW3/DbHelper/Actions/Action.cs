@@ -1,5 +1,5 @@
 ﻿using ConsoleOptions;
-using Provider;
+using Provider.Repositories;
 
 namespace DbHelper.Actions;
 

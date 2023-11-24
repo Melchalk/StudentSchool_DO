@@ -1,7 +1,7 @@
-namespace Lesson
+namespace Lesson;
+
+public class Program
 {
-  public class Program
-  {
     public static void Main(string[] args)
     {
       var builder = WebApplication.CreateBuilder(args);
@@ -20,5 +20,4 @@ namespace Lesson
 
       app.Run();
     }
-  }
 }
