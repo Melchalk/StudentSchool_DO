@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using WebLibrary.ModelRequest;
+using WebLibrary.Requests;
 using WebLibrary.ReaderOptions;
 
 namespace WebLibrary.Controllers;

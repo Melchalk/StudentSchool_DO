@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace WebLibrary.ModelRequest;
+namespace WebLibrary.Requests;
 
 public class CreateReaderRequest
 {

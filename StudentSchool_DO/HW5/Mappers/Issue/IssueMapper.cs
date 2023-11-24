@@ -1,8 +1,8 @@
 ﻿using DbModels;
 using WebLibrary.Mappers.Book;
 using WebLibrary.Mappers.Reader;
-using WebLibrary.ModelRequest;
-using WebLibrary.ModelResponse;
+using WebLibrary.Requests;
+using WebLibrary.Responses;
 
 namespace WebLibrary.Mappers.Issue;
 

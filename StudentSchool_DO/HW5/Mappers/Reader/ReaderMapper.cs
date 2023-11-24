@@ -1,7 +1,7 @@
 ﻿using DbModels;
 using WebLibrary.Mappers.Issue;
-using WebLibrary.ModelRequest;
-using WebLibrary.ModelResponse;
+using WebLibrary.Requests;
+using WebLibrary.Responses;
 
 namespace WebLibrary.Mappers.Reader;
 

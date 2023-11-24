@@ -1,4 +1,4 @@
-﻿namespace WebLibrary.ModelRequest;
+﻿namespace WebLibrary.Requests;
 
 public class CreateIssueRequest
 {
