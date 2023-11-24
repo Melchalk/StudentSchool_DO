@@ -15,7 +15,7 @@ public class BookMapper : IBookMapper
         _issueMapper = issueMapper;
     }*/
 
-    public DbBook Map(BookRequest bookRequest)
+    public DbBook Map(CreateBookRequest bookRequest)
     {
         DbBook book = new()
         {
@@ -31,9 +31,9 @@ public class BookMapper : IBookMapper
         return book;
     }
 
-    public BookResponse Map(DbBook book)
+    public GetBookResponse Map(DbBook book)
     {
-        BookResponse bookResponse = new()
+        GetBookResponse bookResponse = new()
         {
             Title = book.Title,
             Author = book.Author,

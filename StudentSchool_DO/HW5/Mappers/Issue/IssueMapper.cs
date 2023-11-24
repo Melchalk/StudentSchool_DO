@@ -17,7 +17,7 @@ public class IssueMapper : IIssueMapper
         //_readerMapper = readerMapper;
     }
 
-    public DbIssue Map(IssueRequest issueRequest)
+    public DbIssue Map(CreateIssueRequest issueRequest)
     {
         DbIssue issue = new()
         {
@@ -32,14 +32,14 @@ public class IssueMapper : IIssueMapper
         return issue;
     }
 
-    public IssueResponse? Map(DbIssue? dbIssue)
+    public GetIssueResponse? Map(DbIssue? dbIssue)
     {
         if (dbIssue is null)
         {
             return null;
         }
 
-        IssueResponse issueResponse = new()
+        GetIssueResponse issueResponse = new()
         {
             Id = dbIssue.Id,
             ReaderId = dbIssue.ReaderId,

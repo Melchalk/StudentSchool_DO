@@ -6,7 +6,7 @@ namespace WebLibrary.Mappers.Issue;
 
 public interface IIssueMapper
 {
-    DbIssue Map(IssueRequest issueRequest);
+    DbIssue Map(CreateIssueRequest issueRequest);
 
-    IssueResponse? Map(DbIssue? dbIssue);
+    GetIssueResponse? Map(DbIssue? dbIssue);
 }

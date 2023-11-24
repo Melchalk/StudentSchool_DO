@@ -11,7 +11,7 @@ public class ReaderController : ControllerBase
     [HttpPost]
     public IActionResult Create(
     [FromServices] IReaderActions action,
-    [FromBody] ReaderRequest request)
+    [FromBody] CreateReaderRequest request)
     {
         return action.Create(request);
     }
@@ -35,7 +35,7 @@ public class ReaderController : ControllerBase
     public IActionResult Update(
     [FromServices] IReaderActions action,
     [FromQuery] Guid id,
-    [FromBody] ReaderRequest request)
+    [FromBody] CreateReaderRequest request)
     {
         return action.Update(id, request);
     }

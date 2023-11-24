@@ -6,7 +6,7 @@ namespace WebLibrary.Mappers.Reader;
 
 public interface IReaderMapper
 {
-    DbReader Map(ReaderRequest readerRequest);
+    DbReader Map(CreateReaderRequest readerRequest);
 
-    ReaderResponse Map(DbReader dbReader);
+    GetReaderResponse Map(DbReader dbReader);
 }

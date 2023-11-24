@@ -3,7 +3,7 @@ using WebLibrary.ModelRequest;
 
 namespace WebLibrary.Validators;
 
-public class CreateReaderRequestValidator : AbstractValidator<ReaderRequest>, ICreateReaderRequestValidator
+public class CreateReaderRequestValidator : AbstractValidator<CreateReaderRequest>, ICreateReaderRequestValidator
 {
     public CreateReaderRequestValidator()
     {
