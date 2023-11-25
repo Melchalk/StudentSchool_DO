@@ -29,7 +29,7 @@ public class ReaderActions : IReaderActions
         _mapper = mapper;
     }
 
-    public IActionResult Create(CreateReaderRequest request)
+    public async Task<IActionResult> Create(CreateReaderRequest request)
     {
         ValidationResult result = _validator.Validate(request);
 
@@ -42,7 +42,7 @@ public class ReaderActions : IReaderActions
 
         DbReader reader = _mapper.Map(request);
 
-        _readerRepository.Add(reader);
+        await _readerRepository.AddAsync(reader);
 
         return new CreatedResult("Library.Readers", reader.Id);
     }
@@ -56,9 +56,9 @@ public class ReaderActions : IReaderActions
         return new OkObjectResult(readerResponse);
     }
 
-    public IActionResult Get(Guid id)
+    public async Task<IActionResult> Get(Guid id)
     {
-        DbReader? reader = _readerRepository.Get(id);
+        DbReader? reader = await  _readerRepository.GetAsync(id);
 
         if (reader is null)
         {
@@ -68,9 +68,9 @@ public class ReaderActions : IReaderActions
         return new OkObjectResult(_mapper.Map(reader));
     }
 
-    public IActionResult Update(Guid id, CreateReaderRequest request)
+    public async Task<IActionResult> Update(Guid id, CreateReaderRequest request)
     {
-        if (_readerRepository.Get(id) is null)
+        if (await _readerRepository.GetAsync(id) is null)
         {
             return new NotFoundObjectResult(NOT_FOUND);
         }
@@ -87,21 +87,21 @@ public class ReaderActions : IReaderActions
         DbReader reader = _mapper.Map(request);
         reader.Id = id;
 
-        _readerRepository.Update(reader);
+        await _readerRepository.UpdateAsync(reader);
 
         return new OkResult();
     }
 
-    public IActionResult Delete(Guid id)
+    public async Task<IActionResult> Delete(Guid id)
     {
-        DbReader? reader = _readerRepository.Get(id);
+        DbReader? reader = await _readerRepository.GetAsync(id);
 
         if (reader is null)
         {
             return new NotFoundObjectResult(NOT_FOUND);
         }
 
-        _readerRepository.Delete(reader);
+        await _readerRepository.DeleteAsync(reader);
 
         return new OkObjectResult(DELETE);
     }

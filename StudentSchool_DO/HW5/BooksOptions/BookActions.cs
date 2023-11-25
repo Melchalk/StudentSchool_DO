@@ -29,7 +29,7 @@ public class BookActions : IBookActions
         _mapper = mapper;
     }
 
-    public IActionResult Create(CreateBookRequest request)
+    public async Task<IActionResult> CreateAsync(CreateBookRequest request)
     {
         ValidationResult result = _validator.Validate(request);
 
@@ -42,7 +42,7 @@ public class BookActions : IBookActions
 
         DbBook book = _mapper.Map(request);
 
-        _bookRepository.Add(book);
+        await _bookRepository.AddAsync(book);
 
         return new CreatedResult("Library.Books", book.Id);
     }
@@ -56,9 +56,9 @@ public class BookActions : IBookActions
         return new OkObjectResult(bookResponse);
     }
 
-    public IActionResult Get(Guid id)
+    public async Task<IActionResult> GetAsync(Guid id)
     {
-        DbBook? book = _bookRepository.Get(id);
+        DbBook? book = await _bookRepository.GetAsync(id);
 
         if (book is null)
         {
@@ -68,9 +68,9 @@ public class BookActions : IBookActions
         return new OkObjectResult(_mapper.Map(book));
     }
 
-    public IActionResult Update(Guid id, CreateBookRequest request)
+    public async Task<IActionResult> UpdateAsync(Guid id, CreateBookRequest request)
     {
-        if (_bookRepository.Get(id) is null)
+        if (await _bookRepository.GetAsync(id) is null)
         {
             return new NotFoundObjectResult(NOT_FOUND);
         }
@@ -87,21 +87,21 @@ public class BookActions : IBookActions
         DbBook book = _mapper.Map(request);
         book.Id = id;
 
-        _bookRepository.Update(book);
+        await _bookRepository.UpdateAsync(book);
 
         return new OkResult();
     }
 
-    public IActionResult Delete(Guid id)
+    public async Task<IActionResult> DeleteAsync(Guid id)
     {
-        DbBook? book = _bookRepository.Get(id);
+        DbBook? book = await  _bookRepository.GetAsync(id);
 
         if (book is null)
         {
             return new NotFoundObjectResult(NOT_FOUND);
         }
 
-        _bookRepository.Delete(book);
+        await _bookRepository.DeleteAsync(book);
 
         return new OkObjectResult(DELETE);
     }

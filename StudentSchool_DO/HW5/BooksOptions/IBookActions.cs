@@ -5,13 +5,13 @@ namespace WebLibrary.BooksOptions;
 
 public interface IBookActions
 {
-    IActionResult Create(CreateBookRequest request);
+    Task<IActionResult> CreateAsync(CreateBookRequest request);
 
-    IActionResult Get(Guid id);
+    Task<IActionResult> GetAsync(Guid id);
 
     IActionResult Get();
 
-    IActionResult Update(Guid id, CreateBookRequest request);
+    Task<IActionResult> UpdateAsync(Guid id, CreateBookRequest request);
 
-    IActionResult Delete(Guid id);
+    Task<IActionResult> DeleteAsync(Guid id);
 }

@@ -5,13 +5,13 @@ namespace WebLibrary.ReaderOptions;
 
 public interface IReaderActions
 {
-    IActionResult Create(CreateReaderRequest request);
+    Task<IActionResult> Create(CreateReaderRequest request);
 
-    IActionResult Get(Guid id);
+    Task<IActionResult> Get(Guid id);
 
     IActionResult Get();
 
-    IActionResult Update(Guid id, CreateReaderRequest request);
+    Task<IActionResult> Update(Guid id, CreateReaderRequest request);
 
-    IActionResult Delete(Guid id);
+    Task<IActionResult> Delete(Guid id);
 }

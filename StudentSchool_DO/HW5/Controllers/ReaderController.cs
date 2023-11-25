@@ -9,19 +9,19 @@ namespace WebLibrary.Controllers;
 public class ReaderController : ControllerBase
 {
     [HttpPost]
-    public IActionResult Create(
+    public async Task<IActionResult> CreateAsync(
     [FromServices] IReaderActions action,
     [FromBody] CreateReaderRequest request)
     {
-        return action.Create(request);
+        return await action.Create(request);
     }
 
     [HttpGet("id")]
-    public IActionResult GetReader(
+    public async Task<IActionResult> GetReaderAsync(
     [FromServices] IReaderActions action,
     [FromQuery] Guid id)
     {
-        return action.Get(id);
+        return await action.Get(id);
     }
 
     [HttpGet]
@@ -32,19 +32,19 @@ public class ReaderController : ControllerBase
     }
 
     [HttpPut]
-    public IActionResult Update(
+    public async Task<IActionResult> UpdateAsync(
     [FromServices] IReaderActions action,
     [FromQuery] Guid id,
     [FromBody] CreateReaderRequest request)
     {
-        return action.Update(id, request);
+        return await action.Update(id, request);
     }
 
     [HttpDelete]
-    public IActionResult Delete(
+    public async Task<IActionResult> DeleteAsync(
     [FromServices] IReaderActions action,
     [FromQuery] Guid id)
     {
-        return action.Delete(id);
+        return await action.Delete(id);
     }
 }

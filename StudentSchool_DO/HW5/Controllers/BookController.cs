@@ -9,19 +9,19 @@ namespace WebLibrary.Controllers;
 public class BookController : ControllerBase
 {
     [HttpPost]
-    public IActionResult Create(
+    public async Task<IActionResult> CreateAsync(
     [FromServices] IBookActions action,
     [FromBody] CreateBookRequest request)
     {
-        return action.Create(request);
+        return await action.CreateAsync(request);
     }
 
     [HttpGet("id")]
-    public IActionResult GetBook(
+    public async Task<IActionResult> GetBookAsync(
     [FromServices] IBookActions action,
     [FromQuery] Guid id)
     {
-        return action.Get(id);
+        return await action.GetAsync(id);
     }
 
     [HttpGet]
@@ -32,19 +32,19 @@ public class BookController : ControllerBase
     }
 
     [HttpPut]
-    public IActionResult Update(
+    public async Task<IActionResult> UpdateAsync(
     [FromServices] IBookActions action,
     [FromQuery] Guid id,
     [FromBody] CreateBookRequest request)
     {
-        return action.Update(id, request);
+        return await action.UpdateAsync(id, request);
     }
 
     [HttpDelete]
-    public IActionResult Delete(
+    public async Task<IActionResult> DeleteAsync(
     [FromServices] IBookActions action,
     [FromQuery] Guid id)
     {
-        return action.Delete(id);
+        return await action.DeleteAsync(id);
     }
 }

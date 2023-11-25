@@ -56,11 +56,11 @@ internal class Updater : Action
 
         var newValue = ConsoleHelper.Input();
 
-        var book = _bookRepository.Get(Id);
+        var book = _bookRepository.GetAsync(Id).Result;
 
         var property = book?.GetType().GetProperty(attribute);
 
-        _bookRepository.Update(book, property, newValue);
+        _bookRepository.UpdateAsync(book, property, newValue);
     }
 
     private string ChoiceReaderAttribute()
