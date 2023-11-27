@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using WebLibrary.BooksOptions;
-using WebLibrary.Requests;
+using WebLibrary.Commands.Book.Interfaces;
 
 namespace WebLibrary.Controllers;
 
@@ -10,7 +9,7 @@ public class BookController : ControllerBase
 {
     [HttpPost]
     public async Task<IActionResult> CreateAsync(
-    [FromServices] IBookActions action,
+    [FromServices] ICreaterBook action,
     [FromBody] CreateBookRequest request)
     {
         return await action.CreateAsync(request);
@@ -18,7 +17,7 @@ public class BookController : ControllerBase
 
     [HttpGet("id")]
     public async Task<IActionResult> GetBookAsync(
-    [FromServices] IBookActions action,
+    [FromServices] IReaderBook action,
     [FromQuery] Guid id)
     {
         return await action.GetAsync(id);
@@ -26,14 +25,14 @@ public class BookController : ControllerBase
 
     [HttpGet]
     public IActionResult GetAll(
-    [FromServices] IBookActions action)
+    [FromServices] IReaderBook action)
     {
         return action.Get();
     }
 
     [HttpPut]
     public async Task<IActionResult> UpdateAsync(
-    [FromServices] IBookActions action,
+    [FromServices] IUpdaterBook action,
     [FromQuery] Guid id,
     [FromBody] CreateBookRequest request)
     {
@@ -42,7 +41,7 @@ public class BookController : ControllerBase
 
     [HttpDelete]
     public async Task<IActionResult> DeleteAsync(
-    [FromServices] IBookActions action,
+    [FromServices] IDeleterBook action,
     [FromQuery] Guid id)
     {
         return await action.DeleteAsync(id);

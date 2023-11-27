@@ -2,12 +2,13 @@
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using Provider.Repositories;
+using WebLibrary.Commands.Book.Interfaces;
 using WebLibrary.Mappers.Book;
 using WebLibrary.Validators;
 
 namespace WebLibrary.Commands.Book.Book_commands;
 
-public class CreaterBook : BookActions
+public class CreaterBook : BookActions, ICreaterBook
 {
     public CreaterBook(IBookRepository bookRepository, ICreateBookRequestValidator validator, IBookMapper mapper)
         : base(bookRepository, validator, mapper)
