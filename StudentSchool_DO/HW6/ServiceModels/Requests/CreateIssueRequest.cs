@@ -1,4 +1,4 @@
-﻿namespace ClientWebLibrary.Requests;
+﻿namespace ServiceModels.Requests;
 
 public class CreateIssueRequest
 {

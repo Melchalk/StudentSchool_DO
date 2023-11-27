@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ClientWebLibrary.Requests;
+namespace ServiceModels.Requests;
 
 public class CreateBookRequest
 {

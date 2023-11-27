@@ -1,4 +1,4 @@
-﻿namespace WebLibrary.Responses;
+﻿namespace ServiceModels.Responses;
 
 public class GetIssueResponse
 {

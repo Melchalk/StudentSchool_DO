@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\HW3\DbModel\DbModels.csproj" />
+    <ProjectReference Include="..\HW6\ServiceModels\ServiceModels.csproj" />
     <ProjectReference Include="..\Provider\Provider.csproj" />
   </ItemGroup>
 
