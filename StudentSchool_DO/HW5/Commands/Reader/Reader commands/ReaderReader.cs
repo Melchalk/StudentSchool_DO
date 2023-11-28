@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Provider.Repositories;
 using ServiceModels.Requests.Reader;
+using ServiceModels.Responses.Book;
 using ServiceModels.Responses.Reader;
 using ServiceModels.Responses.Reader;
 using WebLibrary.Commands.Reader.Interfaces;
@@ -30,9 +31,13 @@ public class ReaderReader : ReaderActions, IReaderReader
     {
         DbReader? reader = await _readerRepository.GetAsync(request.Id);
 
+        GetReaderResponse readerResponse = new();
+
         if (reader is null)
         {
-            return null;
+            readerResponse.Error = NOT_FOUND;
+
+            return readerResponse;
         }
 
         return _mapper.Map(reader);

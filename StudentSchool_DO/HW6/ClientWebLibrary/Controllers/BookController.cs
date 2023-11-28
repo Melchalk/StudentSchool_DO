@@ -24,15 +24,24 @@ public class BookController : ControllerBase
         return Created("Books", bookResponse.Id);
     }
 
-    /*
     [HttpGet("id")]
     public async Task<IActionResult> GetBookAsync(
-    [FromServices] IBookActions action,
+    [FromServices] IMessagePublisher<GetBookRequest, GetBookResponse> messagePublisher,
     [FromQuery] Guid id)
     {
-        return await action.GetAsync(id);
+        GetBookRequest getRequest = new() { Id = id };
+
+        GetBookResponse bookResponse = await messagePublisher.SendMessageAsync(getRequest);
+
+        if (bookResponse.Error is not null)
+        {
+            return BadRequest(bookResponse.Error);
+        }
+
+        return Ok(bookResponse);
     }
 
+    /*
     [HttpGet]
     public IActionResult GetAll(
     [FromServices] IBookActions action)
@@ -58,12 +67,21 @@ public class BookController : ControllerBase
 
         return Ok();
     }
-    /*
+
     [HttpDelete]
     public async Task<IActionResult> DeleteAsync(
-    [FromServices] IBookActions action,
+    [FromServices] IMessagePublisher<DeleteBookRequest, DeleteBookResponse> messagePublisher,
     [FromQuery] Guid id)
     {
-        return await action.DeleteAsync(id);
-    }*/
+        DeleteBookRequest deleteRequest = new() { Id = id };
+
+        DeleteBookResponse bookResponse = await messagePublisher.SendMessageAsync(deleteRequest);
+
+        if (bookResponse.Error is not null)
+        {
+            return BadRequest(bookResponse.Error);
+        }
+
+        return Ok(bookResponse);
+    }
 }

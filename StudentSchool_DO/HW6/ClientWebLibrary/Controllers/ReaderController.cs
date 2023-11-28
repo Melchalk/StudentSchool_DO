@@ -1,6 +1,8 @@
 ﻿using ClientWebLibrary.Publishers;
 using Microsoft.AspNetCore.Mvc;
+using ServiceModels.Requests.Book;
 using ServiceModels.Requests.Reader;
+using ServiceModels.Responses.Book;
 using ServiceModels.Responses.Reader;
 
 namespace ClientWebLibrary.Controllers;
@@ -24,15 +26,24 @@ public class ReaderController : ControllerBase
         return Created("Readers", readerResponse.Id);
     }
 
-    /*
     [HttpGet("id")]
     public async Task<IActionResult> GetReaderAsync(
-    [FromServices] IReaderActions action,
+    [FromServices] IMessagePublisher<GetReaderRequest, GetReaderResponse> messagePublisher,
     [FromQuery] Guid id)
     {
-        return await action.Get(id);
+        GetReaderRequest getRequest = new() { Id = id };
+
+        GetReaderResponse readerResponse = await messagePublisher.SendMessageAsync(getRequest);
+
+        if (readerResponse.Error is not null)
+        {
+            return BadRequest(readerResponse.Error);
+        }
+
+        return Ok(readerResponse);
     }
 
+    /*
     [HttpGet]
     public IActionResult GetAll(
     [FromServices] IReaderActions action)
@@ -59,12 +70,20 @@ public class ReaderController : ControllerBase
         return Ok();
     }
 
-    /*
     [HttpDelete]
     public async Task<IActionResult> DeleteAsync(
-    [FromServices] IReaderActions action,
+    [FromServices] IMessagePublisher<DeleteReaderRequest, DeleteReaderResponse> messagePublisher,
     [FromQuery] Guid id)
     {
-        return await action.Delete(id);
-    }*/
+        DeleteReaderRequest deleteRequest = new() { Id = id };
+
+        DeleteReaderResponse readerResponse = await messagePublisher.SendMessageAsync(deleteRequest);
+
+        if (readerResponse.Error is not null)
+        {
+            return BadRequest(readerResponse.Error);
+        }
+
+        return Ok(readerResponse);
+    }
 }

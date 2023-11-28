@@ -2,7 +2,6 @@ using ClientWebLibrary.Publishers;
 using ClientWebLibrary.Publishers.Book;
 using ClientWebLibrary.Publishers.Reader;
 using MassTransit;
-using Microsoft.AspNetCore.Mvc;
 using ServiceModels.Requests.Book;
 using ServiceModels.Requests.Reader;
 using ServiceModels.Responses.Book;
@@ -10,30 +9,44 @@ using ServiceModels.Responses.Reader;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 //builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+//Book
 builder.Services.AddScoped<
   IMessagePublisher<CreateBookRequest, CreateBookResponse>,
   CreateBookMessagePublisher>();
 
 builder.Services.AddScoped<
+  IMessagePublisher<GetBookRequest, GetBookResponse>,
+  GetBookMessagePublisher>();
+
+builder.Services.AddScoped<
   IMessagePublisher<UpdateBookRequest, UpdateBookResponse>,
   UpdateBookMessagePublisher>();
 
+builder.Services.AddScoped<
+  IMessagePublisher<DeleteBookRequest, DeleteBookResponse>,
+  DeleteBookMessagePublisher>();
 
+//Reader
 builder.Services.AddScoped<
   IMessagePublisher<CreateReaderRequest, CreateReaderResponse>,
   CreateReaderMessagePublisher>();
 
 builder.Services.AddScoped<
+  IMessagePublisher<GetReaderRequest, GetReaderResponse>,
+  GetReaderMessagePublisher>();
+
+builder.Services.AddScoped<
   IMessagePublisher<UpdateReaderRequest, UpdateReaderResponse>,
   UpdateReaderMessagePublisher>();
+
+builder.Services.AddScoped<
+  IMessagePublisher<DeleteReaderRequest, DeleteReaderResponse>,
+  DeleteReaderMessagePublisher>();
 
 try
 {

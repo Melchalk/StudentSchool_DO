@@ -26,13 +26,17 @@ public class ReaderBook : BookActions, IReaderBook
         return bookResponse;
     }
 
-    public async Task<GetBookResponse?> GetAsync(GetBookRequest request)
+    public async Task<GetBookResponse> GetAsync(GetBookRequest request)
     {
         DbBook? book = await _bookRepository.GetAsync(request.Id);
 
+        GetBookResponse bookResponse = new();
+
         if (book is null)
         {
-            return null;
+            bookResponse.Error = NOT_FOUND;
+
+            return bookResponse;
         }
 
         return _mapper.Map(book);

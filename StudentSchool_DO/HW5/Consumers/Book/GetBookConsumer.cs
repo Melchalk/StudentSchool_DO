@@ -16,7 +16,14 @@ public class GetBookConsumer : IConsumer<GetBookRequest>
 
     public async Task Consume(ConsumeContext<GetBookRequest> context)
     {
-        GetBookResponse? actionResult = await _command.GetAsync(context.Message);
+        GetBookResponse actionResult = await _command.GetAsync(context.Message);
+
+        await context.RespondAsync(actionResult);
+    }
+
+    public async Task Consume(ConsumeContext context)
+    {
+        List<GetBookResponse> actionResult = _command.Get();
 
         await context.RespondAsync(actionResult);
     }

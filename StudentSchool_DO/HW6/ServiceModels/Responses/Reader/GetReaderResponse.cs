@@ -10,5 +10,7 @@ public class GetReaderResponse
     public int Age { get; set; }
     public bool CanTakeBooks { get; set; }
 
+    public string? Error { get; set; }
+
     public GetIssueResponse? Issue { get; set; }
 }
