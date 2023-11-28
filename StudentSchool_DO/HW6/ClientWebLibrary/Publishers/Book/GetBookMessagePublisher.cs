@@ -8,7 +8,7 @@ public class GetBookMessagePublisher : IMessagePublisher<GetBookRequest, GetBook
 {
     private readonly IRequestClient<GetBookRequest> _requestClient;
 
-    public GetBookMessagePublisher(IRequestClient<GetBookRequest> requestClient,)
+    public GetBookMessagePublisher(IRequestClient<GetBookRequest> requestClient)
     {
         _requestClient = requestClient;
     }

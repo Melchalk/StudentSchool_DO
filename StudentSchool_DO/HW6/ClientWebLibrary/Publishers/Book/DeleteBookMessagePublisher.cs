@@ -8,7 +8,7 @@ public class DeleteBookMessagePublisher : IMessagePublisher<DeleteBookRequest, D
 {
     private readonly IRequestClient<DeleteBookRequest> _requestClient;
 
-    public DeleteBookMessagePublisher(IRequestClient<DeleteBookRequest> requestClient,)
+    public DeleteBookMessagePublisher(IRequestClient<DeleteBookRequest> requestClient)
     {
         _requestClient = requestClient;
     }

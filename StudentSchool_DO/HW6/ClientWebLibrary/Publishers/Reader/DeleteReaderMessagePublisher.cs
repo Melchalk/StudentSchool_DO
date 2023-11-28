@@ -8,7 +8,7 @@ public class DeleteReaderMessagePublisher : IMessagePublisher<DeleteReaderReques
 {
     private readonly IRequestClient<DeleteReaderRequest> _requestClient;
 
-    public DeleteReaderMessagePublisher(IRequestClient<DeleteReaderRequest> requestClient,)
+    public DeleteReaderMessagePublisher(IRequestClient<DeleteReaderRequest> requestClient)
     {
         _requestClient = requestClient;
     }
