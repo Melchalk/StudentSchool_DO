@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using ServiceModels.Requests;
+using ServiceModels.Requests.Reader;
 
 namespace WebLibrary.Validators;
 

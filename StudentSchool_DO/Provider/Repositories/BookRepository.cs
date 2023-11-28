@@ -55,7 +55,7 @@ public class BookRepository : IBookRepository
 
         await _context.SaveChangesAsync();
 
-        return GetAsync(book.Id).Result;
+        return await GetAsync(book.Id);
     }
 
     public async Task DeleteAsync(DbBook book)

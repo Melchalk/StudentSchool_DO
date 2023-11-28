@@ -1,9 +1,8 @@
 ﻿using MassTransit;
-using Microsoft.AspNetCore.Mvc;
-using ServiceModels.Requests;
+using ServiceModels.Requests.Book;
 using ServiceModels.Responses.Book;
 
-namespace ClientWebLibrary.Publishers;
+namespace ClientWebLibrary.Publishers.Book;
 
 public class CreateBookMessagePublisher : IMessagePublisher<CreateBookRequest, CreateBookResponse>
 {

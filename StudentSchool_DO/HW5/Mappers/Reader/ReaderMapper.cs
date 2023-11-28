@@ -1,5 +1,5 @@
 ﻿using DbModels;
-using ServiceModels.Requests;
+using ServiceModels.Requests.Reader;
 using ServiceModels.Responses.Reader;
 using WebLibrary.Mappers.Issue;
 

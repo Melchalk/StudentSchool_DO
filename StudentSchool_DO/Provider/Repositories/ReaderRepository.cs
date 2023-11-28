@@ -40,7 +40,7 @@ public class ReaderRepository : IReaderRepository
 
         await _context.SaveChangesAsync();
 
-        return GetAsync(reader.Id).Result;
+        return await GetAsync(reader.Id);
     }
 
     public async Task DeleteAsync(DbReader reader)

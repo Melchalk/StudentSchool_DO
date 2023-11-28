@@ -2,7 +2,8 @@
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using Provider.Repositories;
-using ServiceModels.Requests;
+using ServiceModels.Requests.Book;
+using ServiceModels.Responses.Book;
 using WebLibrary.Commands.Book.Interfaces;
 using WebLibrary.Mappers.Book;
 using WebLibrary.Validators;
@@ -16,20 +17,30 @@ public class UpdaterBook : BookActions, IUpdaterBook
     {
     }
 
-    public async Task<IActionResult> UpdateAsync(Guid id, CreateBookRequest request)
+    public async Task<UpdateBookResponse> UpdateAsync(UpdateBookRequest updateRequest)
     {
+        CreateBookRequest request = updateRequest.CreateBookRequest;
+        Guid id = updateRequest.Id;
+
+        UpdateBookResponse bookResponse = new();
+
         if (await _bookRepository.GetAsync(id) is null)
         {
-            return new NotFoundObjectResult(NOT_FOUND);
+            bookResponse.Errors = new()
+            {
+                NOT_FOUND
+            };
+
+            return bookResponse;
         }
 
         ValidationResult result = _validator.Validate(request);
 
         if (!result.IsValid)
         {
-            List<string> errors = result.Errors.Select(e => e.ErrorMessage).ToList();
+            bookResponse.Errors = result.Errors.Select(e => e.ErrorMessage).ToList();
 
-            return new BadRequestObjectResult(errors);
+            return bookResponse;
         }
 
         DbBook book = _mapper.Map(request);
@@ -37,6 +48,8 @@ public class UpdaterBook : BookActions, IUpdaterBook
 
         await _bookRepository.UpdateAsync(book);
 
-        return new OkResult();
+        bookResponse.Result = true;
+
+        return bookResponse;
     }
 }

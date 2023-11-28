@@ -1,6 +1,6 @@
 ﻿using ServiceModels.Responses.Reader;
-using ServiceModels.Requests;
 using WebLibrary.Commands.Common_interfaces;
+using ServiceModels.Requests.Reader;
 
 namespace WebLibrary.Commands.Reader.Interfaces;
 

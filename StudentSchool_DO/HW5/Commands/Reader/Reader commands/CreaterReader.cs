@@ -1,8 +1,10 @@
 ﻿using DbModels;
+using FluentValidation;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using Provider.Repositories;
-using ServiceModels.Requests;
+using ServiceModels.Requests.Reader;
+using ServiceModels.Responses.Book;
 using ServiceModels.Responses.Reader;
 using WebLibrary.Commands.Common_interfaces;
 using WebLibrary.Commands.Reader.Interfaces;
@@ -18,26 +20,27 @@ public class CreaterReader : ReaderActions, ICreaterReader
     {
     }
 
-    public async Task<Guid?> CreateAsync(CreateReaderRequest request)
+    public async Task<CreateReaderResponse> CreateAsync(CreateReaderRequest request)
     {
         ValidationResult result = _validator.Validate(request);
+
+        CreateReaderResponse readerResponse = new();
 
         if (!result.IsValid)
         {
             List<string> errors = result.Errors.Select(e => e.ErrorMessage).ToList();
 
-            return null;
+            readerResponse.Errors = errors;
+
+            return readerResponse;
         }
 
         DbReader reader = _mapper.Map(request);
 
         await _readerRepository.AddAsync(reader);
 
-        return reader.Id;
-    }
+        readerResponse.Id = reader.Id;
 
-    Task<CreateReaderResponse> ICreater<CreateReaderRequest, CreateReaderResponse>.CreateAsync(CreateReaderRequest request)
-    {
-        throw new NotImplementedException();
+        return readerResponse;
     }
 }

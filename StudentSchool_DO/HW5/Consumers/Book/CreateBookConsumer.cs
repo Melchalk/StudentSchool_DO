@@ -1,9 +1,9 @@
 ﻿using MassTransit;
-using ServiceModels.Requests;
+using ServiceModels.Requests.Book;
 using ServiceModels.Responses.Book;
 using WebLibrary.Commands.Book.Interfaces;
 
-namespace WebLibrary.Consumers;
+namespace WebLibrary.Consumers.Book;
 
 public class CreateBookConsumer : IConsumer<CreateBookRequest>
 {

@@ -1,8 +1,7 @@
 ﻿using DbModels;
 using FluentValidation.Results;
-using Microsoft.AspNetCore.Mvc;
 using Provider.Repositories;
-using ServiceModels.Requests;
+using ServiceModels.Requests.Book;
 using ServiceModels.Responses.Book;
 using WebLibrary.Commands.Book.Interfaces;
 using WebLibrary.Mappers.Book;
@@ -25,9 +24,7 @@ public class CreaterBook : BookActions, ICreaterBook
 
         if (!result.IsValid)
         {
-            List<string> errors = result.Errors.Select(e => e.ErrorMessage).ToList();
-
-            bookResponse.Errors = errors;
+            bookResponse.Errors = result.Errors.Select(e => e.ErrorMessage).ToList();
 
             return bookResponse;
         }

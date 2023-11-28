@@ -1,6 +1,6 @@
 ﻿using ClientWebLibrary.Publishers;
 using Microsoft.AspNetCore.Mvc;
-using ServiceModels.Requests;
+using ServiceModels.Requests.Book;
 using ServiceModels.Responses.Book;
 
 namespace ClientWebLibrary.Controllers;
@@ -38,16 +38,25 @@ public class BookController : ControllerBase
     {
         return action.Get();
     }
-
+    */
     [HttpPut]
     public async Task<IActionResult> UpdateAsync(
-    [FromServices] IBookActions action,
+    [FromServices] IMessagePublisher<UpdateBookRequest, UpdateBookResponse> messagePublisher,
     [FromQuery] Guid id,
     [FromBody] CreateBookRequest request)
     {
-        return await action.UpdateAsync(id, request);
-    }
+        UpdateBookRequest updateRequest = new() { Id = id, CreateBookRequest = request };
 
+        UpdateBookResponse bookResponse = await messagePublisher.SendMessageAsync(updateRequest);
+
+        if (bookResponse.Result == false)
+        {
+            return BadRequest(bookResponse.Errors);
+        }
+
+        return Ok();
+    }
+    /*
     [HttpDelete]
     public async Task<IActionResult> DeleteAsync(
     [FromServices] IBookActions action,
