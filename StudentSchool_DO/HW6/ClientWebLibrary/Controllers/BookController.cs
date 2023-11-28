@@ -82,6 +82,6 @@ public class BookController : ControllerBase
             return BadRequest(bookResponse.Error);
         }
 
-        return Ok(bookResponse);
+        return Ok();
     }
 }

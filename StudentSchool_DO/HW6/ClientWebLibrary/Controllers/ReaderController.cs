@@ -84,6 +84,6 @@ public class ReaderController : ControllerBase
             return BadRequest(readerResponse.Error);
         }
 
-        return Ok(readerResponse);
+        return Ok();
     }
 }
