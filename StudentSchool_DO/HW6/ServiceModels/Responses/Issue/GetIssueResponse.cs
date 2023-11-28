@@ -1,4 +1,6 @@
-﻿namespace ServiceModels.Responses;
+﻿using ServiceModels.Responses.Book;
+
+namespace ServiceModels.Responses.Issue;
 
 public class GetIssueResponse
 {

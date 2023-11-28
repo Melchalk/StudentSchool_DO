@@ -1,13 +1,22 @@
+using ClientWebLibrary.Publishers;
 using MassTransit;
+using Microsoft.AspNetCore.Mvc;
+using ServiceModels.Requests;
+using ServiceModels.Responses.Book;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+/*
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+*/
+builder.Services.AddScoped<
+  IMessagePublisher<CreateBookRequest, CreateBookResponse>,
+  CreateBookMessagePublisher>();
 
 try
 {
@@ -26,7 +35,7 @@ catch (Exception)
 }
 
 var app = builder.Build();
-
+/*
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -35,7 +44,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+*/
 app.UseAuthorization();
 
 app.MapControllers();

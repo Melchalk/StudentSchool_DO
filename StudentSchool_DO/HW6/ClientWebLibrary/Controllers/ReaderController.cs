@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ClientWebLibrary.Requests;
 
 namespace ClientWebLibrary.Controllers;
 
@@ -7,6 +6,7 @@ namespace ClientWebLibrary.Controllers;
 [ApiController]
 public class ReaderController : ControllerBase
 {
+    /*
     [HttpPost]
     public async Task<IActionResult> CreateAsync(
     [FromServices] IReaderActions action,
@@ -45,5 +45,5 @@ public class ReaderController : ControllerBase
     [FromQuery] Guid id)
     {
         return await action.Delete(id);
-    }
+    }*/
 }

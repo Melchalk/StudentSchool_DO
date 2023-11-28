@@ -1,4 +1,4 @@
-﻿namespace ServiceModels.Responses;
+﻿namespace ServiceModels.Responses.Book;
 
 public class GetBookResponse
 {

@@ -2,6 +2,7 @@
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using Provider.Repositories;
+using ServiceModels.Requests;
 using WebLibrary.Commands.Book.Interfaces;
 using WebLibrary.Mappers.Book;
 using WebLibrary.Validators;

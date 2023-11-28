@@ -1,6 +1,5 @@
 ﻿using DbModels;
 using Microsoft.EntityFrameworkCore;
-using System.Net;
 using System.Reflection;
 
 namespace Provider.Repositories;

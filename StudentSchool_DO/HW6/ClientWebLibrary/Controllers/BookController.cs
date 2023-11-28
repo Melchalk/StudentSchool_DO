@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using WebLibrary.BooksOptions;
-using ClientWebLibrary.Requests;
+﻿using ClientWebLibrary.Publishers;
+using Microsoft.AspNetCore.Mvc;
+using ServiceModels.Requests;
+using ServiceModels.Responses.Book;
 
 namespace ClientWebLibrary.Controllers;
 
@@ -10,12 +11,19 @@ public class BookController : ControllerBase
 {
     [HttpPost]
     public async Task<IActionResult> CreateAsync(
-    [FromServices] IBookActions action,
+    [FromServices] IMessagePublisher<CreateBookRequest, CreateBookResponse> messagePublisher,
     [FromBody] CreateBookRequest request)
     {
-        return await action.CreateAsync(request);
-    }
+        CreateBookResponse bookResponse = await messagePublisher.SendMessageAsync(request);
 
+        if (bookResponse.Id is null)
+        {
+            return BadRequest(bookResponse.Errors);
+        }
+
+        return Created("Books", bookResponse.Id);
+    }
+    /*
     [HttpGet("id")]
     public async Task<IActionResult> GetBookAsync(
     [FromServices] IBookActions action,
@@ -46,5 +54,5 @@ public class BookController : ControllerBase
     [FromQuery] Guid id)
     {
         return await action.DeleteAsync(id);
-    }
+    }*/
 }

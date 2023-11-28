@@ -1,10 +1,9 @@
 ﻿using DbModels;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Provider.Repositories;
+using ServiceModels.Responses.Reader;
 using WebLibrary.Commands.Reader.Interfaces;
 using WebLibrary.Mappers.Reader;
-using WebLibrary.Responses;
 using WebLibrary.Validators;
 
 namespace WebLibrary.Commands.Reader.Reader_commands;

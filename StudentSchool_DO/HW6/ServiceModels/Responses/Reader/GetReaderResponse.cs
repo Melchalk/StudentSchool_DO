@@ -1,4 +1,6 @@
-﻿namespace ServiceModels.Responses;
+﻿using ServiceModels.Responses.Issue;
+
+namespace ServiceModels.Responses.Reader;
 
 public class GetReaderResponse
 {

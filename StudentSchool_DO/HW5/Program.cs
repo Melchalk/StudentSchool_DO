@@ -1,3 +1,4 @@
+using MassTransit;
 using Provider.Repositories;
 using WebLibrary.Commands.Book.Book_commands;
 using WebLibrary.Commands.Book.Interfaces;
@@ -33,17 +34,25 @@ builder.Services.AddTransient<IReaderMapper, ReaderMapper>();
 
 builder.Services.AddTransient<IIssueMapper, IssueMapper>();
 
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+try
+{
+    builder.Services.AddMassTransit(x =>
+    {
+        x.AddConsumers(typeof(Program).Assembly);
+
+        x.UsingRabbitMq((context, cfg) =>
+        {
+            cfg.Host("localhost");
+            cfg.ConfigureEndpoints(context);
+        });
+    });
+}
+catch (Exception)
+{
+    throw new Exception("Failed to connect to rabbitmq");
+}
 
 var app = builder.Build();
-
-app.UseSwagger();
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwaggerUI();
-}
 
 app.UseAuthorization();
 

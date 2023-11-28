@@ -1,7 +1,8 @@
-﻿using WebLibrary.Commands.Common_interfaces;
+﻿using ServiceModels.Requests;
+using WebLibrary.Commands.Common_interfaces;
 
 namespace WebLibrary.Commands.Reader.Interfaces;
 
-public interface IUpdaterReader : IUpdater<>
+public interface IUpdaterReader : IUpdater<CreateReaderRequest>
 {
 }
