@@ -2,9 +2,9 @@
 
 namespace WebLibrary.Commands.Common_interfaces;
 
-public interface IReader
+public interface IReader<T, U>
 {
-    Task<IActionResult> GetAsync(Guid id);
+    Task<U?> GetAsync(T request);
 
-    IActionResult Get();
+    List<U> Get();
 }

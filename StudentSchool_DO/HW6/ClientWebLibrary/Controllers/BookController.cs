@@ -23,6 +23,7 @@ public class BookController : ControllerBase
 
         return Created("Books", bookResponse.Id);
     }
+
     /*
     [HttpGet("id")]
     public async Task<IActionResult> GetBookAsync(
@@ -39,6 +40,7 @@ public class BookController : ControllerBase
         return action.Get();
     }
     */
+
     [HttpPut]
     public async Task<IActionResult> UpdateAsync(
     [FromServices] IMessagePublisher<UpdateBookRequest, UpdateBookResponse> messagePublisher,

@@ -1,7 +1,9 @@
 ﻿using DbModels;
 using Microsoft.AspNetCore.Mvc;
 using Provider.Repositories;
+using ServiceModels.Requests.Book;
 using ServiceModels.Responses.Book;
+using ServiceModels.Responses.Reader;
 using WebLibrary.Commands.Book.Interfaces;
 using WebLibrary.Mappers.Book;
 using WebLibrary.Validators;
@@ -15,24 +17,24 @@ public class ReaderBook : BookActions, IReaderBook
     {
     }
 
-    public IActionResult Get()
+    public List<GetBookResponse> Get()
     {
         List<DbBook> dbBooks = _bookRepository.Get().ToList();
 
         List<GetBookResponse> bookResponse = dbBooks.Select(u => _mapper.Map(u)).ToList();
 
-        return new OkObjectResult(bookResponse);
+        return bookResponse;
     }
 
-    public async Task<IActionResult> GetAsync(Guid id)
+    public async Task<GetBookResponse?> GetAsync(GetBookRequest request)
     {
-        DbBook? book = await _bookRepository.GetAsync(id);
+        DbBook? book = await _bookRepository.GetAsync(request.Id);
 
         if (book is null)
         {
-            return new NotFoundObjectResult(NOT_FOUND);
+            return null;
         }
 
-        return new OkObjectResult(_mapper.Map(book));
+        return _mapper.Map(book);
     }
 }

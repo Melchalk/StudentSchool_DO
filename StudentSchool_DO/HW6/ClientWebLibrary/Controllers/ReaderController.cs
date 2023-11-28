@@ -1,8 +1,6 @@
 ﻿using ClientWebLibrary.Publishers;
 using Microsoft.AspNetCore.Mvc;
 using ServiceModels.Requests.Reader;
-using ServiceModels.Requests.Reader;
-using ServiceModels.Responses.Reader;
 using ServiceModels.Responses.Reader;
 
 namespace ClientWebLibrary.Controllers;
@@ -11,7 +9,6 @@ namespace ClientWebLibrary.Controllers;
 [ApiController]
 public class ReaderController : ControllerBase
 {
-
     [HttpPost]
     public async Task<IActionResult> CreateAsync(
     [FromServices] IMessagePublisher<CreateReaderRequest, CreateReaderResponse> messagePublisher,
