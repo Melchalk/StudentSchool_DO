@@ -41,14 +41,16 @@ public class BookController : ControllerBase
         return Ok(bookResponse);
     }
 
-    /*
-    [HttpGet]
-    public IActionResult GetAll(
-    [FromServices] IBookActions action)
+    [HttpGet()]
+    public async Task<IActionResult> GetAllAsync(
+    [FromServices] IMessagePublisher<GetBooksRequest, GetBooksResponse> messagePublisher)
     {
-        return action.Get();
+        GetBooksRequest getRequest = new();
+
+        GetBooksResponse bookResponse = await messagePublisher.SendMessageAsync(getRequest);
+
+        return Ok(bookResponse);
     }
-    */
 
     [HttpPut]
     public async Task<IActionResult> UpdateAsync(

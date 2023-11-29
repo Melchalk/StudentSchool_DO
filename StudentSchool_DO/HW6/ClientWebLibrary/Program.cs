@@ -24,6 +24,11 @@ builder.Services.AddScoped<
   GetBookMessagePublisher>();
 
 builder.Services.AddScoped<
+  IMessagePublisher<GetBooksRequest, GetBooksResponse>,
+  GetBooksMessagePublisher>();
+
+
+builder.Services.AddScoped<
   IMessagePublisher<UpdateBookRequest, UpdateBookResponse>,
   UpdateBookMessagePublisher>();
 
@@ -39,6 +44,10 @@ builder.Services.AddScoped<
 builder.Services.AddScoped<
   IMessagePublisher<GetReaderRequest, GetReaderResponse>,
   GetReaderMessagePublisher>();
+
+builder.Services.AddScoped<
+  IMessagePublisher<GetReadersRequest, GetReadersResponse>,
+  GetReadersMessagePublisher>();
 
 builder.Services.AddScoped<
   IMessagePublisher<UpdateReaderRequest, UpdateReaderResponse>,

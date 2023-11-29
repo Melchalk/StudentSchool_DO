@@ -1,7 +1,9 @@
 ﻿using DbModels;
 using Provider.Repositories;
 using ServiceModels.Requests.Reader;
+using ServiceModels.Responses.Book;
 using ServiceModels.Responses.Reader;
+using WebLibrary.Commands.Common_interfaces;
 using WebLibrary.Commands.Reader.Interfaces;
 using WebLibrary.Mappers.Reader;
 using WebLibrary.Validators;
@@ -15,15 +17,17 @@ public class ReaderReader : ReaderActions, IReaderReader
     {
     }
 
-    public List<GetReaderResponse> Get()
+    public GetReadersResponse Get()
     {
         List<DbReader> dbReaders = _readerRepository.Get().ToList();
 
-        List<GetReaderResponse> readerResponse = dbReaders.Select(u => _mapper.Map(u)).ToList();
+        GetReadersResponse readerResponse = new()
+        {
+            ReaderResponses = dbReaders.Select(u => _mapper.Map(u)).ToList()
+        };
 
         return readerResponse;
     }
-
     public async Task<GetReaderResponse> GetAsync(GetReaderRequest request)
     {
         DbReader? reader = await _readerRepository.GetAsync(request.Id);

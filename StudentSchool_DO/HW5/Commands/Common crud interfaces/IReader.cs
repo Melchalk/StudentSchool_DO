@@ -1,8 +1,8 @@
 ﻿namespace WebLibrary.Commands.Common_interfaces;
 
-public interface IReader<T, U>
+public interface IReader<T, U, K>
 {
     Task<U> GetAsync(T request);
 
-    List<U> Get();
+    K Get();
 }

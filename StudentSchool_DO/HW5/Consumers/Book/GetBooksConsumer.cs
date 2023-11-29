@@ -5,9 +5,8 @@ using WebLibrary.Commands.Book.Interfaces;
 
 namespace WebLibrary.Consumers.Book;
 
-public class GetBooksConsumer : IConsumer
+public class GetBooksConsumer : IConsumer<GetBooksRequest>
 {
-    /*
     private readonly IReaderBook _command;
 
     public GetBooksConsumer(IReaderBook command)
@@ -15,10 +14,10 @@ public class GetBooksConsumer : IConsumer
         _command = command;
     }
 
-    public Task Consume()
+    public async Task Consume(ConsumeContext<GetBooksRequest> context)
     {
-        List<GetBookResponse> actionResult = _command.Get();
+        GetBooksResponse actionResult =  _command.Get();
 
-        return Task.CompletedTask;
-    }*/
+        await context.RespondAsync(actionResult);
+    }
 }

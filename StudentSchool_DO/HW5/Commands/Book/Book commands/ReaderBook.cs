@@ -15,11 +15,14 @@ public class ReaderBook : BookActions, IReaderBook
     {
     }
 
-    public List<GetBookResponse> Get()
+    public GetBooksResponse Get()
     {
         List<DbBook> dbBooks = _bookRepository.Get().ToList();
 
-        List<GetBookResponse> bookResponse = dbBooks.Select(u => _mapper.Map(u)).ToList();
+        GetBooksResponse bookResponse = new()
+        {
+            BookResponses = dbBooks.Select(u => _mapper.Map(u)).ToList()
+        };
 
         return bookResponse;
     }

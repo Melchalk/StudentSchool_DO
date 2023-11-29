@@ -19,11 +19,4 @@ public class GetBookMessagePublisher : IMessagePublisher<GetBookRequest, GetBook
 
         return result.Message;
     }
-
-    public async Task<List<GetBookResponse>> SendMessageAsync()
-    {
-        Response<List<GetBookResponse>> result = await _requestClient.GetResponse<List<GetBookResponse>>(null);
-
-        return result.Message;
-    }
 }

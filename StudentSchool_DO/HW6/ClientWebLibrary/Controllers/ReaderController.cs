@@ -41,14 +41,16 @@ public class ReaderController : ControllerBase
         return Ok(readerResponse);
     }
 
-    /*
-    [HttpGet]
-    public IActionResult GetAll(
-    [FromServices] IReaderActions action)
+    [HttpGet()]
+    public async Task<IActionResult> GetAllAsync(
+    [FromServices] IMessagePublisher<GetReadersRequest, GetReadersResponse> messagePublisher)
     {
-        return action.Get();
+        GetReadersRequest getRequest = new();
+
+        GetReadersResponse readerResponse = await messagePublisher.SendMessageAsync(getRequest);
+
+        return Ok(readerResponse);
     }
-    */
 
     [HttpPut]
     public async Task<IActionResult> UpdateAsync(
