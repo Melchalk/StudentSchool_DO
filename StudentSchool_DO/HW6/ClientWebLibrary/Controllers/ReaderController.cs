@@ -1,8 +1,6 @@
 ﻿using ClientWebLibrary.Publishers;
 using Microsoft.AspNetCore.Mvc;
-using ServiceModels.Requests.Book;
 using ServiceModels.Requests.Reader;
-using ServiceModels.Responses.Book;
 using ServiceModels.Responses.Reader;
 
 namespace ClientWebLibrary.Controllers;

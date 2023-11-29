@@ -1,8 +1,7 @@
-﻿using WebLibrary.Commands.Book.Book_commands;
-using WebLibrary.Validators;
-using Moq;
-using FluentValidation;
+﻿using Moq;
 using ServiceModels.Requests.Book;
+using WebLibrary.Commands.Book.Book_commands;
+using WebLibrary.Validators;
 
 namespace ServerTests;
 

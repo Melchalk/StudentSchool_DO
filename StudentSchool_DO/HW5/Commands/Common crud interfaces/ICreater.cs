@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace WebLibrary.Commands.Common_interfaces;
+﻿namespace WebLibrary.Commands.Common_interfaces;
 
 public interface ICreater<T, U>
 {

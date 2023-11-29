@@ -1,12 +1,8 @@
 ﻿using DbModels;
-using FluentValidation;
 using FluentValidation.Results;
-using Microsoft.AspNetCore.Mvc;
 using Provider.Repositories;
 using ServiceModels.Requests.Reader;
-using ServiceModels.Responses.Book;
 using ServiceModels.Responses.Reader;
-using WebLibrary.Commands.Common_interfaces;
 using WebLibrary.Commands.Reader.Interfaces;
 using WebLibrary.Mappers.Reader;
 using WebLibrary.Validators;

@@ -1,5 +1,4 @@
 ﻿using ServiceModels.Requests.Reader;
-using ServiceModels.Responses.Book;
 using ServiceModels.Responses.Reader;
 using WebLibrary.Commands.Common_interfaces;
 

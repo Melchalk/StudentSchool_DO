@@ -1,6 +1,4 @@
-﻿using ServiceModels.Requests.Book;
-
-namespace ServiceModels.Requests.Reader;
+﻿namespace ServiceModels.Requests.Reader;
 
 public class UpdateReaderRequest
 {
