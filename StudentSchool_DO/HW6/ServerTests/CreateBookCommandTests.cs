@@ -1,35 +1,63 @@
-﻿using Moq;
+﻿using DbModels;
+using FluentValidation.Results;
+using Moq;
+using Provider.Repositories;
 using ServiceModels.Requests.Book;
 using WebLibrary.Commands.Book.Book_commands;
+using WebLibrary.Mappers.Book;
 using WebLibrary.Validators;
 
 namespace ServerTests;
 
 public class CreateBookCommandTests
 {
-    private Mock<ICreateBookRequestValidator> _createUserValidatorMock;
+    private Mock<ICreateBookRequestValidator> _createBookValidatorMock;
+    private Mock<IBookRepository> _bookRepository;
+    private Mock<IBookMapper> _bookMapper;
+
     private CreaterBook _command;
 
     [OneTimeSetUp]
     public void OneTimeSetUp()
     {
-        _createUserValidatorMock = new Mock<ICreateBookRequestValidator>();
-        /*
-        _createUserValidatorMock
+        _createBookValidatorMock = new Mock<ICreateBookRequestValidator>();
+        _bookRepository = new Mock<IBookRepository>();
+        _bookMapper = new Mock<IBookMapper>();
+
+        _createBookValidatorMock
           .Setup(x => x.Validate(It.IsAny<CreateBookRequest>()))
-          .Returns(true);
+          .Returns(new ValidationResult());
 
-        _createUserValidatorMock
+        _createBookValidatorMock
           .Setup(x => x.Validate(null))
-          .Returns(false);
+          .Returns(new ValidationResult()
+          {
+              Errors = new()
+              {
+                  new ValidationFailure()
+              }
+          });
 
-        _command = new CreaterBook(_createUserValidatorMock.Object);
-        */
+        _bookRepository
+             .Setup(x => x.AddAsync(It.IsAny<DbBook>()));
+
+        DbBook _dbBook = new()
+        {
+            Id = Guid.NewGuid(),
+            Title = "Test",
+            NumberPages = 1,
+            YearPublishing = 1,
+        };
+
+        _bookMapper
+            .Setup(x => x.Map(It.IsAny<CreateBookRequest>()))
+            .Returns(_dbBook);
+
+        _command = new CreaterBook(_bookRepository.Object, _createBookValidatorMock.Object, _bookMapper.Object);
     }
 
-    //измененить названия
     [Test]
-    public async Task CreateUserCommandReturnGuidWhenRequestIsOk()
+    public async Task CreateBookCommandReturnErrorsNotNullWhenRequestIsOk()
     {
         var request = new CreateBookRequest
         {
@@ -42,16 +70,15 @@ public class CreateBookCommandTests
         var actualResult = await _command.CreateAsync(request);
 
         Assert.IsNull(actualResult.Errors);
-        //Assert.IsInstanceOf(typeof(Guid), actualResult);
     }
 
     [Test]
-    public async Task CreateUserCommandReturnNullWhenRequestIsNotOk()
+    public async Task CreateBookCommandReturnErrorsEqualsNullWhenRequestIsNotOk()
     {
         CreateBookRequest request = null;
 
         var actualResult = await _command.CreateAsync(request);
-        //точно?
+
         Assert.IsNotNull(actualResult.Errors);
     }
 }
