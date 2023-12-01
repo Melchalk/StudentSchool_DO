@@ -12,7 +12,7 @@ namespace WebLibrary.Commands.Reader.Reader_commands;
 public class CreaterReader : ReaderActions, ICreaterReader
 {
     public CreaterReader(IReaderRepository readerRepository, ICreateReaderRequestValidator validator, IReaderMapper mapper)
-    : base(readerRepository, validator, mapper)
+        : base(readerRepository, validator, mapper)
     {
     }
 
