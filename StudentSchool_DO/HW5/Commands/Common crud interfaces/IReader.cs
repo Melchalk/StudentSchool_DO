@@ -1,8 +1,10 @@
-﻿namespace WebLibrary.Commands.Common_interfaces;
+﻿using System.Threading.Tasks;
+
+namespace WebLibrary.Commands.Common_interfaces;
 
 public interface IReader<T, U, K>
 {
     Task<U> GetAsync(T request);
 
-    K Get();
+    Task<K> GetAsync();
 }

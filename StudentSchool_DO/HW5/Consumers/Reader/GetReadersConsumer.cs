@@ -16,7 +16,7 @@ public class GetReadersConsumer : IConsumer<GetReadersRequest>
 
     public async Task Consume(ConsumeContext<GetReadersRequest> context)
     {
-        GetReadersResponse actionResult = _command.Get();
+        GetReadersResponse actionResult = await _command.GetAsync();
 
         await context.RespondAsync(actionResult);
     }

@@ -20,9 +20,9 @@ public class BookRepository : IBookRepository
         return await _context.Books.FirstOrDefaultAsync(u => u.Id == bookId);
     }
 
-    public DbSet<DbBook> Get()
+    public async Task<List<DbBook>> GetAsync()
     {
-        return  _context.Books;
+        return await _context.Books.ToListAsync();
     }
 
     public async Task UpdateAsync(DbBook book, PropertyInfo property, string newValue)
@@ -41,7 +41,7 @@ public class BookRepository : IBookRepository
 
     public async Task<DbBook?> UpdateAsync(DbBook? book)
     {
-        DbBook? oldBook = GetAsync(book.Id).Result;
+        DbBook? oldBook = await GetAsync(book.Id);
 
         if (oldBook is null)
         {

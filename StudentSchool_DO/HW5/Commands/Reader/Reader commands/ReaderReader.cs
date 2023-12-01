@@ -17,13 +17,13 @@ public class ReaderReader : ReaderActions, IReaderReader
     {
     }
 
-    public GetReadersResponse Get()
+    public async Task<GetReadersResponse> GetAsync()
     {
-        List<DbReader> dbReaders = _readerRepository.Get().ToList();
+        List<DbReader> dbReaders = await _readerRepository.GetAsync();
 
         GetReadersResponse readerResponse = new()
         {
-            ReaderResponses = dbReaders.Select(u => _mapper.Map(u)).ToList()
+            ReaderResponses = dbReaders.Select(_mapper.Map).ToList()
         };
 
         return readerResponse;
@@ -32,11 +32,12 @@ public class ReaderReader : ReaderActions, IReaderReader
     {
         DbReader? reader = await _readerRepository.GetAsync(request.Id);
 
-        GetReaderResponse readerResponse = new();
-
         if (reader is null)
         {
-            readerResponse.Error = NOT_FOUND;
+            GetReaderResponse readerResponse = new()
+            {
+                Error = NOT_FOUND
+            };
 
             return readerResponse;
         }

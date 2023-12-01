@@ -19,14 +19,14 @@ public class ReaderRepository : IReaderRepository
         return await _context.Readers.FirstOrDefaultAsync(u => u.Id == readerId);
     }
 
-    public DbSet<DbReader> Get()
+    public async Task<List<DbReader>> GetAsync()
     {
-        return _context.Readers;
+        return await _context.Readers.ToListAsync();
     }
 
     public async Task<DbReader?> UpdateAsync(DbReader reader)
     {
-        DbReader? oldReader = GetAsync(reader.Id).Result;
+        DbReader? oldReader = await GetAsync(reader.Id);
 
         if (oldReader is null)
         {

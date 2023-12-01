@@ -69,7 +69,7 @@ public class CreateBookCommandTests
 
         var actualResult = await _command.CreateAsync(request);
 
-        Assert.IsNull(actualResult.Errors);
+        Assert.That(actualResult.Errors, Is.Null);
     }
 
     [Test]
@@ -79,6 +79,6 @@ public class CreateBookCommandTests
 
         var actualResult = await _command.CreateAsync(request);
 
-        Assert.IsNotNull(actualResult.Errors);
+        Assert.That(actualResult.Errors, Is.Not.Null);
     }
 }

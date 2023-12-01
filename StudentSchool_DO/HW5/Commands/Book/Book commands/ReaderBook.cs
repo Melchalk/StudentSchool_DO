@@ -15,13 +15,13 @@ public class ReaderBook : BookActions, IReaderBook
     {
     }
 
-    public GetBooksResponse Get()
+    public async Task<GetBooksResponse> GetAsync()
     {
-        List<DbBook> dbBooks = _bookRepository.Get().ToList();
+        List<DbBook> dbBooks = await _bookRepository.GetAsync();
 
         GetBooksResponse bookResponse = new()
         {
-            BookResponses = dbBooks.Select(u => _mapper.Map(u)).ToList()
+            BookResponses = dbBooks.Select(_mapper.Map).ToList()
         };
 
         return bookResponse;
@@ -31,11 +31,12 @@ public class ReaderBook : BookActions, IReaderBook
     {
         DbBook? book = await _bookRepository.GetAsync(request.Id);
 
-        GetBookResponse bookResponse = new();
-
         if (book is null)
         {
-            bookResponse.Error = NOT_FOUND;
+            GetBookResponse bookResponse = new()
+            {
+                Error = NOT_FOUND
+            };
 
             return bookResponse;
         }

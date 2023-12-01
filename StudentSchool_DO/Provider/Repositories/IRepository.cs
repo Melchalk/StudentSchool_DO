@@ -8,7 +8,7 @@ public interface IRepository<T> where T : class
 
     Task<T?> GetAsync(Guid id);
 
-    DbSet<T> Get();
+    Task<List<T>> GetAsync();
 
     Task<T> UpdateAsync(T entity);
 

@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using DbModels;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Provider;
 
@@ -39,12 +40,12 @@ internal class Remover : Action
         int sqlDataReader = sqlCommand.ExecuteNonQuery();
     }
 
-    private void Delete(Guid Id)
+    private async Task Delete(Guid Id)
     {
-        var book = _bookRepository.Get()
-            .FirstOrDefault(u => u.Id == Id)
+        var books = await _bookRepository.GetAsync();
+        DbBook book = books.FirstOrDefault(u => u.Id == Id)
             ?? throw new Exception("Book is null");
 
-        _bookRepository.DeleteAsync(book);
+        await _bookRepository.DeleteAsync(book);
     }
 }

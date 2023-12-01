@@ -53,7 +53,7 @@ internal class Reader : Action
 
     private string ReadBook(Guid Id)
     {
-        DbBook? book =  _bookRepository.GetAsync(Id).Result;
+        DbBook? book = _bookRepository.GetAsync(Id).Result;
 
         StringBuilder infoOfBook = new();
 
