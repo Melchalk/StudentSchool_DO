@@ -1,6 +1,6 @@
 ﻿using DbModels;
-using WebLibrary.Requests;
-using WebLibrary.Responses;
+using ServiceModels.Requests.Reader;
+using ServiceModels.Responses.Reader;
 
 namespace WebLibrary.Mappers.Reader;
 

@@ -1,11 +1,10 @@
 ﻿using FluentValidation;
-using WebLibrary.Requests;
+using ServiceModels.Requests.Book;
 
 namespace WebLibrary.Validators;
 
 public class CreateBookRequestValidator : AbstractValidator<CreateBookRequest>, ICreateBookRequestValidator
 {
-    //проверка на цифры
     public CreateBookRequestValidator()
     {
         RuleFor(request => request.Title)

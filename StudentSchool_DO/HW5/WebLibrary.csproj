@@ -9,11 +9,13 @@
 
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="11.8.0" />
+    <PackageReference Include="MassTransit.RabbitMQ" Version="8.1.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\HW3\DbModel\DbModels.csproj" />
+    <ProjectReference Include="..\HW6\ServiceModels\ServiceModels.csproj" />
     <ProjectReference Include="..\Provider\Provider.csproj" />
   </ItemGroup>
 
